@@ -50,11 +50,16 @@ class KaraokePlayer(QWidget):
         self.video_frame.setFixedHeight(400)
         layout.addWidget(self.video_frame)
 
-        # Lyrics label
-        self.lyrics_label = QLabel("", self)
-        self.lyrics_label.setAlignment(Qt.AlignCenter)
-        self.lyrics_label.setStyleSheet("color: white; font-size: 24px; background-color: black;")
-        layout.addWidget(self.lyrics_label)
+        # Lyrics labels
+        self.lyrics_top_left = QLabel("", self)
+        self.lyrics_top_left.setAlignment(Qt.AlignLeft | Qt.AlignTop)
+        self.lyrics_top_left.setStyleSheet("color: white; font-size: 24px; background-color: black;")
+        layout.addWidget(self.lyrics_top_left)
+
+        self.lyrics_bottom_right = QLabel("", self)
+        self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignBottom)
+        self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 24px; background-color: black;")
+        layout.addWidget(self.lyrics_bottom_right)
 
         # Toggle button
         self.toggle_button = QPushButton("Enable Vocal", self)
@@ -67,6 +72,12 @@ class KaraokePlayer(QWidget):
         # Timer for lyrics sync
         self.timer = QTimer()
         self.timer.timeout.connect(self._update_lyrics_sync)
+
+        # Internal state
+        self.labels = [self.lyrics_top_left, self.lyrics_bottom_right]
+        self.current_index = -1  # currently singing line index
+        self.next_index = 0      # next line to preload
+        self.current_label = 0   # which label is showing current line
 
     # ------------------------------------------------------------
     # Audio & Video
@@ -140,6 +151,21 @@ class KaraokePlayer(QWidget):
     def _play_media(self):
         """Start video and audio playback (uses local video.mp4 + instrumental/vocal audio)"""
         import os, sys, time, pygame
+
+        # --- Reset lyrics labels & internal state for initial display ---
+        if len(self.lyrics_segments) > 0:
+            self.lyrics_top_left.setText(self.lyrics_segments[0]["text"])
+        else:
+            self.lyrics_top_left.setText("")
+        if len(self.lyrics_segments) > 1:
+            self.lyrics_bottom_right.setText(self.lyrics_segments[1]["text"])
+        else:
+            self.lyrics_bottom_right.setText("")
+
+        self.current_index = -1
+        self.next_index = 0
+        self.current_label = 0
+
         # derive folder path from audio file
         if hasattr(self, "audio_path") and self.audio_path:
             folder = os.path.dirname(self.audio_path)
@@ -189,7 +215,7 @@ class KaraokePlayer(QWidget):
             if self.vocal_pcm:
                 vocal_sound = pygame.mixer.Sound(self.vocal_pcm)
                 pygame.mixer.Channel(1).play(vocal_sound)
-                pygame.mixer.Channel(1).set_volume(0.0)  # start muted
+                if not self.vocal_enabled: pygame.mixer.Channel(1).set_volume(0.0)  # start muted
 
             print("🎵 Audio playback started.")
         else:
@@ -219,20 +245,39 @@ class KaraokePlayer(QWidget):
             return
 
         elapsed = time.time() - self.start_time
-        current_text = ""
-        for seg in self.lyrics_segments:
-            if seg["start"] <= elapsed < seg["end"]:
-                current_text = seg["text"]
-                break
-        self.lyrics_label.setText(current_text)
 
-        # stop when finished
+        # Check if we need to move to the next line
+        if self.next_index < len(self.lyrics_segments):
+            seg = self.lyrics_segments[self.next_index]
+            if elapsed >= seg["start"]:
+                # Swap current label
+                self.current_label = 1 - self.current_label
+                # Update current singing line on the "current label"
+                self.labels[self.current_label].setText(seg["text"])
+
+                # Preload next line on the other label
+                next_next_index = self.next_index + 1
+                if next_next_index < len(self.lyrics_segments):
+                    self.labels[1 - self.current_label].setText(
+                        self.lyrics_segments[next_next_index]["text"]
+                    )
+                else:
+                    # No more lines, clear the other label
+                    self.labels[1 - self.current_label].setText("")
+
+                self.current_index = self.next_index
+                self.next_index += 1
+
+        # Stop when playback finishes
+        import pygame
         if not pygame.mixer.Channel(0).get_busy():
             self.timer.stop()
             self.playing = False
-            self.lyrics_label.setText("")
+            for lbl in self.labels:
+                lbl.setText("")
             print("✅ Playback finished.")
-            self.finished.emit()  # <-- emit signal when song ends
+            self.finished.emit()
+
 
     # ------------------------------------------------------------
     # Public start
@@ -251,7 +296,8 @@ class KaraokePlayer(QWidget):
         self.timer.stop()
         if self.player.is_playing():
             self.player.stop()
-        self.lyrics_label.setText("")
+        self.lyrics_top_left.setText("")
+        self.lyrics_bottom_right.setText("")
 
 # ------------------------------------------------------------
 # Example usage
