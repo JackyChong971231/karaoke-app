@@ -3,9 +3,10 @@ import json
 from pathlib import Path
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton,
-    QListWidget, QLabel, QMessageBox, QSplitter, QSizePolicy
+    QListWidget, QListWidgetItem, QLabel, QMessageBox, QSplitter, QSizePolicy
 )
 from PySide6.QtCore import Qt, Signal, QThread
+from PySide6.QtGui import QFont
 
 from searcher.youtube_search import YouTubeSearcher
 from downloader.yt_downloader import YouTubeDownloader
@@ -104,11 +105,56 @@ class ProcessWorker(QThread):
         except Exception as e:
             self.error.emit(str(e))
 
+class QueueItemWidget(QWidget):
+    removed = Signal(int)  # emit row index when delete button is pressed
+
+    def __init__(self, title: str, index: int):
+        super().__init__()
+        self.index = index
+
+        layout = QHBoxLayout()
+        layout.setContentsMargins(5, 5, 5, 5)
+        layout.setSpacing(10)
+
+        # --- Delete Button ---
+        self.delete_btn = QPushButton("🗑️")
+        font = QFont()
+        font.setPointSize(18)  # Emoji size
+        self.delete_btn.setFont(font)
+        self.delete_btn.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                border: none;
+            }
+            QPushButton:hover {
+                color: red;
+            }
+        """)
+
+        # Make button fit the emoji dynamically
+        size_hint = self.delete_btn.sizeHint()
+        self.delete_btn.setFixedSize(size_hint.width() + 4, size_hint.height() + 4)
+
+        self.delete_btn.clicked.connect(self._on_delete)
+        layout.addWidget(self.delete_btn)
+
+        # --- Label ---
+        self.label = QLabel(title)
+        self.label.setStyleSheet("color: white; font-size: 14px;")
+        layout.addWidget(self.label, stretch=1)
+
+
+        self.setLayout(layout)
+
+    def _on_delete(self):
+        self.removed.emit(self.index)
 
 # -------------------------
 # Main App (Qt)
 # -------------------------
 class KaraokeAppQt(QWidget):
+    queue_changed = Signal(list)
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("🎤 Karaoke App (Qt Edition)")
@@ -129,12 +175,90 @@ class KaraokeAppQt(QWidget):
         self.refresh_cache_list()
 
     def _setup_ui(self):
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #121212;
+                color: #E0E0E0;
+                font-family: Segoe UI, Arial;
+                font-size: 13px;
+            }
+            QLineEdit {
+                background-color: #1E1E1E;
+                border: 1px solid #333;
+                padding: 6px;
+                border-radius: 6px;
+                color: #EEE;
+            }
+            QPushButton {
+                background-color: #2C2C2C;
+                border: none;
+                padding: 8px 14px;
+                border-radius: 6px;
+                color: #E0E0E0;
+            }
+            QPushButton:hover {
+                background-color: #3A3A3A;
+            }
+            QPushButton:pressed {
+                background-color: #505050;
+            }
+            QListWidget {
+                background-color: #181818;
+                border: 1px solid #333;
+                border-radius: 6px;
+            }
+            QLabel {
+                font-weight: bold;
+                color: #B0B0B0;
+                margin-bottom: 4px;
+            }
+
+            QScrollBar:vertical {
+                background-color: #gray;  /* track color */
+                width: 12px;
+                margin: 0px 0px 0px 0px;
+                border-radius: 6px;
+            }
+            QScrollBar::handle:vertical {
+                background-color: white;  /* handle color */
+                min-height: 20px;
+                border-radius: 6px;
+            }
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+                background: none;
+                height: 0px;
+            }
+            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+                background: none;
+            }
+
+            QScrollBar:horizontal {
+                background-color: #gray;
+                height: 12px;
+                border-radius: 6px;
+            }
+            QScrollBar::handle:horizontal {
+                background-color: white;
+                min-width: 20px;
+                border-radius: 6px;
+            }
+            QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+                background: none;
+                width: 0px;
+            }
+            QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+                background: none;
+            }
+        """)
+
         layout = QVBoxLayout(self)
+        layout.setSpacing(10)
+        layout.setContentsMargins(10, 10, 10, 10)
 
         # --- Search bar ---
         search_layout = QHBoxLayout()
         self.search_input = QLineEdit()
-        self.search_input.setPlaceholderText("Search for song or artist...")
+        self.search_input.setPlaceholderText("🔍 Search for song or artist...")
         self.search_btn = QPushButton("Search")
         self.search_btn.clicked.connect(self.on_search)
         search_layout.addWidget(self.search_input)
@@ -142,53 +266,72 @@ class KaraokeAppQt(QWidget):
         layout.addLayout(search_layout)
 
         # --- Splitter: results | cache ---
-        splitter = QSplitter(Qt.Horizontal)
+        splitter = QSplitter(Qt.Orientation.Horizontal)
 
-        # Search results
+        # Left: Search results
         left = QWidget()
         left_layout = QVBoxLayout(left)
-        left_layout.addWidget(QLabel("Search Results"))
+        label_results = QLabel("Search Results")
         self.results_list = QListWidget()
         self.results_list.itemSelectionChanged.connect(self.on_result_selected)
+        left_layout.addWidget(label_results)
         left_layout.addWidget(self.results_list)
         splitter.addWidget(left)
 
-        # Cached songs
+        # Right: Cached songs
         right = QWidget()
         right_layout = QVBoxLayout(right)
-        right_layout.addWidget(QLabel("Cached Songs"))
+        label_cache = QLabel("Cached Songs")
         self.cache_list = QListWidget()
         self.cache_list.itemSelectionChanged.connect(self.on_cache_selected)
+        right_layout.addWidget(label_cache)
         right_layout.addWidget(self.cache_list)
         splitter.addWidget(right)
 
         layout.addWidget(splitter, stretch=1)
+        self.results_list.itemDoubleClicked.connect(self.on_result_double_click)
+        self.cache_list.itemDoubleClicked.connect(self.on_cache_double_click)
 
         # --- Controls ---
         controls = QHBoxLayout()
-        self.play_btn = QPushButton("Play")
-        self.pause_btn = QPushButton("Pause")
-        self.stop_btn = QPushButton("Stop")
-        self.skip_btn = QPushButton("Skip")
+        controls.setSpacing(8)
+
+        self.play_btn = QPushButton("▶ Play")
+        self.pause_btn = QPushButton("⏸ Pause")
+        self.stop_btn = QPushButton("⏹ Stop")
+        self.skip_btn = QPushButton("⏭ Skip")
+
         self.play_btn.clicked.connect(self.play_song)
         self.pause_btn.clicked.connect(self.pause_song)
         self.stop_btn.clicked.connect(self.stop_song)
         self.skip_btn.clicked.connect(self.skip_song)
-        for b in (self.play_btn, self.pause_btn, self.stop_btn, self.skip_btn):
-            controls.addWidget(b)
 
-        self.queue_btn = QPushButton("Queue Song")
+        for btn in (self.play_btn, self.pause_btn, self.stop_btn, self.skip_btn):
+            controls.addWidget(btn)
+
+        self.queue_btn = QPushButton("➕ Queue Song")
         self.queue_btn.clicked.connect(self.queue_song)
         controls.addWidget(self.queue_btn)
 
-        self.status_label = QLabel("")
-        self.status_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        self.status_label = QLabel("Ready")
+        self.status_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         controls.addWidget(self.status_label)
         layout.addLayout(controls)
 
         # --- Next Up Section ---
-        layout.addWidget(QLabel("Next Up"))
+        next_up_label = QLabel("Next Up")
+        next_up_label.setStyleSheet("font-size: 14px; font-weight: bold; color: #FFF; margin-top: 10px;")
+        layout.addWidget(next_up_label)
+
         self.queue_list = QListWidget()
+        self.queue_list.setStyleSheet("""
+            QListWidget {
+                background-color: #111;
+                color: white;
+                border: 1px solid #333;
+                border-radius: 6px;
+            }
+        """)
         layout.addWidget(self.queue_list)
 
     # -------------------------
@@ -264,13 +407,69 @@ class KaraokeAppQt(QWidget):
             return
 
         # Shallow copy to avoid mutation
-        self.queue.append(dict(self.current_selected))
-        self.queue_list.addItem(f"{self.current_selected.get('artist', '')} - {self.current_selected.get('title', '')}")
-        self.status_label.setText(f"Queued {self.current_selected.get('title', '')}")
+        song = dict(self.current_selected)
+        self.queue.append(song)
+
+        # Create custom list item
+        item_widget = QueueItemWidget(f"{song.get('artist', '')} - {song.get('title', '')}", len(self.queue) - 1)
+        item_widget.removed.connect(self.remove_queue_item)
+
+        list_item = QListWidgetItem()
+        list_item.setSizeHint(item_widget.sizeHint())
+
+        self.queue_list.addItem(list_item)
+        self.queue_list.setItemWidget(list_item, item_widget)
+
+        self.status_label.setText(f"Queued {song.get('title', '')}")
 
         # If nothing is being prepared yet, start preparing next
         if not self.next_worker and len(self.queue) == 1:
             self._prepare_next_song()
+
+        self.queue_changed.emit(self.queue)  # notify
+
+    def on_result_double_click(self, item):
+        """When user double-clicks a search result, queue it."""
+        idx = self.results_list.row(item)
+        if 0 <= idx < len(self.results):
+            self.current_selected = self.results[idx]
+            self.queue_song()
+
+    def on_cache_double_click(self, item):
+        """When user double-clicks a cached song, queue it."""
+        idx = self.cache_list.row(item)
+        folder = sorted(self.cache.BASE_DIR.iterdir())[idx]
+        meta_path = folder / "meta.json"
+        if meta_path.exists():
+            try:
+                meta = json.loads(meta_path.read_text(encoding="utf-8"))
+                cached = self.cache.check_existing(meta["title"], meta["artist"])
+                if cached:
+                    cached["url"] = meta.get("url")
+                    self.current_selected = {
+                        "title": meta["title"],
+                        "artist": meta["artist"],
+                        "url": meta.get("url"),
+                        "cached": cached,
+                    }
+                    self.queue_song()
+            except Exception as e:
+                QMessageBox.warning(self, "Error", f"Failed to load cache: {e}")
+
+    def remove_queue_item(self, index):
+        """Remove a queue item when its trash button is clicked."""
+        if 0 <= index < len(self.queue):
+            del self.queue[index]
+            self.queue_list.takeItem(index)
+            self.status_label.setText("Removed song from queue")
+
+        # Re-index remaining items so delete buttons stay correct
+        for i in range(self.queue_list.count()):
+            widget = self.queue_list.itemWidget(self.queue_list.item(i))
+            if widget:
+                widget.index = i
+        self.queue_changed.emit(self.queue)  # notify
+
 
     def _prepare_next_song(self):
         if not self.queue:
@@ -312,6 +511,7 @@ class KaraokeAppQt(QWidget):
             return  # nothing to play
 
         next_song = self.queue.pop(0)
+        self.queue_changed.emit(self.queue)
         self.queue_list.takeItem(0)
 
         # Determine if cached or preprocessed
@@ -372,6 +572,7 @@ class KaraokeAppQt(QWidget):
                             segments.append({"start": m * 60 + s, "end": m * 60 + s + 5, "text": text})
             self._open_player(info["instrumental"], segments, info["vocals"], info.get("url"))
             self.queue.pop(0)
+            self.queue_changed.emit(self.queue)
             self.queue_list.takeItem(0)
             # Start preparing the next song in queue
             self._prepare_next_song()
@@ -418,6 +619,12 @@ class KaraokeAppQt(QWidget):
         if not hasattr(self.player_window, "_connected_finished"):
             self.player_window.finished.connect(self._play_next_from_queue)
             self.player_window._connected_finished = True
+        
+        # Connect queue updates to the player's next song label
+        self.queue_changed.connect(self.player_window.update_next_song_label)
+
+        # Immediately update the label for current queue
+        self.player_window.update_next_song_label(self.queue)
 
     def pause_song(self):
         try:
