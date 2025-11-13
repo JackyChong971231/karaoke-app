@@ -7,9 +7,10 @@ import vlc
 import pygame
 
 from PySide6.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QFrame
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFrame
 )
-from PySide6.QtCore import QTimer, Qt, Signal
+from PySide6.QtCore import QTimer, Qt, Signal, QPoint
+from PySide6.QtWidgets import QStackedLayout
 
 
 class KaraokePlayer(QWidget):
@@ -31,43 +32,135 @@ class KaraokePlayer(QWidget):
         self.instance = vlc.Instance()
         self.player = self.instance.media_player_new()
 
+        self._is_dragging = False
+        self._drag_pos = QPoint()
+
         # UI setup
         self._setup_ui()
         self._prepare_audio_files()
+
+    def _toggle_borderless(self):
+        if self.isFullScreen():
+            # Switch to normal window with borders and Windows taskbar
+            self.setWindowFlags(Qt.Window)  # normal window with title bar
+            self.showNormal()
+        else:
+            # Switch to borderless full-screen
+            self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
+            self.showFullScreen()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            # Only start dragging if clicked on control panel
+            if self.control_panel.underMouse():
+                self._is_dragging = True
+                self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+                event.accept()
+
+    def mouseMoveEvent(self, event):
+        if self._is_dragging and event.buttons() & Qt.LeftButton:
+            self.move(event.globalPosition().toPoint() - self._drag_pos)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self._is_dragging = False
 
     # ------------------------------------------------------------
     # UI
     # ------------------------------------------------------------
     def _setup_ui(self):
+        self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
         self.setWindowTitle("Karaoke Player (Qt Edition)")
-        self.setGeometry(200, 200, 800, 600)
+        self.setGeometry(200, 200, 1280, 720)  # large window for TV
+        self.setStyleSheet("background-color: black;")
 
-        layout = QVBoxLayout(self)
+        main_layout = QVBoxLayout(self)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.setSpacing(0)
 
-        # Video container
-        self.video_frame = QFrame(self)
-        self.video_frame.setStyleSheet("background-color: black;")
-        self.video_frame.setFixedHeight(400)
-        layout.addWidget(self.video_frame)
+        # --- Control panel (top) ---
+        self.control_panel = QFrame(self)
+        self.control_panel.setFixedHeight(60)  # fixed height
+        self.control_panel.setStyleSheet("background-color: rgba(0,0,0,150);")
 
-        # Lyrics labels
-        self.lyrics_top_left = QLabel("", self)
-        self.lyrics_top_left.setAlignment(Qt.AlignLeft | Qt.AlignTop)
-        self.lyrics_top_left.setStyleSheet("color: white; font-size: 24px; background-color: black;")
-        layout.addWidget(self.lyrics_top_left)
+        control_layout = QHBoxLayout(self.control_panel)
+        control_layout.setContentsMargins(10, 10, 10, 10)
+        control_layout.setSpacing(10)
 
-        self.lyrics_bottom_right = QLabel("", self)
-        self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignBottom)
-        self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 24px; background-color: black;")
-        layout.addWidget(self.lyrics_bottom_right)
+        control_btn_style = """
+            font-size: 16px;
+            padding: 8px;
+            background-color: rgba(50, 50, 50, 180);
+            color: white;
+            border-radius: 5px;
+        """
 
-        # Toggle button
-        self.toggle_button = QPushButton("Enable Vocal", self)
-        self.toggle_button.setStyleSheet("font-size: 16px; padding: 8px;")
+        # Pause button
+        self.pause_button = QPushButton("Pause", self.control_panel)
+        self.pause_button.setStyleSheet(control_btn_style)
+        self.pause_button.setFixedSize(100, 40)
+        self.pause_button.clicked.connect(self._toggle_pause)
+        control_layout.addWidget(self.pause_button)
+
+        # Toggle vocal button
+        self.toggle_button = QPushButton("Enable Vocal", self.control_panel)
+        self.toggle_button.setStyleSheet(control_btn_style)
+        self.toggle_button.setFixedSize(150, 40)
         self.toggle_button.clicked.connect(self._toggle_vocal)
-        layout.addWidget(self.toggle_button)
+        control_layout.addWidget(self.toggle_button)
 
-        self.setLayout(layout)
+        exit_btn = QPushButton("Exit", self.control_panel)
+        exit_btn.setStyleSheet(control_btn_style)
+        exit_btn.setFixedSize(100, 40)
+        exit_btn.clicked.connect(self.close)
+        control_layout.addWidget(exit_btn)
+
+        self.border_toggle_btn = QPushButton("Toggle Border", self.control_panel)
+        self.border_toggle_btn.setStyleSheet(control_btn_style)
+        self.border_toggle_btn.setFixedSize(150, 40)
+        self.border_toggle_btn.clicked.connect(self._toggle_borderless)
+        control_layout.addWidget(self.border_toggle_btn)
+
+        control_layout.addStretch()
+        main_layout.addWidget(self.control_panel)
+
+        # --- Video container (flexible) ---
+        self.video_container = QFrame(self)
+        self.video_container.setStyleSheet("background-color: black;")
+        video_layout = QVBoxLayout(self.video_container)
+        video_layout.setContentsMargins(0, 0, 0, 0)
+        video_layout.setSpacing(0)
+        main_layout.addWidget(self.video_container, stretch=1)  # takes remaining space
+
+        # Video frame inside container
+        self.video_frame = QFrame(self.video_container)
+        self.video_frame.setStyleSheet("background-color: black;")
+        video_layout.addWidget(self.video_frame, stretch=1)  # fills the container
+
+        # --- Lyrics container (bottom, fixed height) ---
+        lyrics_container = QFrame(self)
+        lyrics_container.setFixedHeight(100)  # adjust total height
+        lyrics_container.setStyleSheet("background-color: rgba(0,0,0,100);")  # semi-transparent background
+        lyrics_layout = QVBoxLayout(lyrics_container)
+        lyrics_layout.setContentsMargins(5, 5, 5, 5)  # padding from edges
+        lyrics_layout.setSpacing(20)
+
+        # Top-left lyrics
+        self.lyrics_top_left = QLabel("", lyrics_container)
+        self.lyrics_top_left.setAlignment(Qt.AlignLeft | Qt.AlignTop)
+        self.lyrics_top_left.setStyleSheet("color: white; font-size: 24px;")
+        lyrics_layout.addWidget(self.lyrics_top_left)
+
+        # Bottom-right lyrics
+        self.lyrics_bottom_right = QLabel("", lyrics_container)
+        self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignBottom)
+        self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 24px;")
+        lyrics_layout.addWidget(self.lyrics_bottom_right)
+        
+
+        main_layout.addWidget(lyrics_container)
+
+        self.setLayout(main_layout)
 
         # Timer for lyrics sync
         self.timer = QTimer()
@@ -75,9 +168,14 @@ class KaraokePlayer(QWidget):
 
         # Internal state
         self.labels = [self.lyrics_top_left, self.lyrics_bottom_right]
-        self.current_index = -1  # currently singing line index
-        self.next_index = 0      # next line to preload
-        self.current_label = 0   # which label is showing current line
+        self.current_index = -1
+        self.next_index = 0
+        self.current_label = 0
+
+
+
+
+
 
     # ------------------------------------------------------------
     # Audio & Video
@@ -239,12 +337,30 @@ class KaraokePlayer(QWidget):
 
         pygame.mixer.Channel(1).set_volume(1.0 if self.vocal_enabled else 0.0)
 
+    def _toggle_pause(self):
+        import pygame
+        if self.playing:
+            if self.player.is_playing():
+                # Pause video and audio
+                self.player.pause()
+                pygame.mixer.pause()
+                self.pause_button.setText("Resume")
+            else:
+                # Resume video and audio
+                self.player.play()
+                pygame.mixer.unpause()
+                self.pause_button.setText("Pause")
+
     def _update_lyrics_sync(self):
         if not self.playing:
             self.timer.stop()
             return
 
-        elapsed = time.time() - self.start_time
+        # Use VLC playback time instead of wall clock
+        if self.player.is_playing() or self.player.get_state() in (vlc.State.Paused, vlc.State.Playing):
+            elapsed = self.player.get_time() / 1000.0  # VLC returns milliseconds
+        else:
+            elapsed = 0
 
         # Check if we need to move to the next line
         if self.next_index < len(self.lyrics_segments):
@@ -270,13 +386,14 @@ class KaraokePlayer(QWidget):
 
         # Stop when playback finishes
         import pygame
-        if not pygame.mixer.Channel(0).get_busy():
+        if not pygame.mixer.Channel(0).get_busy() and self.player.get_state() == vlc.State.Ended:
             self.timer.stop()
             self.playing = False
             for lbl in self.labels:
                 lbl.setText("")
             print("✅ Playback finished.")
             self.finished.emit()
+
 
 
     # ------------------------------------------------------------
