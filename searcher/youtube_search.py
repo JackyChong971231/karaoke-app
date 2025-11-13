@@ -1,28 +1,30 @@
 # searcher/youtube_search.py
-from ytmusicapi import YTMusic
+from yt_dlp import YoutubeDL
 
 class YouTubeSearcher:
     def __init__(self):
-        # initialize YTMusic (can use empty headers for basic search)
-        self.ytmusic = YTMusic()
+        pass  # no initialization needed
 
     def search(self, query, max_results=5):
         """
         Search YouTube for a query and return a list of dicts:
-        {title, videoId, artists, duration}
+        {title, videoId, artist, duration, url}
         """
-        results = self.ytmusic.search(query, filter='songs')  # songs only
-        output = []
-        for r in results[:max_results]:
-            info = {
-                'title': r.get('title'),
-                'videoId': r.get('videoId'),
-                'artist': r.get('artists', [{}])[0].get('name', ''),
-                'duration': r.get('duration'),
-                'url': f"https://www.youtube.com/watch?v={r.get('videoId')}"
-            }
-            output.append(info)
-        return output
+        ydl_opts = {'quiet': True}
+        with YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(f"ytsearch{max_results}:{query}", download=False)
+            results = []
+            for entry in info['entries']:
+                # Fallback for artist: use uploader if no music metadata
+                artist = entry.get('artist') or entry.get('uploader') or ""
+                results.append({
+                    'title': entry.get('title'),
+                    'videoId': entry.get('id'),
+                    'artist': artist,
+                    'duration': entry.get('duration'),
+                    'url': f"https://www.youtube.com/watch?v={entry.get('id')}"
+                })
+            return results
 
 # Test code
 if __name__ == "__main__":

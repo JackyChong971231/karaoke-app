@@ -26,14 +26,28 @@ class CacheManager:
         instrumental = song_dir / "instrumental.wav"
         vocals = song_dir / "vocals.wav"
         lyrics = song_dir / "lyrics.lrc"
+        meta_file = song_dir / "meta.json"
 
         if instrumental.exists() and vocals.exists() and lyrics.exists():
+            url = None
+            if meta_file.exists():
+                try:
+                    import json
+                    with open(meta_file, "r", encoding="utf-8") as f:
+                        meta = json.load(f)
+                        url = meta.get("url")
+                except Exception as e:
+                    print(f"⚠️ Failed to read meta.json: {e}")
+
             return {
                 "instrumental": str(instrumental),
                 "vocals": str(vocals),
-                "lyrics": str(lyrics)
+                "lyrics": str(lyrics),
+                "url": url
             }
+
         return None
+
 
     def save_meta(self, title: str, artist: str, url: str):
         song_dir = self.get_song_dir(title, artist)
