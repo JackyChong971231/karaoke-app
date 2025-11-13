@@ -1,32 +1,75 @@
 import os
 import time
-import tkinter as tk
+import sys
 from yt_dlp import YoutubeDL
 from pydub import AudioSegment
 import vlc
 import pygame
 
+from PySide6.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QFrame
+)
+from PySide6.QtCore import QTimer, Qt
 
-class KaraokePlayer:
+
+class KaraokePlayer(QWidget):
     def __init__(self, instrumental_path, lyrics_segments, vocal_path=None, video_path=None, video_url=None):
+        super().__init__()
         self.instrumental_path = instrumental_path
         self.vocal_path = vocal_path
         self.lyrics_segments = lyrics_segments
         self.video_path = video_path
         self.video_url = video_url
 
-        self.window = None
         self.playing = False
-        self.vocal_enabled = False  # toggle flag
+        self.vocal_enabled = False
+        self.start_time = None
 
-        # VLC player for video
+        # VLC player setup
         self.instance = vlc.Instance()
         self.player = self.instance.media_player_new()
 
+        # UI setup
+        self._setup_ui()
         self._prepare_audio_files()
 
+    # ------------------------------------------------------------
+    # UI
+    # ------------------------------------------------------------
+    def _setup_ui(self):
+        self.setWindowTitle("Karaoke Player (Qt Edition)")
+        self.setGeometry(200, 200, 800, 600)
+
+        layout = QVBoxLayout(self)
+
+        # Video container
+        self.video_frame = QFrame(self)
+        self.video_frame.setStyleSheet("background-color: black;")
+        self.video_frame.setFixedHeight(400)
+        layout.addWidget(self.video_frame)
+
+        # Lyrics label
+        self.lyrics_label = QLabel("", self)
+        self.lyrics_label.setAlignment(Qt.AlignCenter)
+        self.lyrics_label.setStyleSheet("color: white; font-size: 24px; background-color: black;")
+        layout.addWidget(self.lyrics_label)
+
+        # Toggle button
+        self.toggle_button = QPushButton("Enable Vocal", self)
+        self.toggle_button.setStyleSheet("font-size: 16px; padding: 8px;")
+        self.toggle_button.clicked.connect(self._toggle_vocal)
+        layout.addWidget(self.toggle_button)
+
+        self.setLayout(layout)
+
+        # Timer for lyrics sync
+        self.timer = QTimer()
+        self.timer.timeout.connect(self._update_lyrics_sync)
+
+    # ------------------------------------------------------------
+    # Audio & Video
+    # ------------------------------------------------------------
     def _prepare_audio_files(self):
-        """Ensure WAV files are in playable PCM format"""
         def convert_to_pcm(input_path, output_name):
             if not input_path or not os.path.exists(input_path):
                 return None
@@ -40,109 +83,114 @@ class KaraokePlayer:
         self.vocal_pcm = convert_to_pcm(self.vocal_path, "vocal")
 
     def _download_video(self):
-        """Download YouTube video if URL provided"""
         if not self.video_url:
             return None
         try:
+            import os
+            from yt_dlp import YoutubeDL
+
+            # derive folder path from audio file
+            if hasattr(self, "audio_path") and self.audio_path:
+                folder = os.path.dirname(self.audio_path)
+            elif hasattr(self, "instrumental_path") and self.instrumental_path:
+                folder = os.path.dirname(self.instrumental_path)
+            else:
+                folder = "./karaoke_data"
+
+            os.makedirs(folder, exist_ok=True)
+
+            # construct video path
+            self.video_path = os.path.join(folder, "video.mp4")
+
+            # skip download if already exists
+            if os.path.exists(self.video_path):
+                print(f"🎬 Video already exists at {self.video_path}")
+                return self.video_path
+
             ydl_opts = {
                 "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4",
-                "outtmpl": "temp_video.mp4",
+                "outtmpl": self.video_path,
                 "quiet": True,
             }
+
             with YoutubeDL(ydl_opts) as ydl:
                 ydl.download([self.video_url])
-            self.video_path = "temp_video.mp4"
+
             print(f"✅ Video downloaded: {self.video_path}")
             return self.video_path
+
         except Exception as e:
             print(f"❌ Failed to download video: {e}")
             return None
 
-    def _setup_tkinter(self):
-        """Create Tkinter window for video + lyrics + button"""
-        self.window = tk.Tk()
-        self.window.title("Karaoke Player")
-        self.window.geometry("800x600")
+    def _play_media(self):
+        """Start video and audio playback (uses local video.mp4 + instrumental/vocal audio)"""
+        import os, sys, time, pygame
 
-        self.video_frame = tk.Frame(self.window, bg="black")
-        self.video_frame.pack(expand=True, fill="both")
+        # --- VLC Video Playback ---
+        if self.video_path and os.path.exists(self.video_path):
+            media = self.instance.media_new(self.video_path)
+            self.player.set_media(media)
 
-        self.lyrics_label = tk.Label(
-            self.window, text="", font=("Arial", 24), bg="black", fg="white"
-        )
-        self.lyrics_label.pack(pady=10)
+            # Embed VLC output in Qt video frame
+            win_id = int(self.video_frame.winId())
+            if sys.platform.startswith("linux"):
+                self.player.set_xwindow(win_id)
+            elif sys.platform == "win32":
+                self.player.set_hwnd(win_id)
+            elif sys.platform == "darwin":
+                self.player.set_nsobject(win_id)
 
-        self.toggle_button = tk.Button(
-            self.window,
-            text="Enable Vocal",
-            font=("Arial", 14),
-            command=self._toggle_vocal
-        )
-        self.toggle_button.pack(pady=10)
+            # Mute video audio (we'll use our processed audio instead)
+            self.player.audio_set_mute(True)
+            self.player.play()
 
+            # Wait until VLC starts
+            start_wait = time.time()
+            while not self.player.is_playing() and (time.time() - start_wait) < 1.5:
+                time.sleep(0.01)
+
+        else:
+            print("⚠️ No video found. Skipping VLC video playback.")
+
+        # --- Pygame Audio Playback (instrumental/vocal mix) ---
+        if self.instrumental_pcm:
+            pygame.mixer.init(frequency=44100, size=-16, channels=2)
+            pygame.mixer.set_num_channels(2)
+
+            instrumental_sound = pygame.mixer.Sound(self.instrumental_pcm)
+            pygame.mixer.Channel(0).play(instrumental_sound)
+
+            if self.vocal_pcm:
+                vocal_sound = pygame.mixer.Sound(self.vocal_pcm)
+                pygame.mixer.Channel(1).play(vocal_sound)
+                pygame.mixer.Channel(1).set_volume(0.0)  # start muted
+
+            print("🎵 Audio playback started.")
+        else:
+            print("⚠️ No instrumental audio found, skipping audio playback.")
+
+        # --- Start lyric sync ---
+        self.start_time = time.time()
+        self.playing = True
+        self.timer.start(50)  # update lyrics every 50ms
+
+    # ------------------------------------------------------------
+    # Lyrics + Controls
+    # ------------------------------------------------------------
     def _toggle_vocal(self):
-        """Toggle vocal playback"""
         if not self.vocal_pcm:
             print("⚠️ No vocal track available.")
             return
 
         self.vocal_enabled = not self.vocal_enabled
-        self.toggle_button.config(
-            text="Disable Vocal" if self.vocal_enabled else "Enable Vocal"
-        )
+        self.toggle_button.setText("Disable Vocal" if self.vocal_enabled else "Enable Vocal")
 
-        if self.vocal_enabled:
-            # start or unmute vocal
-            pygame.mixer.Channel(1).set_volume(1.0)
-        else:
-            # mute vocal
-            pygame.mixer.Channel(1).set_volume(0.0)
-
-    def _play_media(self):
-        """Play video (muted) and audio via pygame"""
-        # Setup VLC for video
-        if self.video_path and os.path.exists(self.video_path):
-            media = self.instance.media_new(self.video_path)
-            self.player.set_media(media)
-            self.window.update_idletasks()
-            handle = self.video_frame.winfo_id()
-            if os.name == "nt":
-                self.player.set_hwnd(handle)
-            else:
-                try:
-                    self.player.set_xwindow(handle)
-                except Exception:
-                    try:
-                        self.player.set_nsobject(handle)
-                    except Exception:
-                        pass
-
-            self.player.audio_set_mute(True)
-            self.player.play()
-            start_wait = time.time()
-            while not self.player.is_playing() and (time.time() - start_wait) < 1.0:
-                time.sleep(0.01)
-
-        # Init pygame mixer (2 channels: instrumental + vocal)
-        pygame.mixer.init(frequency=44100, size=-16, channels=2)
-        pygame.mixer.set_num_channels(2)
-
-        # Load instrumental on Channel 0
-        instrumental_sound = pygame.mixer.Sound(self.instrumental_pcm)
-        pygame.mixer.Channel(0).play(instrumental_sound)
-
-        # Load vocal on Channel 1 (muted initially)
-        if self.vocal_pcm:
-            vocal_sound = pygame.mixer.Sound(self.vocal_pcm)
-            pygame.mixer.Channel(1).play(vocal_sound)
-            pygame.mixer.Channel(1).set_volume(0.0)
-
-        self.start_time = time.time()
-        self.playing = True
+        pygame.mixer.Channel(1).set_volume(1.0 if self.vocal_enabled else 0.0)
 
     def _update_lyrics_sync(self):
-        """Sync lyrics with instrumental playback"""
         if not self.playing:
+            self.timer.stop()
             return
 
         elapsed = time.time() - self.start_time
@@ -151,37 +199,36 @@ class KaraokePlayer:
             if seg["start"] <= elapsed < seg["end"]:
                 current_text = seg["text"]
                 break
-        self.lyrics_label.config(text=current_text)
+        self.lyrics_label.setText(current_text)
 
-        # Check if instrumental still playing
-        if pygame.mixer.Channel(0).get_busy():
-            self.window.after(50, self._update_lyrics_sync)
-        else:
-            self.lyrics_label.config(text="")
+        # stop when finished
+        if not pygame.mixer.Channel(0).get_busy():
+            self.timer.stop()
             self.playing = False
+            self.lyrics_label.setText("")
             print("✅ Playback finished.")
 
+    # ------------------------------------------------------------
+    # Public start
+    # ------------------------------------------------------------
     def start(self):
-        """Start karaoke"""
-        self._setup_tkinter()
         if self.video_url:
             self._download_video()
         self._play_media()
-        self._update_lyrics_sync()
-        self.window.mainloop()
+        self.show()
 
 
+# ------------------------------------------------------------
+# Example usage
+# ------------------------------------------------------------
 if __name__ == "__main__":
-    test_url = "https://www.youtube.com/watch?v=UwuAPyOImoI"
+    app = QApplication(sys.argv)
 
+    test_url = "https://www.youtube.com/watch?v=UwuAPyOImoI"
     song_dir = "./karaoke_data/BIGBANG_TAEYANG - 눈,코,입 (EYES, NOSE, LIPS) M_V"
     instrumental = f"{song_dir}/instrumental.wav"
     vocal = f"{song_dir}/vocals.wav"
     lrc_path = f"{song_dir}/vocals.wav.lrc"
-
-    print("Audio exists:", os.path.exists(instrumental))
-    print("Vocal exists:", os.path.exists(vocal))
-    print("Lyrics exists:", os.path.exists(lrc_path))
 
     segments = []
     if os.path.exists(lrc_path):
@@ -199,6 +246,7 @@ if __name__ == "__main__":
             {"start": 10.0, "end": 15.0, "text": "Third line of lyrics"},
         ]
 
-    print("🎬 Starting KaraokePlayer test...")
     player = KaraokePlayer(instrumental, segments, vocal_path=vocal, video_url=test_url)
     player.start()
+
+    sys.exit(app.exec())

@@ -1,160 +1,272 @@
-# main_gui.py
+import os
+import json
+from pathlib import Path
+from PySide6.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton,
+    QListWidget, QLabel, QMessageBox, QSplitter, QSizePolicy
+)
+from PySide6.QtCore import Qt, Signal, QThread
 
-import tkinter as tk
-from tkinter import ttk, messagebox
 from searcher.youtube_search import YouTubeSearcher
 from downloader.yt_downloader import YouTubeDownloader
 from processor.vocal_remover import VocalRemover
 from processor.lyrics_manager import LyricsManager
 from processor.karaoke_player import KaraokePlayer
 from cache.cache_manager import CacheManager
-import threading
-import os
 
-class KaraokeApp:
+
+# -------------------------
+# Worker Thread
+# -------------------------
+class ProcessWorker(QThread):
+    finished = Signal(dict)
+    error = Signal(str)
+    status = Signal(str)
+
+    def __init__(self, selected, cache: CacheManager):
+        super().__init__()
+        self.selected = selected
+        self.cache = cache
+
+    def run(self):
+        try:
+            title = self.selected["title"]
+            artist = self.selected["artist"]
+            url = self.selected["url"]
+
+            cached = self.cache.check_existing(title, artist)
+            if cached:
+                cached["url"] = url
+                self.status.emit("Loaded from cache")
+                self.finished.emit(cached)
+                return
+
+            self.status.emit("Downloading audio...")
+            downloader = YouTubeDownloader()
+            audio_path = downloader.download_audio(url)
+            if not audio_path:
+                raise RuntimeError("Failed to download audio")
+
+            self.status.emit("Removing vocals...")
+            remover = VocalRemover()
+            instrumental_path, vocals_path = remover.remove_vocals(
+                audio_path, title, artist
+            )
+
+            self.status.emit("Transcribing lyrics...")
+            lm = LyricsManager()
+            segments = lm.transcribe(vocals_path, title, artist)
+            lrc_path = f"{vocals_path}.lrc"
+            lm.save_lrc(segments, lrc_path)
+            self.cache.save_meta(title, artist, url)
+
+            result = {
+                "instrumental": instrumental_path,
+                "vocals": vocals_path,
+                "lyrics": lrc_path,
+                "segments": segments,
+                "url": url,
+            }
+            self.finished.emit(result)
+
+        except Exception as e:
+            self.error.emit(str(e))
+
+
+# -------------------------
+# Main App (Qt)
+# -------------------------
+class KaraokeAppQt(QWidget):
     def __init__(self):
-        self.root = tk.Tk()
-        self.root.title("Karaoke App")
-        self.root.geometry("900x600")
+        super().__init__()
+        self.setWindowTitle("🎤 Karaoke App (Qt Edition)")
+        self.resize(1000, 700)
 
         self.searcher = YouTubeSearcher()
         self.downloader = YouTubeDownloader()
         self.cache = CacheManager()
-        self.player = None
-
-        self.results = []
-        self.segments = []
-        self.current_song = None
+        self.worker = None
+        self.player_window = None
 
         self._setup_ui()
-
-    def _setup_ui(self):
-        # Top frame for search
-        top_frame = tk.Frame(self.root)
-        top_frame.pack(fill="x", padx=10, pady=5)
-
-        tk.Label(top_frame, text="Search Song/Artist:").pack(side="left")
-        self.search_entry = tk.Entry(top_frame, width=40)
-        self.search_entry.pack(side="left", padx=5)
-        tk.Button(top_frame, text="Search", command=self.search).pack(side="left")
-
-        # Middle frame for results and cache
-        middle_frame = tk.Frame(self.root)
-        middle_frame.pack(fill="both", expand=True, padx=10, pady=5)
-
-        tk.Label(middle_frame, text="Search Results:").pack(anchor="w")
-        self.results_list = tk.Listbox(middle_frame, height=10)
-        self.results_list.pack(fill="x", pady=2)
-        self.results_list.bind("<<ListboxSelect>>", self.select_song)
-
-        tk.Label(middle_frame, text="Cached Songs:").pack(anchor="w", pady=(10,0))
-        self.cache_list = tk.Listbox(middle_frame, height=5)
-        self.cache_list.pack(fill="x", pady=2)
-        self.cache_list.bind("<<ListboxSelect>>", self.select_cached_song)
         self.refresh_cache_list()
 
-        # Bottom frame for controls
-        bottom_frame = tk.Frame(self.root)
-        bottom_frame.pack(fill="x", padx=10, pady=5)
+    def _setup_ui(self):
+        layout = QVBoxLayout(self)
 
-        tk.Button(bottom_frame, text="Play", command=self.play_song).pack(side="left", padx=5)
-        tk.Button(bottom_frame, text="Pause", command=self.pause_song).pack(side="left", padx=5)
-        tk.Button(bottom_frame, text="Stop", command=self.stop_song).pack(side="left", padx=5)
+        # --- Search bar ---
+        search_layout = QHBoxLayout()
+        self.search_input = QLineEdit()
+        self.search_input.setPlaceholderText("Search for song or artist...")
+        self.search_btn = QPushButton("Search")
+        self.search_btn.clicked.connect(self.on_search)
+        search_layout.addWidget(self.search_input)
+        search_layout.addWidget(self.search_btn)
+        layout.addLayout(search_layout)
 
+        # --- Splitter: results | cache ---
+        splitter = QSplitter(Qt.Horizontal)
+
+        # Search results
+        left = QWidget()
+        left_layout = QVBoxLayout(left)
+        left_layout.addWidget(QLabel("Search Results"))
+        self.results_list = QListWidget()
+        self.results_list.itemSelectionChanged.connect(self.on_result_selected)
+        left_layout.addWidget(self.results_list)
+        splitter.addWidget(left)
+
+        # Cached songs
+        right = QWidget()
+        right_layout = QVBoxLayout(right)
+        right_layout.addWidget(QLabel("Cached Songs"))
+        self.cache_list = QListWidget()
+        self.cache_list.itemSelectionChanged.connect(self.on_cache_selected)
+        right_layout.addWidget(self.cache_list)
+        splitter.addWidget(right)
+
+        layout.addWidget(splitter, stretch=1)
+
+        # --- Controls ---
+        controls = QHBoxLayout()
+        self.play_btn = QPushButton("Play")
+        self.pause_btn = QPushButton("Pause")
+        self.stop_btn = QPushButton("Stop")
+        self.play_btn.clicked.connect(self.play_song)
+        self.pause_btn.clicked.connect(self.pause_song)
+        self.stop_btn.clicked.connect(self.stop_song)
+        for b in (self.play_btn, self.pause_btn, self.stop_btn):
+            controls.addWidget(b)
+
+        self.status_label = QLabel("")
+        self.status_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        controls.addWidget(self.status_label)
+        layout.addLayout(controls)
+
+    # -------------------------
+    # UI Logic
+    # -------------------------
     def refresh_cache_list(self):
-        self.cache_list.delete(0, tk.END)
-        for folder in self.cache.BASE_DIR.iterdir():
-            if folder.is_dir():
-                meta_path = folder / "meta.json"
-                if meta_path.exists():
-                    with open(meta_path, "r", encoding="utf-8") as f:
-                        meta = json.load(f)
-                        self.cache_list.insert(tk.END, f"{meta['artist']} - {meta['title']}")
+        self.cache_list.clear()
+        for folder in sorted(self.cache.BASE_DIR.iterdir()):
+            if not folder.is_dir():
+                continue
+            meta = folder / "meta.json"
+            if meta.exists():
+                try:
+                    info = json.loads(meta.read_text(encoding="utf-8"))
+                    self.cache_list.addItem(f"{info['artist']} - {info['title']}")
+                except Exception:
+                    continue
 
-    def search(self):
-        query = self.search_entry.get().strip()
-        if not query:
-            messagebox.showwarning("Warning", "Please enter a search keyword.")
+    def on_search(self):
+        q = self.search_input.text().strip()
+        if not q:
+            QMessageBox.warning(self, "Warning", "Enter a search term first.")
             return
 
-        threading.Thread(target=self._search_thread, args=(query,), daemon=True).start()
+        self.results_list.clear()
+        self.status_label.setText("Searching...")
+        QApplication.processEvents()
 
-    def _search_thread(self, query):
-        self.results_list.delete(0, tk.END)
-        self.results = self.searcher.search(query, max_results=5)
-        for r in self.results:
-            self.results_list.insert(tk.END, f"{r['artist']} - {r['title']} ({r['duration']})")
+        try:
+            self.results = self.searcher.search(q, max_results=10)
+            for r in self.results:
+                self.results_list.addItem(f"{r.get('artist', '')} - {r.get('title', '')} ({r.get('duration', '')})")
+            self.status_label.setText(f"Found {len(self.results)} results.")
+        except Exception as e:
+            QMessageBox.critical(self, "Search Error", str(e))
+            self.status_label.setText("Search failed")
 
-    def select_song(self, event):
-        idx = self.results_list.curselection()
-        if idx:
-            self.current_song = self.results[idx[0]]
+    def on_result_selected(self):
+        if not self.results_list.selectedIndexes():
+            self.current_selected = None
+            return
+        idx = self.results_list.selectedIndexes()[0].row()
+        self.current_selected = self.results[idx]
 
-    def select_cached_song(self, event):
-        idx = self.cache_list.curselection()
-        if idx:
-            folder_name = list(self.cache.BASE_DIR.iterdir())[idx[0]]
-            cached = self.cache.check_existing(folder_name.stem.split("_",1)[1], folder_name.stem.split("_",1)[0])
+    def on_cache_selected(self):
+        idxs = self.cache_list.selectedIndexes()
+        if not idxs:
+            self.current_selected = None
+            return
+        idx = idxs[0].row()
+        folder = sorted(self.cache.BASE_DIR.iterdir())[idx]
+        try:
+            meta = json.loads((folder / "meta.json").read_text(encoding="utf-8"))
+            cached = self.cache.check_existing(meta["title"], meta["artist"])
             if cached:
-                self.current_song = {"title": folder_name.stem.split("_",1)[1],
-                                     "artist": folder_name.stem.split("_",1)[0],
-                                     "url": cached['url'],
-                                     "cached": cached}
+                cached["url"] = meta.get("url")
+                self.current_selected = {
+                    "title": meta["title"],
+                    "artist": meta["artist"],
+                    "url": meta.get("url"),
+                    "cached": cached,
+                }
+        except Exception as e:
+            QMessageBox.warning(self, "Error", str(e))
 
+    # -------------------------
+    # Player logic
+    # -------------------------
     def play_song(self):
-        if not self.current_song:
-            messagebox.showwarning("Warning", "No song selected.")
+        if not hasattr(self, "current_selected") or not self.current_selected:
+            QMessageBox.warning(self, "Warning", "No song selected.")
             return
 
-        # If cached, use cached files
-        if "cached" in self.current_song:
-            instrumental_path = self.current_song["cached"]["instrumental"]
-            lrc_path = self.current_song["cached"]["lyrics"]
+        if "cached" in self.current_selected:
+            info = self.current_selected["cached"]
+            lrc_path = info["lyrics"]
             segments = []
-
-            with open(lrc_path, "r", encoding="utf-8") as f:
-                for line in f:
-                    if line.startswith("["):
-                        time_part, text = line.strip().split("]", 1)
-                        min_sec = time_part[1:].split(":")
-                        start = float(min_sec[0]) * 60 + float(min_sec[1])
-                        segments.append({"start": start, "end": start + 5.0, "text": text})
+            if os.path.exists(lrc_path):
+                with open(lrc_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        if line.startswith("["):
+                            t, text = line.strip().split("]", 1)
+                            m, s = map(float, t[1:].split(":"))
+                            segments.append({"start": m * 60 + s, "end": m * 60 + s + 5, "text": text})
+            self._open_player(info["instrumental"], segments, info["vocals"], info.get("url"))
         else:
-            # Download and process song
-            file_path = self.downloader.download_audio(self.current_song["url"])
-            remover = VocalRemover()
-            instrumental_path, vocals_path = remover.remove_vocals(file_path,
-                                                                  self.current_song["title"],
-                                                                  self.current_song["artist"])
-            lyrics_manager = LyricsManager()
-            segments = lyrics_manager.transcribe(vocals_path, self.current_song["title"], self.current_song["artist"])
-            lrc_path = f"{vocals_path}.lrc"
-            lyrics_manager.save_lrc(segments, lrc_path)
-            self.cache.save_meta(self.current_song["title"], self.current_song["artist"], self.current_song["url"])
+            self.status_label.setText("Processing song...")
+            self.worker = ProcessWorker(self.current_selected, self.cache)
+            self.worker.status.connect(self.status_label.setText)
+            self.worker.error.connect(lambda e: QMessageBox.critical(self, "Error", e))
+            self.worker.finished.connect(self._on_processing_done)
+            self.worker.start()
 
-        # Start KaraokePlayer
-        if self.player:
-            self.player.playing = False  # stop previous
-        self.player = KaraokePlayer(instrumental_path, segments, self.current_song.get("url"))
-        threading.Thread(target=self.player.start, daemon=True).start()
+    def _on_processing_done(self, result):
+        self.status_label.setText("Processing complete!")
+        self._open_player(result["instrumental"], result["segments"], result["vocals"], result["url"])
+        self.refresh_cache_list()
+
+    def _open_player(self, instrumental, segments, vocal, video_url=None):
+        self.player_window = KaraokePlayer(instrumental, segments, vocal_path=vocal, video_url=video_url)
+        self.player_window.show()
+        self.player_window.start()
 
     def pause_song(self):
-        if self.player:
+        try:
             import pygame
-            if pygame.mixer.music.get_busy():
+            if pygame.mixer.get_init():
                 pygame.mixer.music.pause()
+                self.status_label.setText("Paused")
+        except Exception:
+            pass
 
     def stop_song(self):
-        if self.player:
-            self.player.playing = False
+        try:
             import pygame
-            pygame.mixer.music.stop()
-
-    def run(self):
-        self.root.mainloop()
+            pygame.mixer.stop()
+        except Exception:
+            pass
+        if self.player_window:
+            self.player_window.close()
+        self.status_label.setText("Stopped")
 
 
 if __name__ == "__main__":
-    import json
-    app = KaraokeApp()
-    app.run()
+    import sys
+    app = QApplication(sys.argv)
+    win = KaraokeAppQt()
+    win.show()
+    sys.exit(app.exec())
