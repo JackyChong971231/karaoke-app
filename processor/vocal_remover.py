@@ -12,10 +12,10 @@ class VocalRemover:
         self.output_dir = output_dir
         os.makedirs(self.output_dir, exist_ok=True)
 
-    def remove_vocals(self, input_path: str) -> str:
+    def remove_vocals(self, input_path: str):
         """
-        Uses Demucs to create instrumental (no vocals) track.
-        Returns path to WAV file.
+        Uses Demucs to create instrumental (no vocals) and vocals-only tracks.
+        Returns tuple: (instrumental_path, vocals_path)
         """
         if not os.path.exists(input_path):
             raise FileNotFoundError(f"Input file not found: {input_path}")
@@ -32,7 +32,7 @@ class VocalRemover:
         print(f"📂 Output folder: {output_folder}")
 
         try:
-            # Run demucs using ASCII-safe paths only
+            # Run Demucs
             subprocess.run(
                 [sys.executable, "-m", "demucs",
                  "--two-stems", "vocals",
@@ -41,16 +41,23 @@ class VocalRemover:
                 check=True
             )
 
-            # Demucs usually outputs to: output_folder/htdemucs/<basename>/no_vocals.wav
-            instrumental_path = os.path.join(output_folder, "htdemucs", safe_base, "no_vocals.wav")
+            # Expected output structure from Demucs
+            model_folder = os.path.join(output_folder, "htdemucs", safe_base)
 
+            instrumental_path = os.path.join(model_folder, "no_vocals.wav")
+            vocals_path = os.path.join(model_folder, "vocals.wav")
+
+            # Fallbacks if files not found
             if not os.path.exists(instrumental_path):
-                # fallback to mixture.wav if no_vocals.wav not found
-                instrumental_path = os.path.join(output_folder, "htdemucs", safe_base, "mixture.wav")
+                instrumental_path = os.path.join(model_folder, "mixture.wav")
+            if not os.path.exists(vocals_path):
+                vocals_path = os.path.join(model_folder, "vocals.wav")
 
-            print(f"✅ Instrumental created: {instrumental_path}")
-            return instrumental_path
+            print(f"✅ Instrumental: {instrumental_path}")
+            print(f"🎤 Vocals: {vocals_path}")
+
+            return instrumental_path, vocals_path
 
         except subprocess.CalledProcessError as e:
             print(f"❌ Vocal removal failed: {e}")
-            return None
+            return None, None
