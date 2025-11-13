@@ -336,25 +336,9 @@ class KaraokeAppQt(QWidget):
             self._prepare_next_song()
 
     def skip_song(self):
-        if not self.player_window:
-            return
-
-        # Stop current playback
-        try:
-            import pygame
-            pygame.mixer.stop()
-        except Exception:
-            pass
-
-        # Optionally stop video as well
         if self.player_window and self.player_window.isVisible():
-            # If using VLC for video:
-            self.player_window.player.stop()
-
-        self.status_label.setText("Skipped to next song")
-
-        # Play next song in the queue
-        self._play_next_from_queue()
+            self.player_window.skip()
+            self.status_label.setText("Skipped to next song")
 
     # -------------------------
     # Player logic
