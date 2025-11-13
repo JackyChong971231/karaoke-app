@@ -3,6 +3,8 @@
 from searcher.youtube_search import YouTubeSearcher
 from downloader.yt_downloader import YouTubeDownloader
 from processor.vocal_remover import VocalRemover
+from processor.lyrics_manager import LyricsManager
+from processor.karaoke_player import KaraokePlayer
 
 def main():
     print("🎤 Welcome to KaraokeApp (Phase 1)")
@@ -46,10 +48,21 @@ def main():
         print("❌ Download failed.")
 
     remover = VocalRemover()
-    instrumental_path = remover.remove_vocals(file_path)
+    instrumental_path, vocals_path = remover.remove_vocals(file_path)
+
 
     if instrumental_path:
         print(f"🎤 Your karaoke track is ready: {instrumental_path}")
+
+    # After downloading audio & removing vocals
+    lyrics_manager = LyricsManager()
+    segments = lyrics_manager.transcribe(vocals_path)
+    lrc_path = f"{vocals_path}.lrc"
+    lyrics_manager.save_lrc(segments, lrc_path)
+
+    # Stream YouTube video + instrumental + lyrics
+    player = KaraokePlayer(instrumental_path, segments, selected['url'])
+    player.start()
 
 
 if __name__ == "__main__":
