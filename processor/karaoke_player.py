@@ -9,10 +9,12 @@ import pygame
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QPushButton, QLabel, QFrame
 )
-from PySide6.QtCore import QTimer, Qt
+from PySide6.QtCore import QTimer, Qt, Signal
 
 
 class KaraokePlayer(QWidget):
+    finished = Signal()
+
     def __init__(self, instrumental_path, lyrics_segments, vocal_path=None, video_path=None, video_url=None):
         super().__init__()
         self.instrumental_path = instrumental_path
@@ -69,6 +71,18 @@ class KaraokePlayer(QWidget):
     # ------------------------------------------------------------
     # Audio & Video
     # ------------------------------------------------------------
+    def load_song(self, instrumental_path, lyrics_segments, vocal_path=None, video_url=None):
+        """Load a new song into the existing player without reopening the window."""
+        self.stop()  # Stop current playback
+
+        self.instrumental_path = instrumental_path
+        self.vocal_path = vocal_path
+        self.lyrics_segments = lyrics_segments
+        self.video_url = video_url
+
+        self._prepare_audio_files()
+        self.start()  # Start playing new song
+
     def _prepare_audio_files(self):
         def convert_to_pcm(input_path, output_name):
             if not input_path or not os.path.exists(input_path):
@@ -217,6 +231,15 @@ class KaraokePlayer(QWidget):
         self._play_media()
         self.show()
 
+    def stop(self):
+        """Stop current playback."""
+        import pygame
+        pygame.mixer.stop()
+        self.playing = False
+        self.timer.stop()
+        if self.player.is_playing():
+            self.player.stop()
+        self.lyrics_label.setText("")
 
 # ------------------------------------------------------------
 # Example usage
