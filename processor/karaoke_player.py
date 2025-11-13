@@ -44,10 +44,12 @@ class KaraokePlayer(QWidget):
             # Switch to normal window with borders and Windows taskbar
             self.setWindowFlags(Qt.Window)  # normal window with title bar
             self.showNormal()
+            self.border_toggle_btn.setText('Fullscreen')
         else:
             # Switch to borderless full-screen
             self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
             self.showFullScreen()
+            self.border_toggle_btn.setText('Window Size')
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
@@ -64,6 +66,15 @@ class KaraokePlayer(QWidget):
 
     def mouseReleaseEvent(self, event):
         self._is_dragging = False
+
+    def update_next_song_label(self, queue):
+        if queue:
+            next_song = queue[0]
+            title = next_song.get("title", "Unknown")
+            artist = next_song.get("artist", "")
+            self.next_song_label.setText(f"Next: {artist} - {title}")
+        else:
+            self.next_song_label.setText("Next: (none)")
 
     # ------------------------------------------------------------
     # UI
@@ -121,7 +132,7 @@ class KaraokePlayer(QWidget):
         exit_btn.clicked.connect(self.close)
         control_layout.addWidget(exit_btn)
 
-        self.border_toggle_btn = QPushButton("Toggle Border", self.control_panel)
+        self.border_toggle_btn = QPushButton("Fullscreen", self.control_panel)
         self.border_toggle_btn.setStyleSheet(control_btn_style)
         self.border_toggle_btn.setFixedSize(150, 40)
         self.border_toggle_btn.clicked.connect(self._toggle_borderless)
@@ -130,11 +141,17 @@ class KaraokePlayer(QWidget):
         control_layout.addStretch()
         main_layout.addWidget(self.control_panel)
 
+        # --- Next Song Label ---
+        self.next_song_label = QLabel("Next: (none)", self.control_panel)
+        self.next_song_label.setStyleSheet("color: white; font-size: 18px; font-weight: bold;")
+        self.next_song_label.setContentsMargins(30, 0, 30, 0)
+        main_layout.addWidget(self.next_song_label)
+
         # --- Video container (flexible) ---
         self.video_container = QFrame(self)
         self.video_container.setStyleSheet("background-color: black;")
         video_layout = QVBoxLayout(self.video_container)
-        video_layout.setContentsMargins(0, 0, 0, 0)
+        video_layout.setContentsMargins(10, 0, 10, 0)
         video_layout.setSpacing(0)
         main_layout.addWidget(self.video_container, stretch=1)  # takes remaining space
 
@@ -155,16 +172,19 @@ class KaraokePlayer(QWidget):
         self.lyrics_top_left = QLabel("", lyrics_container)
         self.lyrics_top_left.setAlignment(Qt.AlignLeft | Qt.AlignTop)
         self.lyrics_top_left.setStyleSheet("color: white; font-size: 24px;")
+        self.lyrics_top_left.setContentsMargins(30, 0, 30, 0)
         lyrics_layout.addWidget(self.lyrics_top_left)
 
         # Bottom-right lyrics
         self.lyrics_bottom_right = QLabel("", lyrics_container)
         self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignBottom)
         self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 24px;")
+        self.lyrics_bottom_right.setContentsMargins(30, 0, 30, 0)
         lyrics_layout.addWidget(self.lyrics_bottom_right)
         
 
         main_layout.addWidget(lyrics_container)
+        main_layout.setContentsMargins(0, 0, 0, 30)
 
         self.setLayout(main_layout)
 
