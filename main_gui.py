@@ -137,10 +137,12 @@ class KaraokeAppQt(QWidget):
         self.play_btn = QPushButton("Play")
         self.pause_btn = QPushButton("Pause")
         self.stop_btn = QPushButton("Stop")
+        self.skip_btn = QPushButton("Skip")
         self.play_btn.clicked.connect(self.play_song)
         self.pause_btn.clicked.connect(self.pause_song)
         self.stop_btn.clicked.connect(self.stop_song)
-        for b in (self.play_btn, self.pause_btn, self.stop_btn):
+        self.skip_btn.clicked.connect(self.skip_song)
+        for b in (self.play_btn, self.pause_btn, self.stop_btn, self.skip_btn):
             controls.addWidget(b)
 
         self.queue_btn = QPushButton("Queue Song")
@@ -263,17 +265,53 @@ class KaraokeAppQt(QWidget):
 
     def _play_next_from_queue(self):
         """Play the next prepared song if available."""
-        if self.prepared_next:
+        if not self.queue:
+            return  # nothing to play
+
+        next_song = self.queue.pop(0)
+        self.queue_list.takeItem(0)
+
+        # Determine if cached or preprocessed
+        if "cached" in next_song:
+            info = next_song["cached"]
+            lrc_path = info["lyrics"]
+            segments = []
+            if os.path.exists(lrc_path):
+                with open(lrc_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        if line.startswith("["):
+                            t, text = line.strip().split("]", 1)
+                            m, s = map(float, t[1:].split(":"))
+                            segments.append({"start": m*60 + s, "end": m*60 + s + 5, "text": text})
+            self.player_window.load_song(info["instrumental"], segments, info["vocals"], info.get("url"))
+        elif self.prepared_next and self.prepared_next["url"] == next_song.get("url"):
             result = self.prepared_next
-            self.status_label.setText(f"Playing next: {result['url']}")
-            self._open_player(result["instrumental"], result["segments"], result["vocals"], result["url"])
-            self.queue.pop(0)
-            self.queue_list.takeItem(0)
+            self.player_window.load_song(result["instrumental"], result["segments"], result["vocals"], result["url"])
             self.prepared_next = None
-            self._prepare_next_song()  # prepare the next in line
-        elif self.queue:
-            # If queue exists but not preprocessed, trigger preprocessing
+        else:
+            # If not ready, start processing
             self._prepare_next_song()
+
+    def skip_song(self):
+        if not self.player_window:
+            return
+
+        # Stop current playback
+        try:
+            import pygame
+            pygame.mixer.stop()
+        except Exception:
+            pass
+
+        # Optionally stop video as well
+        if self.player_window and self.player_window.isVisible():
+            # If using VLC for video:
+            self.player_window.player.stop()
+
+        self.status_label.setText("Skipped to next song")
+
+        # Play next song in the queue
+        self._play_next_from_queue()
 
     # -------------------------
     # Player logic
@@ -350,8 +388,9 @@ class KaraokeAppQt(QWidget):
             self.player_window.show()
             self.player_window.start()
 
-            # Connect finished signal to play next song in queue
+        if not hasattr(self.player_window, "_connected_finished"):
             self.player_window.finished.connect(self._play_next_from_queue)
+            self.player_window._connected_finished = True
 
     def pause_song(self):
         try:

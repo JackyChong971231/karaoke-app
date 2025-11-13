@@ -221,6 +221,7 @@ class KaraokePlayer(QWidget):
             self.playing = False
             self.lyrics_label.setText("")
             print("✅ Playback finished.")
+            self.finished.emit()  # <-- emit signal when song ends
 
     # ------------------------------------------------------------
     # Public start
