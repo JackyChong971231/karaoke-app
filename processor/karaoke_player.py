@@ -109,6 +109,12 @@ class KaraokePlayer(QWidget):
         self.toggle_button.clicked.connect(self._toggle_vocal)
         control_layout.addWidget(self.toggle_button)
 
+        self.skip_button = QPushButton("Skip", self.control_panel)
+        self.skip_button.setStyleSheet(control_btn_style)
+        self.skip_button.setFixedSize(100, 40)
+        self.skip_button.clicked.connect(self.skip)
+        control_layout.addWidget(self.skip_button)
+
         exit_btn = QPushButton("Exit", self.control_panel)
         exit_btn.setStyleSheet(control_btn_style)
         exit_btn.setFixedSize(100, 40)
@@ -350,6 +356,33 @@ class KaraokePlayer(QWidget):
                 self.player.play()
                 pygame.mixer.unpause()
                 self.pause_button.setText("Pause")
+
+    def skip(self):
+        """Stop current playback immediately."""
+        if not self.playing:
+            return
+
+        # Stop audio
+        try:
+            import pygame
+            pygame.mixer.stop()
+        except Exception:
+            pass
+
+        # Stop video
+        if self.player.is_playing():
+            self.player.stop()
+
+        # Clear lyrics
+        for lbl in self.labels:
+            lbl.setText("")
+
+        # Stop timer
+        self.timer.stop()
+        self.playing = False
+
+        # Emit finished so main GUI knows to play next song
+        self.finished.emit()
 
     def _update_lyrics_sync(self):
         if not self.playing:
