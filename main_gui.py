@@ -340,12 +340,17 @@ class KaraokeAppQt(QWidget):
         self.refresh_cache_list()
 
     def _open_player(self, instrumental, segments, vocal, video_url=None):
-        self.player_window = KaraokePlayer(instrumental, segments, vocal_path=vocal, video_url=video_url)
-        self.player_window.show()
-        self.player_window.start()
+        """Open or reuse the KaraokePlayer."""
+        if self.player_window and self.player_window.isVisible():
+            # Reuse existing player
+            self.player_window.load_song(instrumental, segments, vocal, video_url)
+        else:
+            # Create new player window
+            self.player_window = KaraokePlayer(instrumental, segments, vocal_path=vocal, video_url=video_url)
+            self.player_window.show()
+            self.player_window.start()
 
-        # Hook: when player finishes, auto-play next if available
-        if hasattr(self.player_window, "finished"):
+            # Connect finished signal to play next song in queue
             self.player_window.finished.connect(self._play_next_from_queue)
 
     def pause_song(self):
