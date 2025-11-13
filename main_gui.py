@@ -88,6 +88,11 @@ class KaraokeAppQt(QWidget):
         self.worker = None
         self.player_window = None
 
+        # Queue variables
+        self.queue = []
+        self.next_worker = None
+        self.prepared_next = None
+
         self._setup_ui()
         self.refresh_cache_list()
 
@@ -138,10 +143,19 @@ class KaraokeAppQt(QWidget):
         for b in (self.play_btn, self.pause_btn, self.stop_btn):
             controls.addWidget(b)
 
+        self.queue_btn = QPushButton("Queue Song")
+        self.queue_btn.clicked.connect(self.queue_song)
+        controls.addWidget(self.queue_btn)
+
         self.status_label = QLabel("")
         self.status_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         controls.addWidget(self.status_label)
         layout.addLayout(controls)
+
+        # --- Next Up Section ---
+        layout.addWidget(QLabel("Next Up"))
+        self.queue_list = QListWidget()
+        layout.addWidget(self.queue_list)
 
     # -------------------------
     # UI Logic
@@ -207,15 +221,81 @@ class KaraokeAppQt(QWidget):
             QMessageBox.warning(self, "Error", str(e))
 
     # -------------------------
+    # Queue logic
+    # -------------------------
+    def queue_song(self):
+        """Add selected song to queue."""
+        if not hasattr(self, "current_selected") or not self.current_selected:
+            QMessageBox.warning(self, "Warning", "No song selected to queue.")
+            return
+
+        # Shallow copy to avoid mutation
+        self.queue.append(dict(self.current_selected))
+        self.queue_list.addItem(f"{self.current_selected.get('artist', '')} - {self.current_selected.get('title', '')}")
+        self.status_label.setText(f"Queued {self.current_selected.get('title', '')}")
+
+        # If nothing is being prepared yet, start preparing next
+        if not self.next_worker and len(self.queue) == 1:
+            self._prepare_next_song()
+
+    def _prepare_next_song(self):
+        """Start pre-downloading and preprocessing the next queued song."""
+        if not self.queue:
+            self.next_worker = None
+            self.prepared_next = None
+            return
+
+        next_song = self.queue[0]
+        self.status_label.setText(f"Preparing next song: {next_song['title']}")
+
+        self.next_worker = ProcessWorker(next_song, self.cache)
+        self.next_worker.status.connect(lambda s: self.status_label.setText(f"[Next] {s}"))
+        self.next_worker.error.connect(lambda e: QMessageBox.warning(self, "Queue Error", e))
+        self.next_worker.finished.connect(self._on_next_prepared)
+        self.next_worker.start()
+
+    def _on_next_prepared(self, result):
+        """Store preprocessed result for queued song."""
+        self.prepared_next = result
+        self.status_label.setText(f"Next song ready: {result.get('url', '')}")
+        self.refresh_cache_list()
+        self.next_worker = None
+
+    def _play_next_from_queue(self):
+        """Play the next prepared song if available."""
+        if self.prepared_next:
+            result = self.prepared_next
+            self.status_label.setText(f"Playing next: {result['url']}")
+            self._open_player(result["instrumental"], result["segments"], result["vocals"], result["url"])
+            self.queue.pop(0)
+            self.queue_list.takeItem(0)
+            self.prepared_next = None
+            self._prepare_next_song()  # prepare the next in line
+        elif self.queue:
+            # If queue exists but not preprocessed, trigger preprocessing
+            self._prepare_next_song()
+
+    # -------------------------
     # Player logic
     # -------------------------
     def play_song(self):
-        if not hasattr(self, "current_selected") or not self.current_selected:
-            QMessageBox.warning(self, "Warning", "No song selected.")
+        """Start playing songs from the queue in order."""
+        # If nothing is queued and nothing is selected, warn
+        if not self.queue and (not hasattr(self, "current_selected") or not self.current_selected):
+            QMessageBox.warning(self, "Warning", "No song selected or queued.")
             return
 
-        if "cached" in self.current_selected:
-            info = self.current_selected["cached"]
+        # If queue is empty, add the currently selected song
+        if not self.queue and self.current_selected:
+            self.queue.append(dict(self.current_selected))
+            self.queue_list.addItem(f"{self.current_selected.get('artist', '')} - {self.current_selected.get('title', '')}")
+
+        # Start playing the first song in the queue
+        next_song = self.queue[0]
+
+        # If already cached
+        if "cached" in next_song:
+            info = next_song["cached"]
             lrc_path = info["lyrics"]
             segments = []
             if os.path.exists(lrc_path):
@@ -226,13 +306,33 @@ class KaraokeAppQt(QWidget):
                             m, s = map(float, t[1:].split(":"))
                             segments.append({"start": m * 60 + s, "end": m * 60 + s + 5, "text": text})
             self._open_player(info["instrumental"], segments, info["vocals"], info.get("url"))
+            self.queue.pop(0)
+            self.queue_list.takeItem(0)
+            # Start preparing the next song in queue
+            self._prepare_next_song()
+        # If already preprocessed
+        elif self.prepared_next and self.prepared_next["url"] == next_song.get("url"):
+            result = self.prepared_next
+            self._open_player(result["instrumental"], result["segments"], result["vocals"], result["url"])
+            self.queue.pop(0)
+            self.queue_list.takeItem(0)
+            self.prepared_next = None
+            self._prepare_next_song()
+        # Otherwise, start processing the song
         else:
             self.status_label.setText("Processing song...")
-            self.worker = ProcessWorker(self.current_selected, self.cache)
-            self.worker.status.connect(self.status_label.setText)
-            self.worker.error.connect(lambda e: QMessageBox.critical(self, "Error", e))
-            self.worker.finished.connect(self._on_processing_done)
-            self.worker.start()
+            self.next_worker = ProcessWorker(next_song, self.cache)
+            self.next_worker.status.connect(lambda s: self.status_label.setText(f"[Processing] {s}"))
+            self.next_worker.error.connect(lambda e: QMessageBox.critical(self, "Error", e))
+            self.next_worker.finished.connect(self._on_next_song_ready)
+            self.next_worker.start()
+
+    def _on_next_song_ready(self, result):
+        """Callback when the next song is processed and ready to play."""
+        self.prepared_next = result
+        self.play_song()  # Automatically play it
+
+
 
     def _on_processing_done(self, result):
         self.status_label.setText("Processing complete!")
@@ -243,6 +343,10 @@ class KaraokeAppQt(QWidget):
         self.player_window = KaraokePlayer(instrumental, segments, vocal_path=vocal, video_url=video_url)
         self.player_window.show()
         self.player_window.start()
+
+        # Hook: when player finishes, auto-play next if available
+        if hasattr(self.player_window, "finished"):
+            self.player_window.finished.connect(self._play_next_from_queue)
 
     def pause_song(self):
         try:
