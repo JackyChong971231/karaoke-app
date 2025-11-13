@@ -28,6 +28,30 @@ class ProcessWorker(QThread):
         self.selected = selected
         self.cache = cache
 
+    def _download_video(self, video_url, audio_path):
+        """Download video to the same folder as the audio, if not already present."""
+        from yt_dlp import YoutubeDL
+        import os
+
+        folder = os.path.dirname(audio_path)
+        os.makedirs(folder, exist_ok=True)
+        video_path = os.path.join(folder, "video.mp4")
+
+        if os.path.exists(video_path):
+            self.status.emit("Video already exists, skipping download")
+            return video_path
+
+        self.status.emit("Downloading video...")
+        ydl_opts = {
+            "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4",
+            "outtmpl": video_path,
+            "quiet": True,
+        }
+        with YoutubeDL(ydl_opts) as ydl:
+            ydl.download([video_url])
+        self.status.emit("Video downloaded")
+        return video_path
+
     def run(self):
         try:
             title = self.selected["title"]
@@ -58,6 +82,13 @@ class ProcessWorker(QThread):
             segments = lm.transcribe(vocals_path, title, artist)
             lrc_path = f"{vocals_path}.lrc"
             lm.save_lrc(segments, lrc_path)
+
+            # --- Download video if URL provided ---
+            self.status.emit("Downloading video...")
+            video_path = None
+            if url:
+                video_path = self._download_video(url, instrumental_path)
+
             self.cache.save_meta(title, artist, url)
 
             result = {
@@ -66,6 +97,7 @@ class ProcessWorker(QThread):
                 "lyrics": lrc_path,
                 "segments": segments,
                 "url": url,
+                "video": video_path,
             }
             self.finished.emit(result)
 
@@ -241,7 +273,6 @@ class KaraokeAppQt(QWidget):
             self._prepare_next_song()
 
     def _prepare_next_song(self):
-        """Start pre-downloading and preprocessing the next queued song."""
         if not self.queue:
             self.next_worker = None
             self.prepared_next = None
@@ -250,11 +281,23 @@ class KaraokeAppQt(QWidget):
         next_song = self.queue[0]
         self.status_label.setText(f"Preparing next song: {next_song['title']}")
 
-        self.next_worker = ProcessWorker(next_song, self.cache)
-        self.next_worker.status.connect(lambda s: self.status_label.setText(f"[Next] {s}"))
-        self.next_worker.error.connect(lambda e: QMessageBox.warning(self, "Queue Error", e))
-        self.next_worker.finished.connect(self._on_next_prepared)
-        self.next_worker.start()
+        worker = ProcessWorker(next_song, self.cache)
+        worker.status.connect(lambda s: self.status_label.setText(f"[Next] {s}"))
+        worker.error.connect(lambda e: QMessageBox.warning(self, "Queue Error", e))
+
+        def on_finished(result):
+            self._on_next_prepared(result)
+            # safely delete worker after done
+            worker.quit()
+            worker.wait()
+            worker.deleteLater()
+            if self.next_worker is worker:
+                self.next_worker = None
+
+        worker.finished.connect(on_finished)
+        self.next_worker = worker  # keep reference until done
+        worker.start()
+
 
     def _on_next_prepared(self, result):
         """Store preprocessed result for queued song."""

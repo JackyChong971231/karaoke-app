@@ -140,7 +140,18 @@ class KaraokePlayer(QWidget):
     def _play_media(self):
         """Start video and audio playback (uses local video.mp4 + instrumental/vocal audio)"""
         import os, sys, time, pygame
+        # derive folder path from audio file
+        if hasattr(self, "audio_path") and self.audio_path:
+            folder = os.path.dirname(self.audio_path)
+        elif hasattr(self, "instrumental_path") and self.instrumental_path:
+            folder = os.path.dirname(self.instrumental_path)
+        else:
+            folder = "./karaoke_data"
 
+        os.makedirs(folder, exist_ok=True)
+
+        # construct video path
+        self.video_path = os.path.join(folder, "video.mp4")
         # --- VLC Video Playback ---
         if self.video_path and os.path.exists(self.video_path):
             media = self.instance.media_new(self.video_path)
