@@ -15,6 +15,8 @@ from processor.lyrics_manager import LyricsManager
 from processor.karaoke_player import KaraokePlayer
 from cache.cache_manager import CacheManager
 
+from remote.server import RemoteServer
+
 
 # -------------------------
 # Worker Thread
@@ -173,6 +175,9 @@ class KaraokeAppQt(QWidget):
 
         self._setup_ui()
         self.refresh_cache_list()
+
+        self.remote_server = RemoteServer(self)
+        self.remote_server.start()
 
     def _setup_ui(self):
         self.setStyleSheet("""
@@ -627,13 +632,13 @@ class KaraokeAppQt(QWidget):
         self.player_window.update_next_song_label(self.queue)
 
     def pause_song(self):
-        try:
-            import pygame
-            if pygame.mixer.get_init():
-                pygame.mixer.music.pause()
-                self.status_label.setText("Paused")
-        except Exception:
-            pass
+        if self.player_window and self.player_window.isVisible():
+            onOff = self.player_window._toggle_pause()
+            if onOff == 1:
+                self.pause_btn.setText("Resume")
+            elif onOff == 0:
+                self.pause_btn.setText("Pause")
+
 
     def stop_song(self):
         try:
