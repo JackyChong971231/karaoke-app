@@ -9,7 +9,7 @@ import socket
 import qrcode
 
 from PySide6.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFrame
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFrame, QComboBox
 )
 from PySide6.QtCore import QTimer, Qt, Signal, QPoint
 from PySide6.QtWidgets import QStackedLayout
@@ -64,7 +64,13 @@ class KaraokePlayer(QWidget):
 
         # UI setup
         self._setup_ui()
+        self.audio_mixer = AudioMixer()
         self._prepare_audio_files()
+
+        # Populate dropdown with input devices
+        devices = self.audio_mixer.get_input_devices()
+        for idx, name in devices.items():
+            self.device_dropdown.addItem(name, idx)
 
     def _toggle_borderless(self):
         if self.isFullScreen():
@@ -172,6 +178,20 @@ class KaraokePlayer(QWidget):
         self.border_toggle_btn.clicked.connect(self._toggle_borderless)
         control_layout.addWidget(self.border_toggle_btn)
 
+        # ---- Audio Input Device Selector ----
+        self.device_dropdown = QComboBox(self.control_panel)
+        self.device_dropdown.setStyleSheet("""
+            font-size: 16px;
+            padding: 5px;
+            background-color: rgba(40, 40, 40, 200);
+            color: white;
+            border-radius: 5px;
+        """)
+        control_layout.addWidget(self.device_dropdown)
+
+        self.device_dropdown.addItem("Select Input Device...")
+        self.device_dropdown.currentIndexChanged.connect(self._on_device_selected)
+
         control_layout.addStretch()
         main_layout.addWidget(self.control_panel)
 
@@ -247,6 +267,15 @@ class KaraokePlayer(QWidget):
         self.resizeEvent = resizeEvent
 
 
+    def _on_device_selected(self, index):
+        if index <= 0:
+            return  # ignore placeholder "Select..."
+
+        device_index = self.device_dropdown.currentData()
+        print(f"🎤 Selected input device index: {device_index}")
+
+        # Call AudioMixer live loopback
+        self.audio_mixer.play_input_device(device_index, 3)
 
 
 
@@ -269,7 +298,6 @@ class KaraokePlayer(QWidget):
 
     def _prepare_audio_files(self):
         # Use AudioMixer to load files
-        self.audio_mixer = AudioMixer()
         if self.instrumental_path:
             self.audio_mixer.load_instrumental(self.instrumental_path)
         if self.vocal_path:
