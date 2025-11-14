@@ -15,6 +15,8 @@ from PySide6.QtCore import QTimer, Qt, Signal, QPoint
 from PySide6.QtWidgets import QStackedLayout
 from PySide6.QtGui import QPixmap
 
+from processor.audio_mixer import AudioMixer
+
 def get_local_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
@@ -266,17 +268,18 @@ class KaraokePlayer(QWidget):
         self.start()  # Start playing new song
 
     def _prepare_audio_files(self):
-        def convert_to_pcm(input_path, output_name):
-            if not input_path or not os.path.exists(input_path):
-                return None
-            audio = AudioSegment.from_file(input_path)
-            audio = audio.set_channels(2).set_frame_rate(44100).set_sample_width(2)
-            output_path = f"temp_{output_name}.wav"
-            audio.export(output_path, format="wav")
-            return output_path
+        # Use AudioMixer to load files
+        self.audio_mixer = AudioMixer()
+        if self.instrumental_path:
+            self.audio_mixer.load_instrumental(self.instrumental_path)
+        if self.vocal_path:
+            self.audio_mixer.load_vocals(self.vocal_path)
 
-        self.instrumental_pcm = convert_to_pcm(self.instrumental_path, "instrumental")
-        self.vocal_pcm = convert_to_pcm(self.vocal_path, "vocal")
+        # --- Audio playback using AudioMixer ---
+        if self.instrumental_path:
+            self.audio_mixer.play()
+            if not self.vocal_enabled:
+                self.audio_mixer.set_vocal_volume(0.0)
 
     def _download_video(self):
         if not self.video_url:
@@ -375,23 +378,6 @@ class KaraokePlayer(QWidget):
         else:
             print("⚠️ No video found. Skipping VLC video playback.")
 
-        # --- Pygame Audio Playback (instrumental/vocal mix) ---
-        if self.instrumental_pcm:
-            pygame.mixer.init(frequency=44100, size=-16, channels=2)
-            pygame.mixer.set_num_channels(2)
-
-            instrumental_sound = pygame.mixer.Sound(self.instrumental_pcm)
-            pygame.mixer.Channel(0).play(instrumental_sound)
-
-            if self.vocal_pcm:
-                vocal_sound = pygame.mixer.Sound(self.vocal_pcm)
-                pygame.mixer.Channel(1).play(vocal_sound)
-                if not self.vocal_enabled: pygame.mixer.Channel(1).set_volume(0.0)  # start muted
-
-            print("🎵 Audio playback started.")
-        else:
-            print("⚠️ No instrumental audio found, skipping audio playback.")
-
         # --- Start lyric sync ---
         self.start_time = time.time()
         self.playing = True
@@ -401,28 +387,24 @@ class KaraokePlayer(QWidget):
     # Lyrics + Controls
     # ------------------------------------------------------------
     def _toggle_vocal(self):
-        if not self.vocal_pcm:
+        if not self.vocal_path:
             print("⚠️ No vocal track available.")
             return
 
         self.vocal_enabled = not self.vocal_enabled
         self.toggle_button.setText("Disable Vocal" if self.vocal_enabled else "Enable Vocal")
-
-        pygame.mixer.Channel(1).set_volume(1.0 if self.vocal_enabled else 0.0)
+        self.audio_mixer.set_vocal_volume(1.0 if self.vocal_enabled else 0.0)
 
     def _toggle_pause(self):
-        import pygame
         if self.playing:
-            if self.player.is_playing():
-                # Pause video and audio
-                self.player.pause()
-                pygame.mixer.pause()
+            if self.audio_mixer.is_playing():
+                self.audio_mixer.pause()
+                self.player.pause()  # VLC video
                 self.pause_button.setText("Resume")
                 return 0
             else:
-                # Resume video and audio
+                self.audio_mixer.resume()
                 self.player.play()
-                pygame.mixer.unpause()
                 self.pause_button.setText("Pause")
                 return 1
 
@@ -508,13 +490,11 @@ class KaraokePlayer(QWidget):
         self.show()
 
     def stop(self):
-        """Stop current playback."""
-        import pygame
-        pygame.mixer.stop()
-        self.playing = False
-        self.timer.stop()
+        self.audio_mixer.stop()
         if self.player.is_playing():
             self.player.stop()
+        self.timer.stop()
+        self.playing = False
         self.lyrics_top_left.setText("")
         self.lyrics_bottom_right.setText("")
 
