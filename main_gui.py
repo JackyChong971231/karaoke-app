@@ -220,7 +220,7 @@ class KaraokeAppQt(QWidget):
             }
 
             QScrollBar:vertical {
-                background-color: #gray;  /* track color */
+                background-color: grey;  /* track color */
                 width: 12px;
                 margin: 0px 0px 0px 0px;
                 border-radius: 6px;
@@ -239,7 +239,7 @@ class KaraokeAppQt(QWidget):
             }
 
             QScrollBar:horizontal {
-                background-color: #gray;
+                background-color: grey;
                 height: 12px;
                 border-radius: 6px;
             }
@@ -265,6 +265,7 @@ class KaraokeAppQt(QWidget):
         search_layout = QHBoxLayout()
         self.search_input = QLineEdit()
         self.search_input.setPlaceholderText("🔍 Search for song or artist...")
+        self.search_input.textChanged.connect(self.filter_cache_list)
         self.search_btn = QPushButton("Search")
         self.search_btn.clicked.connect(self.on_search)
         search_layout.addWidget(self.search_input)
@@ -291,6 +292,17 @@ class KaraokeAppQt(QWidget):
         self.cache_list = QListWidget()
         self.cache_list.itemSelectionChanged.connect(self.on_cache_selected)
         right_layout.addWidget(label_cache)
+
+        cache_filter_layout = QHBoxLayout()
+
+
+        self.cache_artist_filter = QLineEdit()
+        self.cache_artist_filter.setPlaceholderText("Artist filter...")
+        self.cache_artist_filter.textChanged.connect(self.filter_cache_list)
+
+        cache_filter_layout.addWidget(self.cache_artist_filter)
+        right_layout.addLayout(cache_filter_layout)
+
         right_layout.addWidget(self.cache_list)
         splitter.addWidget(right)
 
@@ -344,7 +356,7 @@ class KaraokeAppQt(QWidget):
     # UI Logic
     # -------------------------
     def refresh_cache_list(self):
-        self.cache_list.clear()
+        self.cached_songs = []  # store dicts with title/artist
         for folder in sorted(self.cache.BASE_DIR.iterdir()):
             if not folder.is_dir():
                 continue
@@ -352,9 +364,20 @@ class KaraokeAppQt(QWidget):
             if meta.exists():
                 try:
                     info = json.loads(meta.read_text(encoding="utf-8"))
-                    self.cache_list.addItem(f"{info['artist']} - {info['title']}")
+                    self.cached_songs.append(info)
                 except Exception:
                     continue
+        self.filter_cache_list()  # show filtered list
+
+    def filter_cache_list(self):
+        query = self.search_input.text().lower()
+        self.cache_list.clear()
+        for info in self.cached_songs:
+            title = info.get("title", "").lower()
+            artist = info.get("artist", "").lower()
+            if query and query not in title and query not in artist:
+                continue
+            self.cache_list.addItem(f"{info['artist']} - {info['title']}")
 
     def on_search(self):
         q = self.search_input.text().strip()
