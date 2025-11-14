@@ -170,6 +170,7 @@ class KaraokeAppQt(QWidget):
 
         # Queue variables
         self.queue = []
+        self.queue_changed.connect(self.update_next_song_label)
         self.next_worker = None
         self.prepared_next = None
 
@@ -433,6 +434,18 @@ class KaraokeAppQt(QWidget):
 
         self.queue_changed.emit(self.queue)  # notify
 
+    def update_next_song_label(self):
+        """Update the player window's next song label to the first song in queue."""
+        if self.player_window and hasattr(self.player_window, "next_song_label"):
+            if self.queue:
+                next_song = self.queue[0]
+                self.player_window.next_song_label.setText(
+                    f"Next: {next_song.get('artist', '')} - {next_song.get('title', '')}"
+                )
+            else:
+                self.player_window.next_song_label.setText("Next: None")
+
+
     def on_result_double_click(self, item):
         """When user double-clicks a search result, queue it."""
         idx = self.results_list.row(item)
@@ -519,6 +532,7 @@ class KaraokeAppQt(QWidget):
             result["segments"] = segments
 
         self.prepared_next = result
+        self.update_next_song_label()
         self.status_label.setText(f"Next song ready: {result.get('url', '')}")
         self.refresh_cache_list()
         self.next_worker = None
