@@ -42,6 +42,7 @@ class KaraokePlayer(QWidget):
 
     def __init__(self, instrumental_path, lyrics_segments, vocal_path=None, video_path=None, video_url=None):
         super().__init__()
+        pygame.mixer.init()
         self.instrumental_path = instrumental_path
         self.vocal_path = vocal_path
         self.lyrics_segments = lyrics_segments

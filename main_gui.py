@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton,
     QListWidget, QListWidgetItem, QLabel, QMessageBox, QSplitter, QSizePolicy
 )
-from PySide6.QtCore import Qt, Signal, QThread
+from PySide6.QtCore import Qt, Signal, QThread, QTimer
 from PySide6.QtGui import QFont
 
 from searcher.youtube_search import YouTubeSearcher
@@ -301,17 +301,17 @@ class KaraokeAppQt(QWidget):
         controls = QHBoxLayout()
         controls.setSpacing(8)
 
-        self.play_btn = QPushButton("▶ Play")
+        self.open_btn = QPushButton("Open Player")
         self.pause_btn = QPushButton("⏸ Pause")
         self.stop_btn = QPushButton("⏹ Stop")
         self.skip_btn = QPushButton("⏭ Skip")
 
-        self.play_btn.clicked.connect(self.play_song)
+        self.open_btn.clicked.connect(self.open_player_window)
         self.pause_btn.clicked.connect(self.pause_song)
         self.stop_btn.clicked.connect(self.stop_song)
         self.skip_btn.clicked.connect(self.skip_song)
 
-        for btn in (self.play_btn, self.pause_btn, self.stop_btn, self.skip_btn):
+        for btn in (self.open_btn, self.pause_btn, self.stop_btn, self.skip_btn):
             controls.addWidget(btn)
 
         self.queue_btn = QPushButton("➕ Queue Song")
@@ -504,41 +504,52 @@ class KaraokeAppQt(QWidget):
 
 
     def _on_next_prepared(self, result):
-        """Store preprocessed result for queued song."""
-        self.prepared_next = result
-        self.status_label.setText(f"Next song ready: {result.get('url', '')}")
-        self.refresh_cache_list()
-        self.next_worker = None
-
-    def _play_next_from_queue(self):
-        """Play the next prepared song if available."""
-        if not self.queue:
-            return  # nothing to play
-
-        next_song = self.queue.pop(0)
-        self.queue_changed.emit(self.queue)
-        self.queue_list.takeItem(0)
-
-        # Determine if cached or preprocessed
-        if "cached" in next_song:
-            info = next_song["cached"]
-            lrc_path = info["lyrics"]
+        """Store preprocessed result for queued song and auto-play if player is open."""
+        # If 'segments' missing (cached song), generate from LRC
+        if "segments" not in result or not result["segments"]:
+            lrc_path = result.get("lyrics")
             segments = []
-            if os.path.exists(lrc_path):
+            if lrc_path and os.path.exists(lrc_path):
                 with open(lrc_path, "r", encoding="utf-8") as f:
                     for line in f:
                         if line.startswith("["):
                             t, text = line.strip().split("]", 1)
                             m, s = map(float, t[1:].split(":"))
                             segments.append({"start": m*60 + s, "end": m*60 + s + 5, "text": text})
-            self.player_window.load_song(info["instrumental"], segments, info["vocals"], info.get("url"))
-        elif self.prepared_next and self.prepared_next["url"] == next_song.get("url"):
+            result["segments"] = segments
+
+        self.prepared_next = result
+        self.status_label.setText(f"Next song ready: {result.get('url', '')}")
+        self.refresh_cache_list()
+        self.next_worker = None
+
+        if self.player_window and self.player_window.isVisible():
+            self._play_next_from_queue()
+
+    def _play_next_from_queue(self):
+        if not self.queue:
+            return
+
+        if not self.player_window:
+            return
+
+        if self.player_window.playing:  # <-- check if a song is currently playing
+            return  # just wait, next song will auto-play when current finishes
+
+        next_song = self.queue[0]
+
+        # If preprocessed song is ready
+        if self.prepared_next and self.prepared_next["url"] == next_song.get("url"):
             result = self.prepared_next
+            self.queue.pop(0)
+            self.queue_list.takeItem(0)
             self.player_window.load_song(result["instrumental"], result["segments"], result["vocals"], result["url"])
             self.prepared_next = None
-        else:
-            # If not ready, start processing
             self._prepare_next_song()
+        else:
+            # Song is not ready yet, start preprocessing if not already
+            if not self.next_worker:
+                self._prepare_next_song()
 
     def skip_song(self):
         if self.player_window and self.player_window.isVisible():
@@ -548,88 +559,26 @@ class KaraokeAppQt(QWidget):
     # -------------------------
     # Player logic
     # -------------------------
-    def play_song(self):
-        """Start playing songs from the queue in order."""
-        # If nothing is queued and nothing is selected, warn
-        if not self.queue and (not hasattr(self, "current_selected") or not self.current_selected):
-            QMessageBox.warning(self, "Warning", "No song selected or queued.")
-            return
-
-        # If queue is empty, add the currently selected song
-        if not self.queue and self.current_selected:
-            self.queue.append(dict(self.current_selected))
-            self.queue_list.addItem(f"{self.current_selected.get('artist', '')} - {self.current_selected.get('title', '')}")
-
-        # Start playing the first song in the queue
-        next_song = self.queue[0]
-
-        # If already cached
-        if "cached" in next_song:
-            info = next_song["cached"]
-            lrc_path = info["lyrics"]
-            segments = []
-            if os.path.exists(lrc_path):
-                with open(lrc_path, "r", encoding="utf-8") as f:
-                    for line in f:
-                        if line.startswith("["):
-                            t, text = line.strip().split("]", 1)
-                            m, s = map(float, t[1:].split(":"))
-                            segments.append({"start": m * 60 + s, "end": m * 60 + s + 5, "text": text})
-            self._open_player(info["instrumental"], segments, info["vocals"], info.get("url"))
-            self.queue.pop(0)
-            self.queue_changed.emit(self.queue)
-            self.queue_list.takeItem(0)
-            # Start preparing the next song in queue
-            self._prepare_next_song()
-        # If already preprocessed
-        elif self.prepared_next and self.prepared_next["url"] == next_song.get("url"):
-            result = self.prepared_next
-            self._open_player(result["instrumental"], result["segments"], result["vocals"], result["url"])
-            self.queue.pop(0)
-            self.queue_list.takeItem(0)
-            self.prepared_next = None
-            self._prepare_next_song()
-        # Otherwise, start processing the song
-        else:
-            self.status_label.setText("Processing song...")
-            self.next_worker = ProcessWorker(next_song, self.cache)
-            self.next_worker.status.connect(lambda s: self.status_label.setText(f"[Processing] {s}"))
-            self.next_worker.error.connect(lambda e: QMessageBox.critical(self, "Error", e))
-            self.next_worker.finished.connect(self._on_next_song_ready)
-            self.next_worker.start()
-
-    def _on_next_song_ready(self, result):
-        """Callback when the next song is processed and ready to play."""
-        self.prepared_next = result
-        self.play_song()  # Automatically play it
-
-
-
-    def _on_processing_done(self, result):
-        self.status_label.setText("Processing complete!")
-        self._open_player(result["instrumental"], result["segments"], result["vocals"], result["url"])
-        self.refresh_cache_list()
-
-    def _open_player(self, instrumental, segments, vocal, video_url=None):
-        """Open or reuse the KaraokePlayer."""
-        if self.player_window and self.player_window.isVisible():
-            # Reuse existing player
-            self.player_window.load_song(instrumental, segments, vocal, video_url)
-        else:
-            # Create new player window
-            self.player_window = KaraokePlayer(instrumental, segments, vocal_path=vocal, video_url=video_url)
+    def open_player_window(self):
+        if not self.player_window or not self.player_window.isVisible():
+            self.player_window = KaraokePlayer(None, [], vocal_path=None)
             self.player_window.show()
-            self.player_window.start()
+            # Connect finished signal to trigger queue monitor again
+            self.player_window.finished.connect(self.start_queue_monitor)
+            # Start monitoring the queue
+            self.start_queue_monitor()
 
-        if not hasattr(self.player_window, "_connected_finished"):
-            self.player_window.finished.connect(self._play_next_from_queue)
-            self.player_window._connected_finished = True
-        
-        # Connect queue updates to the player's next song label
-        self.queue_changed.connect(self.player_window.update_next_song_label)
+    def start_queue_monitor(self):
+        if hasattr(self, 'queue_timer') and self.queue_timer.isActive():
+            self.queue_timer.stop()
+        self.queue_timer = QTimer()
+        self.queue_timer.timeout.connect(self.check_queue_and_play)
+        self.queue_timer.start(500)  # check every 0.5 seconds
 
-        # Immediately update the label for current queue
-        self.player_window.update_next_song_label(self.queue)
+    def check_queue_and_play(self):
+        if len(self.queue) > 0:
+            self.queue_timer.stop()  # stop checking while playing
+            self._play_next_from_queue()
 
     def pause_song(self):
         if self.player_window and self.player_window.isVisible():
