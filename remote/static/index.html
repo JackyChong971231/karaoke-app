@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Karaoke Remote</title>
+<style>
+body {
+    background: #111;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+}
+button:active { background: #555; }
+</style>
+</head>
+<body>
+<h2>Karaoke Remote</h2>
+
+<div>
+    <button onclick="send('/api/pause')">Pause</button>
+    <button onclick="send('/api/skip')">Skip</button>
+</div>
+
+<div>
+    <button id="micBtn">Start Mic</button>
+</div>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+const socket = io();
+
+// REST API buttons
+function send(endpoint) {
+    fetch(endpoint, {method: 'POST'});
+}
+
+// Microphone streaming
+let micStream;
+let audioContext;
+let processor;
+let isStreaming = false;
+
+document.getElementById("micBtn").onclick = async () => {
+    if (!isStreaming) {
+        await startMic();
+        document.getElementById("micBtn").innerText = "Stop Mic";
+    } else {
+        stopMic();
+        document.getElementById("micBtn").innerText = "Start Mic";
+    }
+    isStreaming = !isStreaming;
+};
+
+async function startMic() {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)({sampleRate: 44100});
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const source = audioContext.createMediaStreamSource(micStream);
+
+    // Using ScriptProcessorNode to get raw PCM samples
+    processor = audioContext.createScriptProcessor(4096, 1, 1);
+    source.connect(processor);
+    processor.connect(audioContext.destination);
+
+    processor.onaudioprocess = (event) => {
+        const input = event.inputBuffer.getChannelData(0);
+        // Convert float32 [-1,1] to 16-bit PCM
+        const buffer = new ArrayBuffer(input.length * 2);
+        const view = new DataView(buffer);
+        for (let i = 0; i < input.length; i++) {
+            let s = Math.max(-1, Math.min(1, input[i]));
+            view.setInt16(i*2, s < 0 ? s*0x8000 : s*0x7FFF, true);
+        }
+        // Send as base64
+        const blob = new Blob([view], {type: 'application/octet-stream'});
+        const reader = new FileReader();
+        reader.onload = () => {
+            socket.emit('audio_chunk', 'data:audio/pcm;base64,' + btoa(reader.result));
+        };
+        reader.readAsBinaryString(blob);
+    };
+}
+
+function stopMic() {
+    processor.disconnect();
+    micStream.getTracks().forEach(track => track.stop());
+    audioContext.close();
+}
+</script>
+</body>
+</html>

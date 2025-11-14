@@ -5,13 +5,37 @@ from yt_dlp import YoutubeDL
 from pydub import AudioSegment
 import vlc
 import pygame
+import socket
+import qrcode
 
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFrame
 )
 from PySide6.QtCore import QTimer, Qt, Signal, QPoint
 from PySide6.QtWidgets import QStackedLayout
+from PySide6.QtGui import QPixmap
 
+def get_local_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        s.connect(("8.8.8.8", 80))
+        return s.getsockname()[0]
+    finally:
+        s.close()
+
+
+def generate_qr_pixmap(port=5005):
+    ip = get_local_ip()
+    url = f"http://{ip}:{port}/remote"
+
+    # Generate QR
+    qr_img = qrcode.make(url)
+    qr_path = "remote_qr.png"
+    qr_img.save(qr_path)
+
+    # Load into PySide pixmap
+    pix = QPixmap(qr_path)
+    return pix
 
 class KaraokePlayer(QWidget):
     finished = Signal()
@@ -76,6 +100,14 @@ class KaraokePlayer(QWidget):
         else:
             self.next_song_label.setText("Next: (none)")
 
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        # Keep QR code at top-right of video frame
+        self.qr_overlay.move(
+            self.video_frame.width() - self.qr_overlay.width() - 10,
+            10
+        )
+
     # ------------------------------------------------------------
     # UI
     # ------------------------------------------------------------
@@ -91,7 +123,7 @@ class KaraokePlayer(QWidget):
 
         # --- Control panel (top) ---
         self.control_panel = QFrame(self)
-        self.control_panel.setFixedHeight(60)  # fixed height
+        self.control_panel.setFixedHeight(60)
         self.control_panel.setStyleSheet("background-color: rgba(0,0,0,150);")
 
         control_layout = QHBoxLayout(self.control_panel)
@@ -106,14 +138,13 @@ class KaraokePlayer(QWidget):
             border-radius: 5px;
         """
 
-        # Pause button
+        # Buttons
         self.pause_button = QPushButton("Pause", self.control_panel)
         self.pause_button.setStyleSheet(control_btn_style)
         self.pause_button.setFixedSize(100, 40)
         self.pause_button.clicked.connect(self._toggle_pause)
         control_layout.addWidget(self.pause_button)
 
-        # Toggle vocal button
         self.toggle_button = QPushButton("Enable Vocal", self.control_panel)
         self.toggle_button.setStyleSheet(control_btn_style)
         self.toggle_button.setFixedSize(150, 40)
@@ -150,38 +181,42 @@ class KaraokePlayer(QWidget):
         # --- Video container (flexible) ---
         self.video_container = QFrame(self)
         self.video_container.setStyleSheet("background-color: black;")
-        video_layout = QVBoxLayout(self.video_container)
-        video_layout.setContentsMargins(10, 0, 10, 0)
-        video_layout.setSpacing(0)
-        main_layout.addWidget(self.video_container, stretch=1)  # takes remaining space
+        self.video_container.setLayout(None)  # free positioning for QR overlay
+        main_layout.addWidget(self.video_container, stretch=1)
 
         # Video frame inside container
         self.video_frame = QFrame(self.video_container)
         self.video_frame.setStyleSheet("background-color: black;")
-        video_layout.addWidget(self.video_frame, stretch=1)  # fills the container
+        self.video_frame.setGeometry(0, 0, 1280, 720)  # fills container initially
+
+        # Floating QR code overlay
+        self.qr_overlay = QLabel(self.video_container)
+        pixmap = generate_qr_pixmap(port=5005)
+        self.qr_overlay.setPixmap(pixmap.scaled(120, 120))
+        self.qr_overlay.setStyleSheet("background: transparent;")
+        self.qr_overlay.setFixedSize(120, 120)
+        self.qr_overlay.raise_()
+        self.qr_overlay.move(self.video_container.width() - self.qr_overlay.width() - 10, 10)
 
         # --- Lyrics container (bottom, fixed height) ---
         lyrics_container = QFrame(self)
-        lyrics_container.setFixedHeight(100)  # adjust total height
-        lyrics_container.setStyleSheet("background-color: rgba(0,0,0,100);")  # semi-transparent background
+        lyrics_container.setFixedHeight(100)
+        lyrics_container.setStyleSheet("background-color: rgba(0,0,0,100);")
         lyrics_layout = QVBoxLayout(lyrics_container)
-        lyrics_layout.setContentsMargins(5, 5, 5, 5)  # padding from edges
+        lyrics_layout.setContentsMargins(5, 5, 5, 5)
         lyrics_layout.setSpacing(20)
 
-        # Top-left lyrics
         self.lyrics_top_left = QLabel("", lyrics_container)
         self.lyrics_top_left.setAlignment(Qt.AlignLeft | Qt.AlignTop)
         self.lyrics_top_left.setStyleSheet("color: white; font-size: 24px;")
         self.lyrics_top_left.setContentsMargins(30, 0, 30, 0)
         lyrics_layout.addWidget(self.lyrics_top_left)
 
-        # Bottom-right lyrics
         self.lyrics_bottom_right = QLabel("", lyrics_container)
         self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignBottom)
         self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 24px;")
         self.lyrics_bottom_right.setContentsMargins(30, 0, 30, 0)
         lyrics_layout.addWidget(self.lyrics_bottom_right)
-        
 
         main_layout.addWidget(lyrics_container)
         main_layout.setContentsMargins(0, 0, 0, 30)
@@ -197,6 +232,17 @@ class KaraokePlayer(QWidget):
         self.current_index = -1
         self.next_index = 0
         self.current_label = 0
+
+        # --- Keep QR at top-right on resize ---
+        def resizeEvent(event):
+            super(self.__class__, self).resizeEvent(event)
+            # Resize video frame to container
+            self.video_frame.setGeometry(0, 0, self.video_container.width(), self.video_container.height())
+            # Keep QR top-right
+            self.qr_overlay.move(self.video_container.width() - self.qr_overlay.width() - 10, 10)
+
+        self.resizeEvent = resizeEvent
+
 
 
 
@@ -371,11 +417,13 @@ class KaraokePlayer(QWidget):
                 self.player.pause()
                 pygame.mixer.pause()
                 self.pause_button.setText("Resume")
+                return 0
             else:
                 # Resume video and audio
                 self.player.play()
                 pygame.mixer.unpause()
                 self.pause_button.setText("Pause")
+                return 1
 
     def skip(self):
         """Stop current playback immediately."""
