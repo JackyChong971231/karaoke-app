@@ -625,6 +625,8 @@ class KaraokeAppQt(QWidget):
             elif onOff == 0:
                 self.pause_btn.setText("Pause")
 
+    def toggle_vocal(self):
+        self.player_window._toggle_vocal()
 
     def stop_song(self):
         try:
