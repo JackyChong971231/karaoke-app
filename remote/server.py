@@ -33,6 +33,11 @@ class RemoteServer:
         def pause():
             self.app_ref.pause_song()
             return jsonify({"status": "paused"})
+        
+        @self.app.route("/api/vocal", methods=["POST"])
+        def vocal():
+            self.app_ref.toggle_vocal()
+            return jsonify({})
 
         @self.app.route("/api/skip", methods=["POST"])
         def skip():

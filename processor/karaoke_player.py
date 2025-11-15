@@ -251,7 +251,7 @@ class KaraokePlayer(QWidget):
         self.timer.timeout.connect(self._update_lyrics_sync)
 
         # Internal state
-        self.labels = [self.lyrics_top_left, self.lyrics_bottom_right]
+        self.labels = [self.lyrics_bottom_right, self.lyrics_top_left]
         self.current_index = -1
         self.next_index = 0
         self.current_label = 0
@@ -286,12 +286,28 @@ class KaraokePlayer(QWidget):
     # ------------------------------------------------------------
     def load_song(self, instrumental_path, lyrics_segments, vocal_path=None, video_url=None):
         """Load a new song into the existing player without reopening the window."""
-        self.stop()  # Stop current playback
+        # Stop current playback and reset internal lyric state
+        self.stop()
 
         self.instrumental_path = instrumental_path
         self.vocal_path = vocal_path
-        self.lyrics_segments = lyrics_segments
+        self.lyrics_segments = lyrics_segments or []
         self.video_url = video_url
+
+        # Reset lyric indices so playback starts from the beginning
+        self.current_index = -1
+        self.next_index = 0
+        self.current_label = 0
+
+        # Prefill first two lines if available so UI shows something quickly
+        if len(self.lyrics_segments) > 0:
+            self.lyrics_top_left.setText(self.lyrics_segments[0]["text"])
+        else:
+            self.lyrics_top_left.setText("")
+        if len(self.lyrics_segments) > 1:
+            self.lyrics_bottom_right.setText(self.lyrics_segments[1]["text"])
+        else:
+            self.lyrics_bottom_right.setText("")
 
         self._prepare_audio_files()
         self.start()  # Start playing new song
@@ -351,41 +367,19 @@ class KaraokePlayer(QWidget):
             return None
 
     def _play_media(self):
-        """Start video and audio playback (uses local video.mp4 + instrumental/vocal audio)"""
-        import os, sys, time, pygame
+        # Reset lyrics
+        for lbl in self.labels:
+            lbl.setText("")
 
-        # --- Reset lyrics labels & internal state for initial display ---
-        if len(self.lyrics_segments) > 0:
-            self.lyrics_top_left.setText(self.lyrics_segments[0]["text"])
-        else:
-            self.lyrics_top_left.setText("")
-        if len(self.lyrics_segments) > 1:
-            self.lyrics_bottom_right.setText(self.lyrics_segments[1]["text"])
-        else:
-            self.lyrics_bottom_right.setText("")
+        # Play audio using AudioMixer
+        self.audio_mixer.play()
+        if not self.vocal_enabled:
+            self.audio_mixer.set_vocal_volume(0.0)
 
-        self.current_index = -1
-        self.next_index = 0
-        self.current_label = 0
-
-        # derive folder path from audio file
-        if hasattr(self, "audio_path") and self.audio_path:
-            folder = os.path.dirname(self.audio_path)
-        elif hasattr(self, "instrumental_path") and self.instrumental_path:
-            folder = os.path.dirname(self.instrumental_path)
-        else:
-            folder = "./karaoke_data"
-
-        os.makedirs(folder, exist_ok=True)
-
-        # construct video path
-        self.video_path = os.path.join(folder, "video.mp4")
-        # --- VLC Video Playback ---
+        # Start VLC video
         if self.video_path and os.path.exists(self.video_path):
             media = self.instance.media_new(self.video_path)
             self.player.set_media(media)
-
-            # Embed VLC output in Qt video frame
             win_id = int(self.video_frame.winId())
             if sys.platform.startswith("linux"):
                 self.player.set_xwindow(win_id)
@@ -394,19 +388,15 @@ class KaraokePlayer(QWidget):
             elif sys.platform == "darwin":
                 self.player.set_nsobject(win_id)
 
-            # Mute video audio (we'll use our processed audio instead)
             self.player.audio_set_mute(True)
             self.player.play()
 
-            # Wait until VLC starts
+            # Wait for video to actually start
             start_wait = time.time()
-            while not self.player.is_playing() and (time.time() - start_wait) < 1.5:
+            while not self.player.is_playing() and (time.time() - start_wait) < 1.0:
                 time.sleep(0.01)
 
-        else:
-            print("⚠️ No video found. Skipping VLC video playback.")
-
-        # --- Start lyric sync ---
+        # Record wall-clock start time for syncing lyrics
         self.start_time = time.time()
         self.playing = True
         self.timer.start(50)  # update lyrics every 50ms
@@ -424,17 +414,21 @@ class KaraokePlayer(QWidget):
         self.audio_mixer.set_vocal_volume(1.0 if self.vocal_enabled else 0.0)
 
     def _toggle_pause(self):
-        if self.playing:
-            if self.audio_mixer.is_playing():
-                self.audio_mixer.pause()
-                self.player.pause()  # VLC video
-                self.pause_button.setText("Resume")
-                return 0
-            else:
-                self.audio_mixer.resume()
-                self.player.play()
-                self.pause_button.setText("Pause")
-                return 1
+        if not self.playing:
+            return
+
+        if not self.audio_mixer.paused:
+            # Currently playing → pause
+            self.audio_mixer.pause()
+            self.player.pause()
+            self.pause_button.setText("Resume")
+            return 0
+        else:
+            # Currently paused → resume
+            self.audio_mixer.resume()
+            self.player.play()
+            self.pause_button.setText("Pause")
+            return 1
 
     def skip(self):
         """Stop current playback immediately."""
@@ -468,42 +462,32 @@ class KaraokePlayer(QWidget):
             self.timer.stop()
             return
 
-        # Use VLC playback time instead of wall clock
-        if self.player.is_playing() or self.player.get_state() in (vlc.State.Paused, vlc.State.Playing):
-            elapsed = self.player.get_time() / 1000.0  # VLC returns milliseconds
-        else:
-            elapsed = 0
+        # Use wall clock elapsed time
+        elapsed = time.time() - self.start_time
 
-        # Check if we need to move to the next line
         if self.next_index < len(self.lyrics_segments):
             seg = self.lyrics_segments[self.next_index]
             if elapsed >= seg["start"]:
-                # Swap current label
                 self.current_label = 1 - self.current_label
-                # Update current singing line on the "current label"
                 self.labels[self.current_label].setText(seg["text"])
 
-                # Preload next line on the other label
                 next_next_index = self.next_index + 1
                 if next_next_index < len(self.lyrics_segments):
                     self.labels[1 - self.current_label].setText(
                         self.lyrics_segments[next_next_index]["text"]
                     )
                 else:
-                    # No more lines, clear the other label
                     self.labels[1 - self.current_label].setText("")
 
                 self.current_index = self.next_index
                 self.next_index += 1
 
-        # Stop when playback finishes
-        import pygame
-        if not pygame.mixer.Channel(0).get_busy() and self.player.get_state() == vlc.State.Ended:
+        # Stop when audio finishes
+        if not self.audio_mixer.is_playing():
             self.timer.stop()
             self.playing = False
             for lbl in self.labels:
                 lbl.setText("")
-            print("✅ Playback finished.")
             self.finished.emit()
 
 

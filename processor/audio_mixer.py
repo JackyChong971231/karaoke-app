@@ -16,6 +16,8 @@ class AudioMixer:
         self.vocals = None
         self.vocal_enabled = True
 
+        self.paused = False    # ← NEW
+
         # Microphone stream
         self.mic_stream = None
         self.mic_enabled = False
@@ -51,9 +53,11 @@ class AudioMixer:
 
     def pause(self):
         pygame.mixer.pause()
+        self.paused = True
 
     def resume(self):
         pygame.mixer.unpause()
+        self.paused = False
 
     def stop(self):
         pygame.mixer.stop()
@@ -65,7 +69,8 @@ class AudioMixer:
             pygame.mixer.Channel(1).set_volume(volume)
 
     def is_playing(self):
-        return pygame.mixer.Channel(0).get_busy()
+        # Playing if it's not paused AND channel is active
+        return pygame.mixer.Channel(0).get_busy() or self.paused
 
     def get_input_devices(self):
         import pyaudio
