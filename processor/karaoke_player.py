@@ -223,7 +223,7 @@ class KaraokePlayer(QWidget):
 
         # --- Lyrics container (bottom, fixed height) ---
         lyrics_container = QFrame(self)
-        lyrics_container.setFixedHeight(100)
+        lyrics_container.setFixedHeight(130)
         lyrics_container.setStyleSheet("background-color: rgba(0,0,0,100);")
         lyrics_layout = QVBoxLayout(lyrics_container)
         lyrics_layout.setContentsMargins(5, 5, 5, 5)
@@ -231,13 +231,13 @@ class KaraokePlayer(QWidget):
 
         self.lyrics_top_left = QLabel("", lyrics_container)
         self.lyrics_top_left.setAlignment(Qt.AlignLeft | Qt.AlignTop)
-        self.lyrics_top_left.setStyleSheet("color: white; font-size: 24px;")
+        self.lyrics_top_left.setStyleSheet("color: white; font-size: 36px;")
         self.lyrics_top_left.setContentsMargins(30, 0, 30, 0)
         lyrics_layout.addWidget(self.lyrics_top_left)
 
         self.lyrics_bottom_right = QLabel("", lyrics_container)
         self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignBottom)
-        self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 24px;")
+        self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 36px;")
         self.lyrics_bottom_right.setContentsMargins(30, 0, 30, 0)
         lyrics_layout.addWidget(self.lyrics_bottom_right)
 
