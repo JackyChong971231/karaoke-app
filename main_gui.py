@@ -156,6 +156,7 @@ class QueueItemWidget(QWidget):
 # -------------------------
 class KaraokeAppQt(QWidget):
     queue_changed = Signal(list)
+    add_song_signal = Signal(str, str, str, str)  # url, user, title, artist
 
     def __init__(self):
         super().__init__()
@@ -179,6 +180,8 @@ class KaraokeAppQt(QWidget):
 
         self.remote_server = RemoteServer(self)
         self.remote_server.start()
+
+        self.add_song_signal.connect(self.queue_song_from_url)
 
     def _setup_ui(self):
         self.setStyleSheet("""
@@ -430,32 +433,54 @@ class KaraokeAppQt(QWidget):
     # Queue logic
     # -------------------------
     def queue_song(self):
-        """Add selected song to queue."""
         if not hasattr(self, "current_selected") or not self.current_selected:
             QMessageBox.warning(self, "Warning", "No song selected to queue.")
             return
 
-        # Shallow copy to avoid mutation
         song = dict(self.current_selected)
+        self._add_song_to_queue(song)
+
+    def queue_song_from_url(self, url, user, title, artist):
+        """
+        Queue a song using only a YouTube URL. Used by the web remote.
+        """
+        song_obj = {
+            "url": url,
+            "title": title,
+            "artist": artist,
+            "queued_by": user
+        }
+
+        # push into main queue system
+        self._add_song_to_queue(song_obj)
+
+    def _add_song_to_queue(self, song: dict):
+        """Internal helper that all queue paths use."""
+
+        # Append to queue
         self.queue.append(song)
 
-        # Create custom list item
-        item_widget = QueueItemWidget(f"{song.get('artist', '')} - {song.get('title', '')}", len(self.queue) - 1)
+        # Create UI entry
+        label_text = f"{song.get('artist', '')} - {song.get('title', '')}"
+        if song.get("queued_by"):
+            label_text += f"  (🎤 {song['queued_by']})"
+
+        item_widget = QueueItemWidget(label_text, len(self.queue) - 1)
         item_widget.removed.connect(self.remove_queue_item)
 
         list_item = QListWidgetItem()
         list_item.setSizeHint(item_widget.sizeHint())
-
         self.queue_list.addItem(list_item)
         self.queue_list.setItemWidget(list_item, item_widget)
 
-        self.status_label.setText(f"Queued {song.get('title', '')}")
+        self.status_label.setText(f"Queued: {song.get('title', '')}")
 
-        # If nothing is being prepared yet, start preparing next
+        # If first in queue → prepare immediately
         if not self.next_worker and len(self.queue) == 1:
             self._prepare_next_song()
 
-        self.queue_changed.emit(self.queue)  # notify
+        self.queue_changed.emit(self.queue)
+
 
     def update_next_song_label(self):
         """Update the player window's next song label to the first song in queue."""

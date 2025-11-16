@@ -11,92 +11,122 @@ body {
     text-align: center;
     padding: 20px;
 }
+h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
 button {
-    font-size: 18px;
-    padding: 10px 20px;
+    padding: 15px 30px;
     margin: 10px;
     border-radius: 5px;
     border: none;
     background: #333;
     color: white;
     cursor: pointer;
+    font-size: 1.5rem;
 }
 button:active { background: #555; }
+
+input {
+    width: 80%;
+    padding: 20px;
+    font-size: 1.3rem;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: none;
+}
 </style>
 </head>
 <body>
+
 <h2>Karaoke Remote</h2>
 
+<!-- Display username -->
+<div id="userDisplay" style="font-size: 2rem; margin-bottom: 20px;"></div>
+
+<!-- Add Song to Queue -->
 <div>
+    <input id="urlInput" placeholder="Paste YouTube link here..." />
+    <button onclick="addSong()">Add to Queue</button>
+</div>
+
+<!-- Controls -->
+<div style="margin-top: 40px;">
     <button onclick="send('/api/pause')">Pause</button>
     <button onclick="send('/api/skip')">Skip</button>
     <button onclick="send('/api/vocal')">Toggle Vocal</button>
 </div>
 
-<div>
-    <button id="micBtn">Start Mic</button>
-</div>
-
 <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script>
 const socket = io();
+let username = null;
 
-// REST API buttons
-function send(endpoint) {
-    fetch(endpoint, {method: 'POST'});
-}
+// -----------------------------
+// Ask for name on first visit
+// -----------------------------
+function requestName() {
+    username = localStorage.getItem("karaokeName");
 
-// Microphone streaming
-let micStream;
-let audioContext;
-let processor;
-let isStreaming = false;
-
-document.getElementById("micBtn").onclick = async () => {
-    if (!isStreaming) {
-        await startMic();
-        document.getElementById("micBtn").innerText = "Stop Mic";
-    } else {
-        stopMic();
-        document.getElementById("micBtn").innerText = "Start Mic";
-    }
-    isStreaming = !isStreaming;
-};
-
-async function startMic() {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)({sampleRate: 44100});
-    micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const source = audioContext.createMediaStreamSource(micStream);
-
-    // Using ScriptProcessorNode to get raw PCM samples
-    processor = audioContext.createScriptProcessor(4096, 1, 1);
-    source.connect(processor);
-    processor.connect(audioContext.destination);
-
-    processor.onaudioprocess = (event) => {
-        const input = event.inputBuffer.getChannelData(0);
-        // Convert float32 [-1,1] to 16-bit PCM
-        const buffer = new ArrayBuffer(input.length * 2);
-        const view = new DataView(buffer);
-        for (let i = 0; i < input.length; i++) {
-            let s = Math.max(-1, Math.min(1, input[i]));
-            view.setInt16(i*2, s < 0 ? s*0x8000 : s*0x7FFF, true);
+    if (!username) {
+        username = prompt("Enter your name for the karaoke queue:");
+        if (username && username.trim() !== "") {
+            localStorage.setItem("karaokeName", username);
+        } else {
+            username = "Guest";
         }
-        // Send as base64
-        const blob = new Blob([view], {type: 'application/octet-stream'});
-        const reader = new FileReader();
-        reader.onload = () => {
-            socket.emit('audio_chunk', 'data:audio/pcm;base64,' + btoa(reader.result));
-        };
-        reader.readAsBinaryString(blob);
-    };
+    }
+
+    document.getElementById("userDisplay").innerText = "Hello, " + username + "!";
 }
 
-function stopMic() {
-    processor.disconnect();
-    micStream.getTracks().forEach(track => track.stop());
-    audioContext.close();
+requestName();
+
+// -----------------------------
+// Buttons -> backend
+// -----------------------------
+function send(endpoint) {
+    fetch(endpoint, { method: 'POST' });
 }
+
+// -----------------------------
+// Add song to queue
+// -----------------------------
+async function addSong() {
+    const url = document.getElementById("urlInput").value;
+    const user = localStorage.getItem("karaokeName") || "Guest";
+
+    if (!url.includes("youtube.com") && !url.includes("youtu.be")) {
+        alert("Please paste a valid YouTube link");
+        return;
+    }
+
+    // Step 1: Fetch video metadata (title + channel)
+    let title = "Unknown Title";
+    let artist = "Unknown Artist";
+
+    try {
+        const oembed = await fetch(
+            "https://www.youtube.com/oembed?url=" + encodeURIComponent(url) + "&format=json"
+        ).then(r => r.json());
+
+        title = oembed.title || title;
+        artist = oembed.author_name || artist;
+    } catch (err) {
+        console.warn("Could not fetch metadata, using defaults", err);
+    }
+
+    // Step 2: Send metadata to your server
+    await fetch("/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, user, title, artist })
+    });
+
+    alert("Added: " + title);
+}
+
 </script>
+
 </body>
 </html>

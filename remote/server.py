@@ -57,26 +57,26 @@ class RemoteServer:
                 "queue": self.app_ref.queue,
                 "now_playing": getattr(self.app_ref.player_window, "current_title", None)
             })
+        
+        @self.app.post("/add")
+        def add_to_queue():
+            data = request.json
+            url = data.get("url")
+            user = data.get("user", "Guest")
+            title = data.get("title")
+            artist = data.get("artist")
+
+            print("Queued From Web:", user, title, artist, url)
+
+            # Pass all metadata to the Qt thread
+            self.app_ref.add_song_signal.emit(url, user, title, artist)
+
+            return {"status": "queued"}
 
         # --- Remote page ---
         @self.app.route("/remote")
         def remote_page():
             return self.app.send_static_file("index.html")
-
-        # --- Socket.IO events for mic streaming ---
-        @self.socketio.on("connect")
-        def handle_connect():
-            self.connected_mics.add(request.sid)
-            print(f"Mic connected. Total: {len(self.connected_mics)}")
-            if hasattr(self.app_ref, "update_mic_count"):
-                self.app_ref.update_mic_count(len(self.connected_mics))
-
-        @self.socketio.on("disconnect")
-        def handle_disconnect():
-            self.connected_mics.discard(request.sid)
-            print(f"Mic disconnected. Total: {len(self.connected_mics)}")
-            if hasattr(self.app_ref, "update_mic_count"):
-                self.app_ref.update_mic_count(len(self.connected_mics))
 
         @self.socketio.on("audio_chunk")
         def handle_audio(data):
