@@ -74,10 +74,16 @@ class AudioMixer:
 
     def get_position(self):
         """Return current playback time of instrumental in seconds."""
+        channel = pygame.mixer.Channel(0)
+        if self.instrumental and channel.get_busy():
+            # pygame doesn't give exact time, so track manually with a timer
+            return getattr(self, "_position", 0.0)
+        return 0.0
+
+    def get_length(self):
+        """Return total length of instrumental in seconds."""
         if self.instrumental:
-            channel = pygame.mixer.Channel(0)
-            if channel.get_busy():
-                return channel.get_queue() or 0  # approximate elapsed
+            return self.instrumental.get_length()
         return 0.0
 
     def get_input_devices(self):
@@ -92,6 +98,30 @@ class AudioMixer:
 
         p.terminate()
         return devices
+
+    def seek(self, seconds):
+        """Jump to a certain position in the instrumental AND vocal tracks."""
+        # --- Stop playback ---
+        pygame.mixer.Channel(0).stop()
+        pygame.mixer.Channel(1).stop()
+
+        # --- Reload instrumental ---
+        if self.instrumental:
+            inst_audio = AudioSegment.from_file("temp_instrumental.wav")
+            inst_audio = inst_audio[seconds*1000:]  # milliseconds
+            inst_audio.export("temp_instrumental_seek.wav", format="wav")
+            self.instrumental = pygame.mixer.Sound("temp_instrumental_seek.wav")
+
+        # --- Reload vocals ---
+        if self.vocals:
+            voc_audio = AudioSegment.from_file("temp_vocal.wav")
+            voc_audio = voc_audio[seconds*1000:]
+            voc_audio.export("temp_vocal_seek.wav", format="wav")
+            self.vocals = pygame.mixer.Sound("temp_vocal_seek.wav")
+
+        # --- Resume playback ---
+        self.play()
+
 
     def play_input_device(self, input_device_index=None, output_device_index=None):
         """Ultra low-latency mic → speaker playback with separate devices."""
