@@ -367,31 +367,16 @@ class KaraokeAppQt(QWidget):
         self._add_song_to_queue(song_obj)
 
     def _add_song_to_queue(self, song: dict):
-        """Internal helper that all queue paths use."""
-
-        # Append to queue
+        """Internal helper: add song and recalc user rotation order."""
+        # Append raw song
         self.queue.append(song)
-
-        # Create UI entry
-        label_text = f"{song.get('artist', '')} - {song.get('title', '')}"
-        if song.get("queued_by"):
-            label_text += f"  (🎤 {song['queued_by']})"
-
-        item_widget = QueueItemWidget(label_text, len(self.queue) - 1)
-        item_widget.removed.connect(self.remove_queue_item)
-
-        list_item = QListWidgetItem()
-        list_item.setSizeHint(item_widget.sizeHint())
-        self.queue_list.addItem(list_item)
-        self.queue_list.setItemWidget(list_item, item_widget)
-
+        self._rebuild_rotated_queue()
         self.status_label.setText(f"Queued: {song.get('title', '')}")
+        self.queue_changed.emit(self.queue)
 
-        # If first in queue → prepare immediately
+        # If first song in the rotated queue, prepare immediately
         if not self.next_worker and len(self.queue) == 1:
             self._prepare_next_song()
-
-        self.queue_changed.emit(self.queue)
 
 
     def update_next_song_label(self):
@@ -400,7 +385,7 @@ class KaraokeAppQt(QWidget):
             if self.queue:
                 next_song = self.queue[0]
                 self.player_window.next_song_label.setText(
-                    f"Next: {next_song.get('artist', '')} - {next_song.get('title', '')}"
+                    f"Next: {next_song.get('artist', '')} - {next_song.get('title', '')} - 🎤: {next_song.get("queued_by", '')}"
                 )
             else:
                 self.player_window.next_song_label.setText("Next: None")
@@ -411,6 +396,7 @@ class KaraokeAppQt(QWidget):
         idx = self.results_list.row(item)
         if 0 <= idx < len(self.results):
             self.current_selected = self.results[idx]
+            self.current_selected['queued_by'] = 'Unknown'
             self.queue_song()
 
     def on_cache_double_click(self, item):
@@ -429,24 +415,52 @@ class KaraokeAppQt(QWidget):
                         "artist": meta["artist"],
                         "url": meta.get("url"),
                         "cached": cached,
+                        "queued_by": 'Unknown'
                     }
                     self.queue_song()
             except Exception as e:
                 QMessageBox.warning(self, "Error", f"Failed to load cache: {e}")
 
+    def _rebuild_rotated_queue(self):
+        """Rebuild the queue in user rotation order and update UI."""
+        # Group songs by user
+        user_dict = {}
+        for song in self.queue:
+            user = song.get("queued_by", "unknown")
+            user_dict.setdefault(user, []).append(song)
+
+        # Rotate round-robin between users
+        rotated = []
+        while any(user_dict.values()):
+            for user, songs in list(user_dict.items()):
+                if songs:
+                    rotated.append(songs.pop(0))
+                if not songs:
+                    del user_dict[user]
+
+        # Update self.queue to rotated order
+        self.queue = rotated
+
+        # Update UI
+        self.queue_list.clear()
+        for i, song in enumerate(self.queue):
+            label_text = f"{song.get('artist', '')} - {song.get('title', '')}"
+            if song.get("queued_by"):
+                label_text += f"  (🎤 {song['queued_by']})"
+            item_widget = QueueItemWidget(label_text, i)
+            item_widget.removed.connect(self.remove_queue_item)
+            list_item = QListWidgetItem()
+            list_item.setSizeHint(item_widget.sizeHint())
+            self.queue_list.addItem(list_item)
+            self.queue_list.setItemWidget(list_item, item_widget)
+
     def remove_queue_item(self, index):
-        """Remove a queue item when its trash button is clicked."""
+        """Remove a queue item and recalc rotation."""
         if 0 <= index < len(self.queue):
             del self.queue[index]
-            self.queue_list.takeItem(index)
             self.status_label.setText("Removed song from queue")
-
-        # Re-index remaining items so delete buttons stay correct
-        for i in range(self.queue_list.count()):
-            widget = self.queue_list.itemWidget(self.queue_list.item(i))
-            if widget:
-                widget.index = i
-        self.queue_changed.emit(self.queue)  # notify
+            self._rebuild_rotated_queue()
+            self.queue_changed.emit(self.queue)
 
 
     def _prepare_next_song(self):
