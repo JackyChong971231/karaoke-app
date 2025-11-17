@@ -27,27 +27,27 @@ class QueueItemWidget(QWidget):
         self.index = index
 
         layout = QHBoxLayout()
-        layout.setContentsMargins(5, 5, 5, 5)
+        layout.setContentsMargins(5, 3, 5, 3)
         layout.setSpacing(10)
 
         # --- Delete Button ---
-        self.delete_btn = QPushButton("🗑️")
+        self.delete_btn = QPushButton("Delete")
         font = QFont()
-        font.setPointSize(18)  # Emoji size
+        font.setPointSize(14)  # Emoji size
         self.delete_btn.setFont(font)
         self.delete_btn.setStyleSheet("""
             QPushButton {
-                background-color: transparent;
+                background-color: gray;
                 border: none;
             }
             QPushButton:hover {
-                color: red;
+                background-color: darkgray;
             }
         """)
 
         # Make button fit the emoji dynamically
-        size_hint = self.delete_btn.sizeHint()
-        self.delete_btn.setFixedSize(size_hint.width() + 4, size_hint.height() + 4)
+        # size_hint = self.delete_btn.sizeHint()
+        # self.delete_btn.setFixedSize(size_hint.width() + 4, size_hint.height()-2)
 
         self.delete_btn.clicked.connect(self._on_delete)
         layout.addWidget(self.delete_btn)
@@ -251,11 +251,19 @@ class KaraokeAppQt(QWidget):
         controls.addWidget(self.status_label)
         layout.addLayout(controls)
 
-        # --- Next Up Section ---
+        # --- Next Up Section (Queue + Finished Songs) ---
         next_up_label = QLabel("Next Up")
         next_up_label.setStyleSheet("font-size: 14px; font-weight: bold; color: #FFF; margin-top: 10px;")
         layout.addWidget(next_up_label)
 
+        # Horizontal layout for Queue and Finished Songs
+        queue_finished_layout = QHBoxLayout()
+        queue_finished_layout.setSpacing(16)
+
+        # Queue column
+        queue_layout = QVBoxLayout()
+        queue_label = QLabel("Queue")
+        queue_layout.addWidget(queue_label)
         self.queue_list = QListWidget()
         self.queue_list.setStyleSheet("""
             QListWidget {
@@ -265,7 +273,27 @@ class KaraokeAppQt(QWidget):
                 border-radius: 6px;
             }
         """)
-        layout.addWidget(self.queue_list)
+        queue_layout.addWidget(self.queue_list)
+        queue_finished_layout.addLayout(queue_layout)
+
+        # Finished Songs column
+        finished_layout = QVBoxLayout()
+        finished_label = QLabel("Finished Songs")
+        finished_layout.addWidget(finished_label)
+        self.finished_list = QListWidget()
+        self.finished_list.setStyleSheet("""
+            QListWidget {
+                background-color: #111;
+                color: #888;
+                border: 1px solid #333;
+                border-radius: 6px;
+            }
+        """)
+        finished_layout.addWidget(self.finished_list)
+        queue_finished_layout.addLayout(finished_layout)
+
+        # Add horizontal layout to main layout
+        layout.addLayout(queue_finished_layout, stretch=1)
 
     # -------------------------
     # UI Logic
@@ -385,7 +413,7 @@ class KaraokeAppQt(QWidget):
             if self.queue:
                 next_song = self.queue[0]
                 self.player_window.next_song_label.setText(
-                    f"Next: {next_song.get('artist', '')} - {next_song.get('title', '')} - 🎤: {next_song.get("queued_by", '')}"
+                    f"Next: 🎤: {next_song.get("queued_by", '')} - {next_song.get('title', '')} - {next_song.get('artist', '')}"
                 )
             else:
                 self.player_window.next_song_label.setText("Next: None")
@@ -444,9 +472,9 @@ class KaraokeAppQt(QWidget):
         # Update UI
         self.queue_list.clear()
         for i, song in enumerate(self.queue):
-            label_text = f"{song.get('artist', '')} - {song.get('title', '')}"
+            label_text = f"{song.get('title', '')} - {song.get('artist', '')}"
             if song.get("queued_by"):
-                label_text += f"  (🎤 {song['queued_by']})"
+                label_text = f"🎤 {song['queued_by']} - " + label_text
             item_widget = QueueItemWidget(label_text, i)
             item_widget.removed.connect(self.remove_queue_item)
             list_item = QListWidgetItem()
@@ -462,6 +490,18 @@ class KaraokeAppQt(QWidget):
             self._rebuild_rotated_queue()
             self.queue_changed.emit(self.queue)
 
+    def mark_song_finished(self, song_item):
+        """
+        Add a song to the finished songs list.
+        `song_item` can be a QListWidgetItem or a dict with title/artist
+        """
+        if isinstance(song_item, QListWidgetItem):
+            text = song_item.text()
+        else:
+            # fallback if song info is dict
+            text = f"🎤 {song_item['queued_by']} - {song_item.get('title', 'Unknown')} - {song_item.get('artist', '')}"
+        
+        self.finished_list.addItem(text)
 
     def _prepare_next_song(self):
         if not self.queue:
@@ -525,6 +565,7 @@ class KaraokeAppQt(QWidget):
             return  # just wait, next song will auto-play when current finishes
 
         next_song = self.queue[0]
+        self.mark_song_finished(next_song)
 
         # If preprocessed song is ready
         if self.prepared_next and self.prepared_next["url"] == next_song.get("url"):
