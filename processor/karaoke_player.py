@@ -68,11 +68,6 @@ class KaraokePlayer(QWidget):
         self.audio_mixer = AudioMixer()
         self._prepare_audio_files()
 
-        # Populate dropdown with input devices
-        devices = self.audio_mixer.get_input_devices()
-        for idx, name in devices.items():
-            self.device_dropdown.addItem(name, idx)
-
     def _toggle_borderless(self):
         if self.isFullScreen():
             # Switch to normal window with borders and Windows taskbar

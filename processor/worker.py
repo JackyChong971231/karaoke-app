@@ -4,6 +4,13 @@ from processor.vocal_remover import VocalRemover
 from processor.lyrics_manager import LyricsManager
 from cache.cache_manager import CacheManager
 
+def safe_name_long(name: str) -> str:
+    import re
+    name = re.sub(r'[\\/:*?"<>|]', '', name)
+    name = name.rstrip('. ')
+    # shorten to 50 chars max
+    return (name[:50] + "…") if len(name) > 50 else name
+
 class ProcessWorker(QThread):
     finished = Signal(dict)
     error = Signal(str)
@@ -40,8 +47,8 @@ class ProcessWorker(QThread):
 
     def run(self):
         try:
-            title = self.selected["title"]
-            artist = self.selected["artist"]
+            title = safe_name_long(self.selected["title"])
+            artist = safe_name_long(self.selected["artist"])
             url = self.selected["url"]
 
             cached = self.cache.check_existing(title, artist)

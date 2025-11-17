@@ -20,6 +20,29 @@ from remote.server import RemoteServer
 
 import json
 
+import re
+
+def sanitize_filename(name: str) -> str:
+    """
+    Remove characters that Windows does not allow in file/folder names.
+    Also strip trailing dots/spaces and collapse double spaces.
+    """
+    # Remove forbidden characters
+    name = re.sub(r'[\\/:*?"<>|]', '', name)
+
+    # Optional: remove weird control characters
+    name = ''.join(c for c in name if c.isprintable())
+
+    # Strip trailing dot/space (Windows does not allow)
+    name = name.rstrip('. ')
+
+    # Prevent empty folder names
+    if not name:
+        name = "untitled"
+
+    return name
+
+
 class QueueItemWidget(QWidget):
     removed = Signal(int)  # emit row index when delete button is pressed
 
@@ -442,16 +465,19 @@ class KaraokeAppQt(QWidget):
             return
 
         song = dict(self.current_selected)
+        song['title'] = sanitize_filename(song['title'])
+        song['artist'] = sanitize_filename(song['artist'])
         self._add_song_to_queue(song)
 
     def queue_song_from_url(self, url, user, title, artist):
         """
         Queue a song using only a YouTube URL. Used by the web remote.
         """
+
         song_obj = {
             "url": url,
-            "title": title,
-            "artist": artist,
+            "title": sanitize_filename(title),
+            "artist": sanitize_filename(artist),
             "queued_by": user
         }
 

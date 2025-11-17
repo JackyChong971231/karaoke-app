@@ -1,12 +1,6 @@
 {
   "queue": [
     {
-      "url": "https://youtu.be/u14rrcxENDw?si=dCdn0BXcpdK7szsc",
-      "title": "MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video)",
-      "artist": "MC 張天賦",
-      "queued_by": "Jacky"
-    },
-    {
       "title": "红日 李克勤 (歌词版)",
       "artist": "GM Lyric",
       "url": "https://www.youtube.com/watch?v=UBmLSS8P2ME",
@@ -17,12 +11,20 @@
         "url": "https://www.youtube.com/watch?v=UBmLSS8P2ME"
       },
       "queued_by": "Unknown"
+    },
+    {
+      "url": "https://youtu.be/u14rrcxENDw?si=dCdn0BXcpdK7szsc",
+      "title": "MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video)",
+      "artist": "MC 張天賦",
+      "queued_by": "Jacky"
     }
   ],
   "finished": [
     "🎤 Unknown - Dear Jane - 到底發生過什麼事 What Happened (Official Music Video) - Dear Jane",
     "🎤 Unknown - 【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV - appleofmyeye2011",
     "🎤 Unknown - 【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV - appleofmyeye2011",
-    "🎤 Unknown - Dear Jane - 到底發生過什麼事 What Happened (Official Music Video) - Dear Jane"
+    "🎤 Unknown - Dear Jane - 到底發生過什麼事 What Happened (Official Music Video) - Dear Jane",
+    "🎤 Jacky - MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video) - MC 張天賦",
+    "🎤 Loraine - MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video) - MC 張天賦"
   ]
 }
