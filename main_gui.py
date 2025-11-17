@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton,
-    QListWidget, QListWidgetItem, QLabel, QMessageBox, QSplitter, QSizePolicy
+    QListWidget, QListWidgetItem, QLabel, QMessageBox, QSplitter, QSizePolicy, QFileDialog
 )
 from PySide6.QtCore import Qt, Signal, QThread, QTimer
 from PySide6.QtGui import QFont
@@ -19,8 +19,6 @@ from cache.cache_manager import CacheManager
 from remote.server import RemoteServer
 
 import json
-
-SAVE_FILE = Path('Karaoke_state.json')
 
 class QueueItemWidget(QWidget):
     removed = Signal(int)  # emit row index when delete button is pressed
@@ -77,6 +75,13 @@ class KaraokeAppQt(QWidget):
         super().__init__()
         self.setWindowTitle("🎤 Karaoke App (Qt Edition)")
         self.resize(1000, 700)
+
+        # --- Default folder --- 
+        self.program_folder = Path.cwd()  # default to current folder
+        self.cache_folder = self.program_folder / "karaoke_data"
+        self.cache_folder.mkdir(exist_ok=True, parents=True)
+        global SAVE_FILE
+        SAVE_FILE = self.program_folder / "Karaoke_state.json"
 
         self.searcher = YouTubeSearcher()
         self.downloader = YouTubeDownloader()
@@ -234,17 +239,18 @@ class KaraokeAppQt(QWidget):
         controls = QHBoxLayout()
         controls.setSpacing(8)
 
+        self.select_folder_btn = QPushButton("Select Folder")
         self.open_btn = QPushButton("Open Player")
         self.pause_btn = QPushButton("⏸ Pause")
         self.stop_btn = QPushButton("⏹ Stop")
         self.skip_btn = QPushButton("⏭ Skip")
-
+        self.select_folder_btn.clicked.connect(self.choose_program_folder)
         self.open_btn.clicked.connect(self.open_player_window)
         self.pause_btn.clicked.connect(self.pause_song)
         self.stop_btn.clicked.connect(self.stop_song)
         self.skip_btn.clicked.connect(self.skip_song)
 
-        for btn in (self.open_btn, self.pause_btn, self.stop_btn, self.skip_btn):
+        for btn in (self.select_folder_btn, self.open_btn, self.pause_btn, self.stop_btn, self.skip_btn):
             controls.addWidget(btn)
 
         self.queue_btn = QPushButton("➕ Queue Song")
@@ -334,6 +340,23 @@ class KaraokeAppQt(QWidget):
             self.status_label.setText("State loaded.")
         except Exception as e:
             print(f"Failed to load state: {e}")
+
+    def choose_program_folder(self):
+        folder = QFileDialog.getExistingDirectory(self, "Select Program Folder", str(self.program_folder))
+        if folder:
+            self.program_folder = Path(folder)
+            self.cache_folder = self.program_folder / "karaoke_data"
+            self.cache_folder.mkdir(exist_ok=True, parents=True)
+            self.cache.BASE_DIR = self.cache_folder
+
+            global SAVE_FILE
+            SAVE_FILE = self.program_folder / "Karaoke_state.json"
+
+            # Reload everything
+            self.refresh_cache_list()
+            self.load_state()
+            self.status_label.setText(f"Loaded folder: {self.program_folder}")
+
 
     # -------------------------
     # UI Logic
