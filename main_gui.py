@@ -95,6 +95,7 @@ class KaraokeAppQt(QWidget):
         self.queue_changed.connect(lambda _: self.save_state())  # Auto-save on any queue change
         self.next_worker = None
         self.prepared_next = None
+        self.current_song = None
 
         self._setup_ui()
         self.refresh_cache_list()
@@ -553,19 +554,20 @@ class KaraokeAppQt(QWidget):
             self._rebuild_rotated_queue()
             self.queue_changed.emit(self.queue)
 
-    def mark_song_finished(self, song_item):
+    def mark_song_finished(self):
         """
         Add a song to the finished songs list.
-        `song_item` can be a QListWidgetItem or a dict with title/artist
+        `self.current_song` can be a QListWidgetItem or a dict with title/artist
         """
-        if isinstance(song_item, QListWidgetItem):
-            text = song_item.text()
-        else:
-            # fallback if song info is dict
-            text = f"🎤 {song_item['queued_by']} - {song_item.get('title', 'Unknown')} - {song_item.get('artist', '')}"
-        
-        self.finished_list.addItem(text)
-        self.save_state()  # Auto-save after finishing a song
+        if self.current_song:
+            if isinstance(self.current_song, QListWidgetItem):
+                text = self.current_song.text()
+            else:
+                # fallback if song info is dict
+                text = f"🎤 {self.current_song['queued_by']} - {self.current_song.get('title', 'Unknown')} - {self.current_song.get('artist', '')}"
+            
+            self.finished_list.addItem(text)
+            self.save_state()  # Auto-save after finishing a song
 
     def _prepare_next_song(self):
         if not self.queue:
@@ -629,7 +631,8 @@ class KaraokeAppQt(QWidget):
             return  # just wait, next song will auto-play when current finishes
 
         next_song = self.queue[0]
-        self.mark_song_finished(next_song)
+        self.current_song = next_song
+        # self.mark_song_finished(next_song)
 
         # If preprocessed song is ready
         if self.prepared_next and self.prepared_next["url"] == next_song.get("url"):
@@ -662,6 +665,7 @@ class KaraokeAppQt(QWidget):
             self.start_queue_monitor()
 
     def start_queue_monitor(self):
+        self.mark_song_finished()
         if hasattr(self, 'queue_timer') and self.queue_timer.isActive():
             self.queue_timer.stop()
         self.queue_timer = QTimer()

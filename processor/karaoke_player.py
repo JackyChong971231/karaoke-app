@@ -462,28 +462,34 @@ class KaraokePlayer(QWidget):
             self.timer.stop()
             return
 
-        # Use wall clock elapsed time
-        elapsed = time.time() - self.start_time
+        # Use video time if available, fallback to AudioMixer position
+        if self.video_path and self.player.is_playing():
+            elapsed = self.player.get_time() / 1000.0  # VLC time is in milliseconds
+        else:
+            elapsed = self.audio_mixer.get_position()  # you may need to implement this if not already
 
-        if self.next_index < len(self.lyrics_segments):
+        # Update lyrics according to current elapsed time
+        while self.next_index < len(self.lyrics_segments) and elapsed >= self.lyrics_segments[self.next_index]["start"]:
             seg = self.lyrics_segments[self.next_index]
-            if elapsed >= seg["start"]:
-                self.current_label = 1 - self.current_label
-                self.labels[self.current_label].setText(seg["text"])
 
-                next_next_index = self.next_index + 1
-                if next_next_index < len(self.lyrics_segments):
-                    self.labels[1 - self.current_label].setText(
-                        self.lyrics_segments[next_next_index]["text"]
-                    )
-                else:
-                    self.labels[1 - self.current_label].setText("")
+            # Swap labels
+            self.current_label = 1 - self.current_label
+            self.labels[self.current_label].setText(seg["text"])
 
-                self.current_index = self.next_index
-                self.next_index += 1
+            # Prefill the next line if exists
+            next_next_index = self.next_index + 1
+            if next_next_index < len(self.lyrics_segments):
+                self.labels[1 - self.current_label].setText(
+                    self.lyrics_segments[next_next_index]["text"]
+                )
+            else:
+                self.labels[1 - self.current_label].setText("")
+
+            self.current_index = self.next_index
+            self.next_index += 1
 
         # Stop when audio finishes
-        if not self.audio_mixer.is_playing():
+        if not self.audio_mixer.is_playing() and (not self.video_path or not self.player.is_playing()):
             self.timer.stop()
             self.playing = False
             for lbl in self.labels:
