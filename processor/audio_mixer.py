@@ -18,10 +18,6 @@ class AudioMixer:
 
         self.paused = False    # ← NEW
 
-        # Microphone stream
-        self.mic_stream = None
-        self.mic_enabled = False
-
     # -----------------------------
     #   Load audio files
     # -----------------------------
@@ -61,7 +57,6 @@ class AudioMixer:
 
     def stop(self):
         pygame.mixer.stop()
-        self.stop_mic()
 
     def set_vocal_volume(self, volume: float):
         self.vocal_enabled = volume > 0
@@ -86,19 +81,6 @@ class AudioMixer:
             return self.instrumental.get_length()
         return 0.0
 
-    def get_input_devices(self):
-        import pyaudio
-        p = pyaudio.PyAudio()
-
-        devices = {}
-        for i in range(p.get_device_count()):
-            info = p.get_device_info_by_index(i)
-            if info.get("maxInputChannels", 0) > 0:
-                devices[i] = info["name"]
-
-        p.terminate()
-        return devices
-
     def seek(self, seconds):
         """Jump to a certain position in the instrumental AND vocal tracks."""
         # --- Stop playback ---
@@ -121,112 +103,6 @@ class AudioMixer:
 
         # --- Resume playback ---
         self.play()
-
-
-    def play_input_device(self, input_device_index=None, output_device_index=None):
-        """Ultra low-latency mic → speaker playback with separate devices."""
-        self.stop_mic()
-        self.mic_enabled = True
-
-        if input_device_index is None:
-            input_device_index = sd.default.device[0]
-        if output_device_index is None:
-            output_device_index = sd.default.device[1]
-
-        input_info = sd.query_devices(input_device_index)
-        output_info = sd.query_devices(output_device_index)
-
-        samplerate = int(input_info["default_samplerate"])
-        input_channels = min(input_info["max_input_channels"], 1)  # mono mic
-        output_channels = min(output_info["max_output_channels"], 2)  # stereo output
-
-        print(f"🎤 Input: {input_info['name']} ({samplerate} Hz, {input_channels} ch)")
-        print(f"🔊 Output: {output_info['name']} ({samplerate} Hz, {output_channels} ch)")
-
-        def callback(indata, outdata, frames, time, status):
-            if not self.mic_enabled:
-                outdata.fill(0)
-                return
-            if status:
-                print("⚠️ Stream status:", status)
-            # Copy mono input to stereo output
-            if input_channels == 1 and output_channels == 2:
-                outdata[:, 0] = indata[:, 0]
-                outdata[:, 1] = indata[:, 0]
-            else:
-                outdata[:] = indata
-
-        self.mic_stream = sd.Stream(
-            samplerate=samplerate,
-            blocksize=128,
-            latency='low',
-            dtype='float32',
-            channels=(input_channels, output_channels),
-            device=(input_device_index, output_device_index),
-            callback=callback
-        )
-        self.mic_stream.start()
-        print("▶ Ultra low-latency mic playback started.")
-
-    def stop_input_device(self):
-        self._loopback_running = False
-
-    def start_live_input(self, input_device_index=None, output_device_index=None):
-        """Ultra low-latency mic → speaker playback with separate devices."""
-        self.stop_mic()
-        self.mic_enabled = True
-
-        if input_device_index is None:
-            input_device_index = sd.default.device[0]
-        if output_device_index is None:
-            output_device_index = sd.default.device[1]
-
-        input_info = sd.query_devices(input_device_index)
-        output_info = sd.query_devices(output_device_index)
-
-        samplerate = int(input_info["default_samplerate"])
-        input_channels = min(input_info["max_input_channels"], 1)  # mono mic
-        output_channels = min(output_info["max_output_channels"], 2)  # stereo output
-
-        print(f"🎤 Input: {input_info['name']} ({samplerate} Hz, {input_channels} ch)")
-        print(f"🔊 Output: {output_info['name']} ({samplerate} Hz, {output_channels} ch)")
-
-        def callback(indata, outdata, frames, time, status):
-            if not self.mic_enabled:
-                outdata.fill(0)
-                return
-            if status:
-                print("⚠️ Stream status:", status)
-            # Copy mono input to stereo output
-            if input_channels == 1 and output_channels == 2:
-                outdata[:, 0] = indata[:, 0]
-                outdata[:, 1] = indata[:, 0]
-            else:
-                outdata[:] = indata
-
-        self.mic_stream = sd.Stream(
-            samplerate=samplerate,
-            blocksize=128,
-            latency='low',
-            dtype='float32',
-            channels=(input_channels, output_channels),
-            device=(input_device_index, output_device_index),
-            callback=callback
-        )
-        self.mic_stream.start()
-        print("▶ Ultra low-latency mic playback started.")
-
-    def stop_mic(self):
-        self.mic_enabled = False
-        if self.mic_stream:
-            try:
-                self.mic_stream.stop()
-                self.mic_stream.close()
-            except:
-                pass
-            self.mic_stream = None
-        pygame.mixer.Channel(2).stop()
-        print("🛑 Mic playback stopped.")
 
 if __name__ == "__main__":
     mixer = AudioMixer()
