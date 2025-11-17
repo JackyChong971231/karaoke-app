@@ -18,6 +18,9 @@ from cache.cache_manager import CacheManager
 
 from remote.server import RemoteServer
 
+import json
+
+SAVE_FILE = Path('Karaoke_state.json')
 
 class QueueItemWidget(QWidget):
     removed = Signal(int)  # emit row index when delete button is pressed
@@ -84,6 +87,7 @@ class KaraokeAppQt(QWidget):
         # Queue variables
         self.queue = []
         self.queue_changed.connect(self.update_next_song_label)
+        self.queue_changed.connect(lambda _: self.save_state())  # Auto-save on any queue change
         self.next_worker = None
         self.prepared_next = None
 
@@ -94,6 +98,7 @@ class KaraokeAppQt(QWidget):
         self.remote_server.start()
 
         self.add_song_signal.connect(self.queue_song_from_url)
+        self.load_state()
 
     def _setup_ui(self):
         self.setStyleSheet("""
@@ -294,6 +299,41 @@ class KaraokeAppQt(QWidget):
 
         # Add horizontal layout to main layout
         layout.addLayout(queue_finished_layout, stretch=1)
+
+    # -------------------------
+    # Initial File loading
+    # -------------------------
+    def save_state(self):
+        """Save current queue and finished songs to a JSON file."""
+        try:
+            finished_songs = [self.finished_list.item(i).text() for i in range(self.finished_list.count())]
+            data = {
+                "queue": self.queue,
+                "finished": finished_songs
+            }
+            with open(SAVE_FILE, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            self.status_label.setText("State saved.")
+        except Exception as e:
+            print(f"Failed to save state: {e}")
+
+    def load_state(self):
+        """Load queue and finished songs from JSON file."""
+        if not SAVE_FILE.exists():
+            return
+        try:
+            with open(SAVE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            # Load queue
+            self.queue = data.get("queue", [])
+            self._rebuild_rotated_queue()
+            # Load finished
+            self.finished_list.clear()
+            for song_text in data.get("finished", []):
+                self.finished_list.addItem(song_text)
+            self.status_label.setText("State loaded.")
+        except Exception as e:
+            print(f"Failed to load state: {e}")
 
     # -------------------------
     # UI Logic
@@ -502,6 +542,7 @@ class KaraokeAppQt(QWidget):
             text = f"🎤 {song_item['queued_by']} - {song_item.get('title', 'Unknown')} - {song_item.get('artist', '')}"
         
         self.finished_list.addItem(text)
+        self.save_state()  # Auto-save after finishing a song
 
     def _prepare_next_song(self):
         if not self.queue:
