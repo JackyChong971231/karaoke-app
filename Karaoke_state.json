@@ -1,19 +1,28 @@
 {
   "queue": [
     {
-      "title": "【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV",
-      "artist": "appleofmyeye2011",
-      "url": "https://www.youtube.com/watch?v=xWzlwGVQ6_Q",
+      "url": "https://youtu.be/u14rrcxENDw?si=dCdn0BXcpdK7szsc",
+      "title": "MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video)",
+      "artist": "MC 張天賦",
+      "queued_by": "Jacky"
+    },
+    {
+      "title": "红日 李克勤 (歌词版)",
+      "artist": "GM Lyric",
+      "url": "https://www.youtube.com/watch?v=UBmLSS8P2ME",
       "cached": {
-        "instrumental": "karaoke_data\\appleofmyeye2011_【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV\\instrumental.wav",
-        "vocals": "karaoke_data\\appleofmyeye2011_【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV\\vocals.wav",
-        "lyrics": "karaoke_data\\appleofmyeye2011_【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV\\lyrics.lrc",
-        "url": "https://www.youtube.com/watch?v=xWzlwGVQ6_Q"
+        "instrumental": "karaoke_data\\GM Lyric_红日 李克勤 (歌词版)\\instrumental.wav",
+        "vocals": "karaoke_data\\GM Lyric_红日 李克勤 (歌词版)\\vocals.wav",
+        "lyrics": "karaoke_data\\GM Lyric_红日 李克勤 (歌词版)\\lyrics.lrc",
+        "url": "https://www.youtube.com/watch?v=UBmLSS8P2ME"
       },
       "queued_by": "Unknown"
     }
   ],
   "finished": [
+    "🎤 Unknown - Dear Jane - 到底發生過什麼事 What Happened (Official Music Video) - Dear Jane",
+    "🎤 Unknown - 【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV - appleofmyeye2011",
+    "🎤 Unknown - 【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV - appleofmyeye2011",
     "🎤 Unknown - Dear Jane - 到底發生過什麼事 What Happened (Official Music Video) - Dear Jane"
   ]
 }

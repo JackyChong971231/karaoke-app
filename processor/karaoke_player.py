@@ -16,6 +16,7 @@ from PySide6.QtWidgets import QStackedLayout
 from PySide6.QtGui import QPixmap
 
 from processor.audio_mixer import AudioMixer
+from gui.progressBar import ProgressBar
 
 def get_local_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -178,20 +179,6 @@ class KaraokePlayer(QWidget):
         self.border_toggle_btn.clicked.connect(self._toggle_borderless)
         control_layout.addWidget(self.border_toggle_btn)
 
-        # ---- Audio Input Device Selector ----
-        self.device_dropdown = QComboBox(self.control_panel)
-        self.device_dropdown.setStyleSheet("""
-            font-size: 16px;
-            padding: 5px;
-            background-color: rgba(40, 40, 40, 200);
-            color: white;
-            border-radius: 5px;
-        """)
-        control_layout.addWidget(self.device_dropdown)
-
-        self.device_dropdown.addItem("Select Input Device...")
-        self.device_dropdown.currentIndexChanged.connect(self._on_device_selected)
-
         control_layout.addStretch()
         main_layout.addWidget(self.control_panel)
 
@@ -211,6 +198,10 @@ class KaraokePlayer(QWidget):
         self.video_frame = QFrame(self.video_container)
         self.video_frame.setStyleSheet("background-color: black;")
         self.video_frame.setGeometry(0, 0, 1280, 720)  # fills container initially
+
+        self.progress_bar = ProgressBar(self)
+        main_layout.addWidget(self.progress_bar)
+        self.progress_bar.clicked.connect(self._on_progress_clicked)
 
         # Floating QR code overlay
         self.qr_overlay = QLabel(self.video_container)
@@ -265,21 +256,6 @@ class KaraokePlayer(QWidget):
             self.qr_overlay.move(self.video_container.width() - self.qr_overlay.width() - 10, 10)
 
         self.resizeEvent = resizeEvent
-
-
-    def _on_device_selected(self, index):
-        if index <= 0:
-            return  # ignore placeholder "Select..."
-
-        device_index = self.device_dropdown.currentData()
-        print(f"🎤 Selected input device index: {device_index}")
-
-        # Call AudioMixer live loopback
-        self.audio_mixer.play_input_device(device_index, 3)
-
-
-
-
 
     # ------------------------------------------------------------
     # Audio & Video
@@ -457,18 +433,67 @@ class KaraokePlayer(QWidget):
         # Emit finished so main GUI knows to play next song
         self.finished.emit()
 
+    def _on_progress_clicked(self, fraction):
+        # Determine target time
+        if self.video_path and self.player.get_length() > 0:
+            duration = self.player.get_length() / 1000.0
+        elif self.audio_mixer.get_length() > 0:
+            duration = self.audio_mixer.get_length()
+        else:
+            return
+
+        target_time = fraction * duration
+
+        # Seek video
+        if self.video_path:
+            self.player.set_time(int(target_time * 1000))
+
+        # Seek audio
+        if self.audio_mixer.is_playing():
+            self.audio_mixer.seek(target_time)
+
+        # Update lyrics
+        self.current_index = -1
+        self.next_index = 0
+        for i, seg in enumerate(self.lyrics_segments):
+            if seg["start"] <= target_time:
+                self.current_index = i
+                self.next_index = i + 1
+
+        # Immediately refresh displayed lyrics
+        for lbl in self.labels:
+            lbl.setText("")
+        if self.current_index >= 0:
+            self.labels[self.current_label].setText(self.lyrics_segments[self.current_index]["text"])
+        if self.next_index < len(self.lyrics_segments):
+            self.labels[1 - self.current_label].setText(self.lyrics_segments[self.next_index]["text"])
+
+
     def _update_lyrics_sync(self):
         if not self.playing:
             self.timer.stop()
             return
 
-        # Use video time if available, fallback to AudioMixer position
+        # -------------------------
+        # Determine elapsed time
+        # -------------------------
         if self.video_path and self.player.is_playing():
-            elapsed = self.player.get_time() / 1000.0  # VLC time is in milliseconds
+            elapsed = self.player.get_time() / 1000.0  # VLC gives milliseconds
+            duration = self.player.get_length() / 1000.0 if self.player.get_length() > 0 else 1.0
         else:
-            elapsed = self.audio_mixer.get_position()  # you may need to implement this if not already
+            elapsed = self.audio_mixer.get_position()  # implement this to return seconds
+            duration = self.audio_mixer.get_length() or 1.0  # in seconds
 
-        # Update lyrics according to current elapsed time
+        # -------------------------
+        # Update progress bar
+        # -------------------------
+        fraction = min(max(elapsed / duration, 0.0), 1.0)
+        if hasattr(self, "progress_bar"):
+            self.progress_bar.set_progress(fraction)
+
+        # -------------------------
+        # Update lyrics
+        # -------------------------
         while self.next_index < len(self.lyrics_segments) and elapsed >= self.lyrics_segments[self.next_index]["start"]:
             seg = self.lyrics_segments[self.next_index]
 
@@ -488,13 +513,20 @@ class KaraokePlayer(QWidget):
             self.current_index = self.next_index
             self.next_index += 1
 
-        # Stop when audio finishes
-        if not self.audio_mixer.is_playing() and (not self.video_path or not self.player.is_playing()):
+        # -------------------------
+        # Stop playback if finished
+        # -------------------------
+        audio_done = not self.audio_mixer.is_playing() if hasattr(self.audio_mixer, "is_playing") else True
+        video_done = not self.player.is_playing() if self.video_path else True
+
+        if audio_done and video_done:
             self.timer.stop()
             self.playing = False
             for lbl in self.labels:
                 lbl.setText("")
+            self.progress_bar.set_progress(0.0)
             self.finished.emit()
+
 
 
 
