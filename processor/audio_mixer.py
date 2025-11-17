@@ -72,6 +72,14 @@ class AudioMixer:
         # Playing if it's not paused AND channel is active
         return pygame.mixer.Channel(0).get_busy() or self.paused
 
+    def get_position(self):
+        """Return current playback time of instrumental in seconds."""
+        if self.instrumental:
+            channel = pygame.mixer.Channel(0)
+            if channel.get_busy():
+                return channel.get_queue() or 0  # approximate elapsed
+        return 0.0
+
     def get_input_devices(self):
         import pyaudio
         p = pyaudio.PyAudio()
