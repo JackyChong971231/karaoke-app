@@ -72,9 +72,7 @@ class ProcessWorker(QThread):
 
             self.status.emit("Transcribing lyrics...")
             lm = LyricsManager()
-            segments = lm.transcribe(vocals_path, title, artist)
-            lrc_path = f"{vocals_path}.lrc"
-            lm.save_lrc(segments, lrc_path)
+            segments, lrc_path = lm.transcribe(vocals_path, title, artist)
 
             # --- Download video if URL provided ---
             self.status.emit("Downloading video...")
