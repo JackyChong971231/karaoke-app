@@ -1,21 +1,9 @@
 {
   "queue": [
     {
-      "title": "红日 李克勤 (歌词版)",
-      "artist": "GM Lyric",
-      "url": "https://www.youtube.com/watch?v=UBmLSS8P2ME",
-      "cached": {
-        "instrumental": "karaoke_data\\GM Lyric_红日 李克勤 (歌词版)\\instrumental.wav",
-        "vocals": "karaoke_data\\GM Lyric_红日 李克勤 (歌词版)\\vocals.wav",
-        "lyrics": "karaoke_data\\GM Lyric_红日 李克勤 (歌词版)\\lyrics.lrc",
-        "url": "https://www.youtube.com/watch?v=UBmLSS8P2ME"
-      },
-      "queued_by": "Unknown"
-    },
-    {
-      "url": "https://youtu.be/u14rrcxENDw?si=dCdn0BXcpdK7szsc",
-      "title": "MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video)",
-      "artist": "MC 張天賦",
+      "url": "https://youtu.be/Qm7d43O8hQ4?si=4IIyk_RfJPaXXHB7",
+      "title": "陳健安 On Chan - 好好掛住 Miss You Properly (Official Music Video)",
+      "artist": "On Chan 陳健安",
       "queued_by": "Jacky"
     }
   ],
@@ -25,6 +13,15 @@
     "🎤 Unknown - 【那些年，我們一起追的女孩】電影主題曲《那些年》官方正式MV - appleofmyeye2011",
     "🎤 Unknown - Dear Jane - 到底發生過什麼事 What Happened (Official Music Video) - Dear Jane",
     "🎤 Jacky - MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video) - MC 張天賦",
-    "🎤 Loraine - MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video) - MC 張天賦"
+    "🎤 Loraine - MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video) - MC 張天賦",
+    "🎤 Unknown - 红日 李克勤 (歌词版) - GM Lyric",
+    "🎤 Jacky - MC 張天賦 - 老派約會之必要 A Gentleman's Guide to Old-Fashioned Dating (Official Music Video) - MC 張天賦",
+    "🎤 Unknown - MC 張天賦 - 說謊者 Liar (Official Music Video) - MC 張天賦",
+    "🎤 Unknown - YOASOBI「アイドル」 Official Music Video - Ayase  YOASOBI",
+    "🎤 Unknown - 林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官方完整版MV) - JJ Lin林俊傑",
+    "🎤 谷美人 - Gotye - Somebody That I Used To Know (feat. Kimbra) [Official Music Video] - gotyemusic",
+    "🎤 Jacky - 張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014) - HinsLiveinPassion",
+    "🎤 Jacky - 張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014) - HinsLiveinPassion",
+    "🎤 Jacky - 林家謙 Terence Lam 《普渡眾生》電影《破．地獄》主題曲 MV - 林家謙 Terence Lam"
   ]
 }
