@@ -209,7 +209,7 @@ class KaraokePlayer(QWidget):
 
         # --- Lyrics container (bottom, fixed height) ---
         lyrics_container = QFrame(self)
-        lyrics_container.setFixedHeight(130)
+        lyrics_container.setFixedHeight(140)
         lyrics_container.setStyleSheet("background-color: rgba(0,0,0,100);")
         lyrics_layout = QVBoxLayout(lyrics_container)
         lyrics_layout.setContentsMargins(5, 5, 5, 5)
@@ -465,6 +465,9 @@ class KaraokePlayer(QWidget):
 
 
     def _update_lyrics_sync(self):
+        self.active_style = "color: #00ffcc; font-weight: bold; font-size: 42px;"
+        self.inactive_style = "color: #ffffff; font-size: 42px;"
+
         if not self.playing:
             self.timer.stop()
             return
@@ -494,16 +497,22 @@ class KaraokePlayer(QWidget):
 
             # Swap labels
             self.current_label = 1 - self.current_label
-            self.labels[self.current_label].setText(seg["text"])
+            current_lbl = self.labels[self.current_label]
+            next_lbl = self.labels[1 - self.current_label]
+
+            # Set text for current line
+            current_lbl.setText(seg["text"])
+            current_lbl.setStyleSheet(self.active_style)
 
             # Prefill the next line if exists
             next_next_index = self.next_index + 1
             if next_next_index < len(self.lyrics_segments):
-                self.labels[1 - self.current_label].setText(
-                    self.lyrics_segments[next_next_index]["text"]
-                )
+                next_lbl.setText(self.lyrics_segments[next_next_index]["text"])
             else:
-                self.labels[1 - self.current_label].setText("")
+                next_lbl.setText("")
+            
+            # Make upcoming line inactive
+            next_lbl.setStyleSheet(self.inactive_style)
 
             self.current_index = self.next_index
             self.next_index += 1
