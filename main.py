@@ -61,9 +61,7 @@ def main():
         instrumental_path, vocals_path = remover.remove_vocals(file_path, title, artist)
 
         lyrics_manager = LyricsManager()
-        segments = lyrics_manager.transcribe(vocals_path, title, artist)
-        lrc_path = f"{vocals_path}.lrc"
-        lyrics_manager.save_lrc(segments, lrc_path)
+        segments, lrc_path = lyrics_manager.transcribe(vocals_path, title, artist)
 
         cache.save_meta(title, artist, selected["url"])
         print("💾 Saved new song to cache!")
