@@ -10,10 +10,10 @@ class RemoteServer:
     def __init__(self, app_ref):
         self.app_ref = app_ref  # reference to KaraokeAppQt
         self.app = Flask(__name__)
-        self.socketio = SocketIO(self.app, cors_allowed_origins="*")
+        self.socketio = SocketIO(self.app, cors_allowed_origins="*", async_mode="eventlet")
 
-        # Track connected mics
-        self.connected_mics = set()
+        # After updating the queue in the app (example in add_to_queue)
+        self.app_ref.queue_changed.connect(self.broadcast_queue)
 
         # Queue for incoming audio chunks
         self.audio_queue = Queue()
@@ -83,6 +83,16 @@ class RemoteServer:
             audio_bytes = base64.b64decode(data.split(",")[1])
             audio_array = np.frombuffer(audio_bytes, dtype=np.int16).astype(np.float32) / 32768.0
             self.audio_queue.put(audio_array)
+
+        @self.socketio.on("connect")
+        def on_connect():
+            self.socketio.emit("queue_update", self.app_ref.queue)
+
+    def broadcast_queue(self, queue):
+        # print("Broadcasting queue:", queue)
+        # Emit to all clients
+        self.socketio.emit("queue_update", queue, namespace="/")
+
 
     def _audio_callback(self, outdata, frames, time, status):
         if status:
