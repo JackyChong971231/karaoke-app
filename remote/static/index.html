@@ -155,6 +155,40 @@ input {
     color: var(--subtext);
 }
 
+/* --- Queue Styling --- */
+#queueContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.queueItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2a2a2a;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.queueItem:nth-child(odd) {
+    background: #252525;
+}
+
+.queueItem:hover {
+    background: var(--accent);
+    cursor: default;
+}
+
+.queueItem span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
@@ -207,6 +241,14 @@ input {
                 <p id="previewArtist"></p>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- QUEUE SECTION -->
+<div class="sectionCard" id="queueSection">
+    <div class="sectionTitle">Queue</div>
+    <div id="queueContainer">
+        <!-- Queue items will be injected here -->
     </div>
 </div>
 
@@ -333,6 +375,28 @@ async function addSong() {
     clearInput();
     alert("Added: " + title);
 }
+
+
+queueContainer.id = "queueContainer";
+
+socket.on("queue_update", (queue) => {
+    const container = document.getElementById("queueContainer");
+    container.innerHTML = ""; // Clear previous queue
+
+    if(queue.length === 0){
+        container.innerHTML = "<p style='opacity:0.6;'>Queue is empty</p>";
+        return;
+    }
+
+    queue.forEach((song, idx) => {
+        const div = document.createElement("div");
+        div.className = "queueItem";
+        div.innerHTML = `
+            <span>${idx + 1}. ${song.queued_by ? "🎤 " + song.queued_by + " - " : ""}${song.title} - ${song.artist}</span>
+        `;
+        container.appendChild(div);
+    });
+});
 </script>
 
 </body>

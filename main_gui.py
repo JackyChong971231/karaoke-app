@@ -665,6 +665,7 @@ class KaraokeAppQt(QWidget):
             result = self.prepared_next
             self.queue.pop(0)
             self.queue_list.takeItem(0)
+            self.queue_changed.emit(self.queue)
             self.player_window.load_song(result["instrumental"], result["segments"], result["vocals"], result["url"])
             self.prepared_next = None
             self._prepare_next_song()
