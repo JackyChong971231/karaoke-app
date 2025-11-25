@@ -73,6 +73,10 @@ class RemoteServer:
 
             return {"status": "queued"}
 
+        @self.app.route("/api/getQueue", methods=["GET"])
+        def get_queue():
+            return jsonify(self.app_ref.queue)
+
         # --- Remote page ---
         @self.app.route("/remote")
         def remote_page():
