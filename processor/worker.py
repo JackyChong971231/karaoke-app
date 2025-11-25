@@ -3,13 +3,8 @@ from downloader.yt_downloader import YouTubeDownloader
 from processor.vocal_remover import VocalRemover
 from processor.lyrics_manager import LyricsManager
 from cache.cache_manager import CacheManager
+from utils.filename_safety import safe_name_long
 
-def safe_name_long(name: str) -> str:
-    import re
-    name = re.sub(r'[\\/:*?"<>|]', '', name)
-    name = name.rstrip('. ')
-    # shorten to 50 chars max
-    return (name[:50] + "…") if len(name) > 50 else name
 
 class ProcessWorker(QThread):
     finished = Signal(dict)

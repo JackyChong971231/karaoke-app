@@ -6,6 +6,7 @@ import subprocess
 import shutil
 from processor.convert_to_wav import convert_to_wav
 from cache.cache_manager import CacheManager
+from utils.filename_safety import safe_name_long
 
 def safe_name(name: str) -> str:
     """Convert string to ASCII-safe string for Windows paths."""
@@ -47,7 +48,7 @@ class VocalRemover:
             )
 
             # Demucs output path pattern: <song_dir>/htdemucs/<filename>/
-            model_folder = song_dir / "htdemucs" / safe_name(base_name)
+            model_folder = song_dir / "htdemucs" / safe_name_long(base_name)
             instrumental_path = model_folder / "no_vocals.wav"
             vocals_path = model_folder / "vocals.wav"
 

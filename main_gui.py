@@ -45,6 +45,7 @@ def sanitize_filename(name: str) -> str:
 
 class QueueItemWidget(QWidget):
     removed = Signal(int)  # emit row index when delete button is pressed
+    moved_to_top = Signal(int)    # NEW SIGNAL
 
     def __init__(self, title: str, index: int):
         super().__init__()
@@ -69,9 +70,19 @@ class QueueItemWidget(QWidget):
             }
         """)
 
-        # Make button fit the emoji dynamically
-        # size_hint = self.delete_btn.sizeHint()
-        # self.delete_btn.setFixedSize(size_hint.width() + 4, size_hint.height()-2)
+        # --- NEW Top Up Button ---
+        self.top_btn = QPushButton("Top")
+        self.top_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #5A5;
+                border: none;
+            }
+            QPushButton:hover {
+                background-color: #6D6;
+            }
+        """)
+        self.top_btn.clicked.connect(self._on_top)
+        layout.addWidget(self.top_btn)
 
         self.delete_btn.clicked.connect(self._on_delete)
         layout.addWidget(self.delete_btn)
@@ -86,6 +97,9 @@ class QueueItemWidget(QWidget):
 
     def _on_delete(self):
         self.removed.emit(self.index)
+
+    def _on_top(self):
+        self.moved_to_top.emit(self.index)
 
 # -------------------------
 # Main App (Qt)
@@ -567,10 +581,49 @@ class KaraokeAppQt(QWidget):
                 label_text = f"🎤 {song['queued_by']} - " + label_text
             item_widget = QueueItemWidget(label_text, i)
             item_widget.removed.connect(self.remove_queue_item)
+            item_widget.moved_to_top.connect(self.move_queue_item_to_top)
             list_item = QListWidgetItem()
             list_item.setSizeHint(item_widget.sizeHint())
             self.queue_list.addItem(list_item)
             self.queue_list.setItemWidget(list_item, item_widget)
+
+    def _rebuild_queue_ui_only(self):
+        """Rebuild the queue UI without modifying queue order."""
+        self.queue_list.clear()
+
+        for i, song in enumerate(self.queue):
+            label_text = f"{song.get('title', '')} - {song.get('artist', '')}"
+            if song.get("queued_by"):
+                label_text = f"🎤 {song['queued_by']} - " + label_text
+
+            item_widget = QueueItemWidget(label_text, i)
+            item_widget.removed.connect(self.remove_queue_item)
+            item_widget.moved_to_top.connect(self.move_queue_item_to_top)
+
+            list_item = QListWidgetItem()
+            list_item.setSizeHint(item_widget.sizeHint())
+            self.queue_list.addItem(list_item)
+            self.queue_list.setItemWidget(list_item, item_widget)
+
+    def move_queue_item_to_top(self, index):
+        """Force this song to be the next in queue."""
+        if 0 <= index < len(self.queue):
+            song = self.queue.pop(index)
+            self.queue.insert(0, song)
+
+            self.status_label.setText(
+                f"Moved to top: {song.get('title', '')}"
+            )
+
+            # Rebuild UI (DO NOT apply user-rotation logic here)
+            self._rebuild_queue_ui_only()
+
+            # Save & notify
+            self.queue_changed.emit(self.queue)
+
+            # Prepare next song immediately (optional)
+            self._prepare_next_song()
+
 
     def remove_queue_item(self, index):
         """Remove a queue item and recalc rotation."""
