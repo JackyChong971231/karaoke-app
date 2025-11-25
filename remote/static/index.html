@@ -161,6 +161,10 @@ input {
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
+    max-height: 42vh;
+    overflow-y: auto;
+    padding-right: 6px;    /* prevents scrollbar overlap */
+    scrollbar-width: thin; /* Firefox */
 }
 
 .queueItem {
@@ -246,7 +250,12 @@ input {
 
 <!-- QUEUE SECTION -->
 <div class="sectionCard" id="queueSection">
-    <div class="sectionTitle">Queue</div>
+    <div style="display:flex; gap:1rem; align-items: center;">
+        <div class="sectionTitle">Queue</div>
+        <button onclick="refreshQueue()" style="margin-bottom: 12px;">
+            Refresh Queue
+        </button>
+    </div>
     <div id="queueContainer">
         <!-- Queue items will be injected here -->
     </div>
@@ -376,14 +385,23 @@ async function addSong() {
     alert("Added: " + title);
 }
 
+async function refreshQueue() {
+    try {
+        const res = await fetch("/api/getQueue");
+        const queue = await res.json();
+        updateQueueUI(queue);
+    } catch (e) {
+        console.error("Failed to refresh queue:", e);
+    }
+}
 
 queueContainer.id = "queueContainer";
 
-socket.on("queue_update", (queue) => {
+function updateQueueUI(queue) {
     const container = document.getElementById("queueContainer");
-    container.innerHTML = ""; // Clear previous queue
+    container.innerHTML = "";
 
-    if(queue.length === 0){
+    if (queue.length === 0) {
         container.innerHTML = "<p style='opacity:0.6;'>Queue is empty</p>";
         return;
     }
@@ -396,6 +414,10 @@ socket.on("queue_update", (queue) => {
         `;
         container.appendChild(div);
     });
+}
+
+socket.on("queue_update", (queue) => {
+    updateQueueUI(queue);
 });
 </script>
 
