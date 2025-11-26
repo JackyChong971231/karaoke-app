@@ -477,19 +477,25 @@ async function fetchSongs(query="") {
         const div = document.createElement("div");
         div.className = "queueItem";
 
-        div.innerHTML = `
-            <div>
-                <strong>${idx + 1}. ${song.title}</strong><br>
-                <span style="font-size:0.85rem; color:var(--subtext);">
-                    Queued: ${song.queued}
-                </span>
-            </div>
+        // Create a column container
+        const columnDiv = document.createElement("div");
+        columnDiv.style.display = "flex";
+        columnDiv.style.flexDirection = "column"; // stack items vertically
+        columnDiv.style.gap = "6px";              // spacing between text and button
+
+        // Add song text
+        const textDiv = document.createElement("div");
+        textDiv.innerHTML = `
+            <strong>${idx + 1}. ${song.title}</strong><br>
+            <span style="font-size:0.85rem; color:var(--subtext);">
+                Queued: ${song.queued}
+            </span>
         `;
 
+        // Add button
         const btn = document.createElement("button");
         btn.innerText = "Add to Queue";
         btn.style.display = "none";
-        btn.style.marginLeft = "auto";
         btn.onclick = async (e) => {
             e.stopPropagation();
             await fetch("/add", {
@@ -501,8 +507,14 @@ async function fetchSongs(query="") {
             btn.style.display = "none";
         };
 
-        div.appendChild(btn);
+        // Append text and button to column container
+        columnDiv.appendChild(textDiv);
+        columnDiv.appendChild(btn);
 
+        // Append column container to queue item
+        div.appendChild(columnDiv);
+
+        // Toggle button on click
         div.onclick = () => {
             btn.style.display = btn.style.display === "none" ? "inline-block" : "none";
         };
