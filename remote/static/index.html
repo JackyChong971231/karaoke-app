@@ -193,6 +193,25 @@ input {
     white-space: nowrap;
 }
 
+/* Fix input width overflow */
+#songSearch {
+    box-sizing: border-box; /* ensures padding is included in width */
+    width: 100%;
+}
+
+#songList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;       /* adds vertical spacing between items */
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+/* Slightly increase padding inside each song item */
+.queueItem {
+    padding: 14px 16px; /* more breathing space */
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
@@ -217,6 +236,14 @@ input {
         <button onclick="send('/api/skip')">Skip</button>
         <button onclick="send('/api/vocal')">Vocal</button>
     </div>
+</div>
+
+<div class="sectionCard" id="songsSection">
+    <div class="sectionTitle">
+        All Songs <span id="songCount" style="opacity:0.7; font-weight:500;">(0)</span>
+    </div>
+    <input type="text" id="songSearch" placeholder="Search songs..." style="width:100%; padding:10px; margin-bottom:10px; border-radius:16px; border:none; background:#2a2a2a; color:#fff;">
+    <div id="songList" style="max-height:40vh; overflow-y:auto;"></div>
 </div>
 
 <!-- ADD SONG SECTION -->
@@ -419,6 +446,71 @@ function updateQueueUI(queue) {
 socket.on("queue_update", (queue) => {
     updateQueueUI(queue);
 });
+
+const songList = document.getElementById("songList");
+const songSearch = document.getElementById("songSearch");
+
+async function fetchSongs(query="") {
+    const res = await fetch(`/api/getSongs?q=${encodeURIComponent(query)}`);
+    const songs = await res.json();
+
+    const songCountEl = document.getElementById("songCount");
+    songList.innerHTML = "";
+
+    if (!songs || songs.length === 0) {
+        songList.innerHTML = "<p style='opacity:0.6;'>No songs found</p>";
+        songCountEl.innerText = "(0)";
+        return;
+    }
+
+    // Update song count
+    songCountEl.innerText = `(${songs.length})`;
+
+    songs.forEach((song, idx) => {
+        const div = document.createElement("div");
+        div.className = "queueItem";
+
+        div.innerHTML = `
+            <div>
+                <strong>${idx + 1}. ${song.title}</strong><br>
+                <span style="font-size:0.85rem; color:var(--subtext);">
+                    Queued: ${song.queued}
+                </span>
+            </div>
+        `;
+
+        const btn = document.createElement("button");
+        btn.innerText = "Add to Queue";
+        btn.style.display = "none";
+        btn.style.marginLeft = "auto";
+        btn.onclick = async (e) => {
+            e.stopPropagation();
+            await fetch("/add", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ url:"", user: username, title: song.title, artist: song.artist })
+            });
+            alert(`Queued: ${song.title}`);
+            btn.style.display = "none";
+        };
+
+        div.appendChild(btn);
+
+        div.onclick = () => {
+            btn.style.display = btn.style.display === "none" ? "inline-block" : "none";
+        };
+
+        songList.appendChild(div);
+    });
+}
+
+// Live search
+songSearch.addEventListener("input", () => {
+    fetchSongs(songSearch.value);
+});
+
+// Initial load
+fetchSongs();
 </script>
 
 </body>

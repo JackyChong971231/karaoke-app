@@ -77,6 +77,31 @@ class RemoteServer:
         def get_queue():
             return jsonify(self.app_ref.queue)
 
+        @self.app.route("/api/getSongs", methods=["GET"])
+        def get_songs():
+            query = request.args.get("q", "").lower()
+            song_counts = self.app_ref.song_counts  # { title: count }
+
+            # Start from cached songs (or all available songs)
+            all_songs = self.app_ref.cached_songs  # list of dicts with "title", "artist"
+
+            # Merge counts
+            merged = []
+            for s in all_songs:
+                title = s.get("title", "")
+                artist = s.get("artist", "")
+                count = song_counts.get(title, 0)
+                merged.append({"title": title, "artist": artist, "queued": count})
+
+            # Filter if query provided
+            if query:
+                merged = [s for s in merged if query in s["title"].lower() or query in s["artist"].lower()]
+
+            # Sort descending by queued count
+            merged.sort(key=lambda x: x["queued"], reverse=True)
+
+            return jsonify(merged)
+
         # --- Remote page ---
         @self.app.route("/remote")
         def remote_page():

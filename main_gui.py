@@ -133,6 +133,7 @@ class KaraokeAppQt(QWidget):
         self.next_worker = None
         self.prepared_next = None
         self.current_song = None
+        self.song_counts = {}  # "artist - title": count
 
         self._setup_ui()
         self.choose_program_folder()
@@ -371,7 +372,8 @@ class KaraokeAppQt(QWidget):
             finished_songs = [self.finished_list.item(i).text() for i in range(self.finished_list.count())]
             data = {
                 "queue": self.queue,
-                "finished": finished_songs
+                "finished": finished_songs,
+                "song_counts": self.song_counts
             }
             with open(SAVE_FILE, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
@@ -393,6 +395,7 @@ class KaraokeAppQt(QWidget):
             self.finished_list.clear()
             for song_text in data.get("finished", []):
                 self.finished_list.addItem(song_text)
+            self.song_counts = data.get("song_counts", {})
             self.status_label.setText("State loaded.")
         except Exception as e:
             print(f"Failed to load state: {e}")
@@ -522,6 +525,7 @@ class KaraokeAppQt(QWidget):
         """Internal helper: add song and recalc user rotation order."""
         # Append raw song
         self.queue.append(song)
+        self._increment_song_count(song)
         self._rebuild_rotated_queue()
         self.status_label.setText(f"Queued: {song.get('title', '')}")
         self.queue_changed.emit(self.queue)
@@ -624,6 +628,15 @@ class KaraokeAppQt(QWidget):
             list_item.setSizeHint(item_widget.sizeHint())
             self.queue_list.addItem(list_item)
             self.queue_list.setItemWidget(list_item, item_widget)
+
+    def _increment_song_count(self, song):
+        key = song.get('title', '')
+
+        if key not in self.song_counts:
+            self.song_counts[key] = 0
+
+        self.song_counts[key] += 1
+        self.save_state()
 
     def move_queue_item_to_top(self, index):
         """Force this song to be the next in queue."""
