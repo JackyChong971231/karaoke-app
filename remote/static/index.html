@@ -482,9 +482,11 @@ async function fetchSongs(query="") {
         columnDiv.style.display = "flex";
         columnDiv.style.flexDirection = "column"; // stack items vertically
         columnDiv.style.gap = "6px";              // spacing between text and button
+        columnDiv.style.width = "100%"
 
         // Add song text
         const textDiv = document.createElement("div");
+        textDiv.style.width = "100%"
         textDiv.innerHTML = `
             <strong>${idx + 1}. ${song.title}</strong><br>
             <span style="font-size:0.85rem; color:var(--subtext);">
@@ -516,7 +518,11 @@ async function fetchSongs(query="") {
 
         // Toggle button on click
         div.onclick = () => {
-            btn.style.display = btn.style.display === "none" ? "inline-block" : "none";
+            // First hide all buttons
+            document.querySelectorAll("#songList button").forEach(b => b.style.display = "none");
+
+            // Then show this song's button if it was hidden
+            btn.style.display = "inline-block";
         };
 
         songList.appendChild(div);
