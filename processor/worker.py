@@ -11,19 +11,18 @@ class ProcessWorker(QThread):
     error = Signal(str)
     status = Signal(str)
 
-    def __init__(self, selected, cache: CacheManager):
+    def __init__(self, selected, cache: CacheManager, program_data_folder):
         super().__init__()
         self.selected = selected
         self.cache = cache
+        self.program_data_folder = program_data_folder
 
-    def _download_video(self, video_url, audio_path):
+    def _download_video(self, video_url, song_dir):
         """Download video to the same folder as the audio, if not already present."""
         from yt_dlp import YoutubeDL
         import os
 
-        folder = os.path.dirname(audio_path)
-        os.makedirs(folder, exist_ok=True)
-        video_path = os.path.join(folder, "video.mp4")
+        video_path = os.path.join(song_dir, "video.mp4")
 
         if os.path.exists(video_path):
             self.status.emit("Video already exists, skipping download")
@@ -52,28 +51,31 @@ class ProcessWorker(QThread):
                 self.status.emit("Loaded from cache")
                 self.finished.emit(cached)
                 return
+            
+            song_dir = self.cache.get_song_dir(title, artist)
+            song_dir.mkdir(parents=True, exist_ok=True)
 
             self.status.emit("Downloading audio...")
             downloader = YouTubeDownloader()
-            audio_path = downloader.download_audio(url)
+            audio_path = downloader.download_audio(song_dir, url)
             if not audio_path:
                 raise RuntimeError("Failed to download audio")
 
             self.status.emit("Removing vocals...")
             remover = VocalRemover()
             instrumental_path, vocals_path = remover.remove_vocals(
-                audio_path, title, artist
+                audio_path, song_dir, title, artist
             )
 
             self.status.emit("Transcribing lyrics...")
             lm = LyricsManager()
-            segments, lrc_path = lm.transcribe(vocals_path, title, artist)
+            segments, lrc_path = lm.transcribe(vocals_path, song_dir, title, artist)
 
             # --- Download video if URL provided ---
             self.status.emit("Downloading video...")
             video_path = None
             if url:
-                video_path = self._download_video(url, instrumental_path)
+                video_path = self._download_video(url, song_dir)
 
             self.cache.save_meta(title, artist, url)
 
