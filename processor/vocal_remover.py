@@ -16,21 +16,17 @@ class VocalRemover:
     def __init__(self):
         self.cache = CacheManager()
 
-    def remove_vocals(self, input_path: str, title: str, artist: str):
+    def remove_vocals(self, audio_path: str, song_dir, title: str, artist: str):
         """
         Uses Demucs to create instrumental (no vocals) and vocals-only tracks.
         Saves output under karaoke_data/<artist>_<title>/.
         Returns tuple: (instrumental_path, vocals_path)
         """
-        if not os.path.exists(input_path):
-            raise FileNotFoundError(f"Input file not found: {input_path}")
+        if not os.path.exists(audio_path):
+            raise FileNotFoundError(f"Input file not found: {audio_path}")
 
         # Convert input to WAV first
-        safe_wav_path, base_name = convert_to_wav(input_path)
-
-        # Prepare target song directory
-        song_dir = self.cache.get_song_dir(title, artist)
-        song_dir.mkdir(parents=True, exist_ok=True)
+        safe_wav_path, base_name = convert_to_wav(audio_path)
 
         print(f"🎧 Removing vocals for '{title}' by '{artist}'")
         print(f"📂 Output folder: {song_dir}")

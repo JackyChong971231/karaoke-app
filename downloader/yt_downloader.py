@@ -5,12 +5,7 @@ import yt_dlp
 from utils.filename_safety import safe_name_long   # you already have this
 
 class YouTubeDownloader:
-    def __init__(self, download_dir="downloads"):
-        self.download_dir = download_dir
-        os.makedirs(self.download_dir, exist_ok=True)
-
-
-    def download_audio(self, url: str) -> str:
+    def download_audio(self, song_dir, url: str) -> str:
         """
         Downloads the best audio from YouTube with a fully sanitized filename.
         """
@@ -25,7 +20,7 @@ class YouTubeDownloader:
 
         safe_title = safe_name_long(raw_title)
 
-        outtmpl = os.path.join(self.download_dir, f"{safe_title}.%(ext)s")
+        outtmpl = os.path.join(song_dir, f"{safe_title}.%(ext)s")
 
         ydl_opts = {
             'format': 'bestaudio/best',

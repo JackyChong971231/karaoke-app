@@ -4,14 +4,16 @@ from pathlib import Path
 import re
 
 class CacheManager:
-    BASE_DIR = Path("karaoke_data")
-
     def __init__(self):
+        self.BASE_DIR = Path("karaoke_data")
         self.BASE_DIR.mkdir(exist_ok=True)
 
     def _sanitize(self, name: str) -> str:
         """Sanitize song name for safe folder names."""
         return re.sub(r'[\\/*?:"<>|]', "_", name)
+
+    def get_base_dir(self) -> Path:
+        return self.BASE_DIR
 
     def get_song_dir(self, title: str, artist: str) -> Path:
         folder_name = self._sanitize(f"{artist}_{title}")

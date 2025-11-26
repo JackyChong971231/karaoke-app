@@ -114,11 +114,11 @@ class KaraokeAppQt(QWidget):
         self.resize(1000, 700)
 
         # --- Default folder --- 
-        self.program_folder = Path.cwd()  # default to current folder
-        self.cache_folder = self.program_folder / "karaoke_data"
+        self.program_data_folder = Path.cwd()  # default to current folder
+        self.cache_folder = self.program_data_folder / "karaoke_data"
         self.cache_folder.mkdir(exist_ok=True, parents=True)
         global SAVE_FILE
-        SAVE_FILE = self.program_folder / "Karaoke_state.json"
+        SAVE_FILE = self.program_data_folder / "Karaoke_state.json"
 
         self.searcher = YouTubeSearcher()
         self.downloader = YouTubeDownloader()
@@ -135,6 +135,7 @@ class KaraokeAppQt(QWidget):
         self.current_song = None
 
         self._setup_ui()
+        self.choose_program_folder()
         self.refresh_cache_list()
 
         self.remote_server = RemoteServer(self)
@@ -235,6 +236,16 @@ class KaraokeAppQt(QWidget):
         search_layout.addWidget(self.search_btn)
         layout.addLayout(search_layout)
 
+        folder_layout = QHBoxLayout()
+        folder_layout.setSpacing(8)
+        self.select_folder_btn = QPushButton("Select Folder")
+        self.select_folder_btn.clicked.connect(self.choose_program_folder)
+        self.current_folder = QLabel('Current folder: ')
+        self.current_folder.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        folder_layout.addWidget(self.select_folder_btn)
+        folder_layout.addWidget(self.current_folder)
+        layout.addLayout(folder_layout)
+
         # --- Splitter: results | cache ---
         splitter = QSplitter(Qt.Orientation.Horizontal)
 
@@ -277,23 +288,30 @@ class KaraokeAppQt(QWidget):
         controls = QHBoxLayout()
         controls.setSpacing(8)
 
-        self.select_folder_btn = QPushButton("Select Folder")
         self.open_btn = QPushButton("Open Player")
         self.pause_btn = QPushButton("⏸ Pause")
+        self.toggle_vocal_btn = QPushButton("Enable Vocal")
         self.stop_btn = QPushButton("⏹ Stop")
         self.skip_btn = QPushButton("⏭ Skip")
-        self.select_folder_btn.clicked.connect(self.choose_program_folder)
+        self.queue_btn = QPushButton("➕ Queue Song")
         self.open_btn.clicked.connect(self.open_player_window)
         self.pause_btn.clicked.connect(self.pause_song)
+        self.toggle_vocal_btn.clicked.connect(self.toggle_vocal)
         self.stop_btn.clicked.connect(self.stop_song)
         self.skip_btn.clicked.connect(self.skip_song)
+        self.queue_btn.clicked.connect(self.queue_song)
 
-        for btn in (self.select_folder_btn, self.open_btn, self.pause_btn, self.stop_btn, self.skip_btn):
+        for btn in (
+            self.open_btn, 
+            self.pause_btn, 
+            self.toggle_vocal_btn,
+            # self.stop_btn, 
+            self.skip_btn,
+            # self.queue_btn
+        ):
             controls.addWidget(btn)
 
-        self.queue_btn = QPushButton("➕ Queue Song")
-        self.queue_btn.clicked.connect(self.queue_song)
-        controls.addWidget(self.queue_btn)
+        # controls.addWidget(self.queue_btn)
 
         self.status_label = QLabel("Ready")
         self.status_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
@@ -380,20 +398,21 @@ class KaraokeAppQt(QWidget):
             print(f"Failed to load state: {e}")
 
     def choose_program_folder(self):
-        folder = QFileDialog.getExistingDirectory(self, "Select Program Folder", str(self.program_folder))
+        folder = QFileDialog.getExistingDirectory(self, "Select Program Folder", str(self.program_data_folder))
         if folder:
-            self.program_folder = Path(folder)
-            self.cache_folder = self.program_folder / "karaoke_data"
+            self.program_data_folder = Path(folder)
+            self.cache_folder = self.program_data_folder / "karaoke_data"
             self.cache_folder.mkdir(exist_ok=True, parents=True)
             self.cache.BASE_DIR = self.cache_folder
 
             global SAVE_FILE
-            SAVE_FILE = self.program_folder / "Karaoke_state.json"
+            SAVE_FILE = self.program_data_folder / "Karaoke_state.json"
 
             # Reload everything
             self.refresh_cache_list()
             self.load_state()
-            self.status_label.setText(f"Loaded folder: {self.program_folder}")
+            self.status_label.setText(f"Loaded folder: {self.program_data_folder}")
+            self.current_folder.setText(f"Current folder: {self.program_data_folder}")
 
 
     # -------------------------
@@ -479,6 +498,7 @@ class KaraokeAppQt(QWidget):
             return
 
         song = dict(self.current_selected)
+        song['queued_by'] = 'System'
         song['title'] = sanitize_filename(song['title'])
         song['artist'] = sanitize_filename(song['artist'])
         self._add_song_to_queue(song)
@@ -528,7 +548,7 @@ class KaraokeAppQt(QWidget):
         idx = self.results_list.row(item)
         if 0 <= idx < len(self.results):
             self.current_selected = self.results[idx]
-            self.current_selected['queued_by'] = 'Unknown'
+            self.current_selected['queued_by'] = 'System'
             self.queue_song()
 
     def on_cache_double_click(self, item):
@@ -547,7 +567,7 @@ class KaraokeAppQt(QWidget):
                         "artist": meta["artist"],
                         "url": meta.get("url"),
                         "cached": cached,
-                        "queued_by": 'Unknown'
+                        "queued_by": 'System'
                     }
                     self.queue_song()
             except Exception as e:
@@ -558,7 +578,7 @@ class KaraokeAppQt(QWidget):
         # Group songs by user
         user_dict = {}
         for song in self.queue:
-            user = song.get("queued_by", "unknown")
+            user = song.get("queued_by", "System")
             user_dict.setdefault(user, []).append(song)
 
         # Rotate round-robin between users
@@ -657,7 +677,7 @@ class KaraokeAppQt(QWidget):
         next_song = self.queue[0]
         self.status_label.setText(f"Preparing next song: {next_song['title']}")
 
-        worker = ProcessWorker(next_song, self.cache)
+        worker = ProcessWorker(next_song, self.cache, self.program_data_folder)
         worker.status.connect(lambda s: self.status_label.setText(f"[Next] {s}"))
         worker.error.connect(lambda e: QMessageBox.warning(self, "Queue Error", e))
 
@@ -761,12 +781,13 @@ class KaraokeAppQt(QWidget):
         if self.player_window and self.player_window.isVisible():
             onOff = self.player_window._toggle_pause()
             if onOff == 1:
-                self.pause_btn.setText("Resume")
+                self.pause_btn.setText("⏸ Pause")
             elif onOff == 0:
-                self.pause_btn.setText("Pause")
+                self.pause_btn.setText("▶ Resume")
 
     def toggle_vocal(self):
         self.player_window._toggle_vocal()
+        self.toggle_vocal_btn.setText("Disable Vocal" if self.player_window.vocal_enabled else "Enable Vocal")
 
     def stop_song(self):
         try:

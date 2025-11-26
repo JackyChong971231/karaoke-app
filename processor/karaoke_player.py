@@ -144,7 +144,7 @@ class KaraokePlayer(QWidget):
         """
 
         # Buttons
-        self.pause_button = QPushButton("Pause", self.control_panel)
+        self.pause_button = QPushButton("⏸ Pause", self.control_panel)
         self.pause_button.setStyleSheet(control_btn_style)
         self.pause_button.setFixedSize(100, 40)
         self.pause_button.clicked.connect(self._toggle_pause)
@@ -156,7 +156,7 @@ class KaraokePlayer(QWidget):
         self.toggle_button.clicked.connect(self._toggle_vocal)
         control_layout.addWidget(self.toggle_button)
 
-        self.skip_button = QPushButton("Skip", self.control_panel)
+        self.skip_button = QPushButton("⏭ Skip", self.control_panel)
         self.skip_button.setStyleSheet(control_btn_style)
         self.skip_button.setFixedSize(100, 40)
         self.skip_button.clicked.connect(self.skip)
@@ -392,13 +392,13 @@ class KaraokePlayer(QWidget):
             # Currently playing → pause
             self.audio_mixer.pause()
             self.player.pause()
-            self.pause_button.setText("Resume")
+            self.pause_button.setText("▶ Resume")
             return 0
         else:
             # Currently paused → resume
             self.audio_mixer.resume()
             self.player.play()
-            self.pause_button.setText("Pause")
+            self.pause_button.setText("⏸ Pause")
             return 1
 
     def skip(self):

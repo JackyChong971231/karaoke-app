@@ -10,7 +10,7 @@ class LyricsManager:
         self.model = whisper.load_model(model_name)
         self.cache = CacheManager()
 
-    def transcribe(self, vocals_path: str, title: str, artist: str):
+    def transcribe(self, vocals_path: str, song_dir: Path, title: str, artist: str):
         """
         Transcribe vocals.wav and return (segments, lrc_path).
         Automatically detects first sung word and offsets timestamps.
@@ -36,7 +36,7 @@ class LyricsManager:
         y_sliced = y[int(first_time * sr):]
 
         # Save temporary file for Whisper
-        temp_path = Path(vocals_path).parent / "vocals_trimmed.wav"
+        temp_path = song_dir / "vocals_trimmed.wav"
         import soundfile as sf
         sf.write(temp_path, y_sliced, sr)
 
@@ -56,8 +56,6 @@ class LyricsManager:
             seg["end"] += first_time
 
         # Save .lrc
-        song_dir = self.cache.get_song_dir(title, artist)
-        song_dir.mkdir(exist_ok=True)
         lrc_path = song_dir / "lyrics.lrc"
         self.save_lrc(segments, lrc_path)
 
