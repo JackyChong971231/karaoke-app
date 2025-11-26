@@ -248,9 +248,9 @@ input {
 
 <!-- ADD SONG SECTION -->
 <div class="sectionCard">
-    <div class="sectionTitle">Add Song</div>
+    <div class="sectionTitle">Add New Song</div>
 
-    <div class="inputLabel">YouTube URL Only</div>
+    <div class="inputLabel">YouTube Video URL Only</div>
 
     <div class="input-wrapper">
         <input id="urlInput" placeholder="Paste YouTube link…" oninput="onUrlInput()">
@@ -278,7 +278,9 @@ input {
 <!-- QUEUE SECTION -->
 <div class="sectionCard" id="queueSection">
     <div style="display:flex; gap:1rem; align-items: center;">
-        <div class="sectionTitle">Queue</div>
+        <div class="sectionTitle">
+            Queue <span id="queueCount" style="opacity:0.7; font-weight:500;">(0)</span>
+        </div>
         <button onclick="refreshQueue()" style="margin-bottom: 12px;">
             Refresh Queue
         </button>
@@ -426,7 +428,12 @@ queueContainer.id = "queueContainer";
 
 function updateQueueUI(queue) {
     const container = document.getElementById("queueContainer");
+    const queueCountEl = document.getElementById("queueCount");
+
     container.innerHTML = "";
+
+    // Update queue count
+    queueCountEl.innerText = `(${queue.length})`;
 
     if (queue.length === 0) {
         container.innerHTML = "<p style='opacity:0.6;'>Queue is empty</p>";
