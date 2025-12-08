@@ -17,6 +17,7 @@ from PySide6.QtGui import QPixmap
 
 from processor.audio_mixer import AudioMixer
 from gui.progressBar import ProgressBar
+from utils.debug_log import write_debug
 
 def get_local_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -255,7 +256,7 @@ class KaraokePlayer(QWidget):
     # ------------------------------------------------------------
     # Audio & Video
     # ------------------------------------------------------------
-    def load_song(self, instrumental_path, lyrics_segments, vocal_path=None, video_url=None):
+    def load_song(self, instrumental_path, lyrics_segments, vocal_path=None, video_url=None, video_path=None):
         """Load a new song into the existing player without reopening the window."""
         # Stop current playback and reset internal lyric state
         self.stop()
@@ -264,6 +265,9 @@ class KaraokePlayer(QWidget):
         self.vocal_path = vocal_path
         self.lyrics_segments = lyrics_segments or []
         self.video_url = video_url
+        # If caller provided an already-downloaded video path, prefer it
+        if video_path:
+            self.video_path = video_path
 
         # Reset lyric indices so playback starts from the beginning
         self.current_index = -1
@@ -318,7 +322,10 @@ class KaraokePlayer(QWidget):
 
             # skip download if already exists
             if os.path.exists(self.video_path):
-                print(f"🎬 Video already exists at {self.video_path}")
+                try:
+                    write_debug(f"Video already exists at {self.video_path}")
+                except Exception:
+                    pass
                 return self.video_path
 
             ydl_opts = {
@@ -328,9 +335,16 @@ class KaraokePlayer(QWidget):
             }
 
             with YoutubeDL(ydl_opts) as ydl:
+                try:
+                    write_debug(f"Downloading video for url={self.video_url} to {self.video_path}")
+                except Exception:
+                    pass
                 ydl.download([self.video_url])
 
-            print(f"✅ Video downloaded: {self.video_path}")
+            try:
+                write_debug(f"Video downloaded: {self.video_path}")
+            except Exception:
+                pass
             return self.video_path
 
         except Exception as e:
@@ -349,6 +363,10 @@ class KaraokePlayer(QWidget):
 
         # Start VLC video
         if self.video_path and os.path.exists(self.video_path):
+            try:
+                write_debug(f"_play_media using video_path={self.video_path}")
+            except Exception:
+                pass
             media = self.instance.media_new(self.video_path)
             self.player.set_media(media)
             win_id = int(self.video_frame.winId())
@@ -538,7 +556,8 @@ class KaraokePlayer(QWidget):
     # Public start
     # ------------------------------------------------------------
     def start(self):
-        if self.video_url:
+        # If we already have a downloaded video path, skip download
+        if not self.video_path and self.video_url:
             self._download_video()
         self._play_media()
         self.show()

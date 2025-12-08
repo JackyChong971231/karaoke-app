@@ -64,8 +64,12 @@ class AudioMixer:
             pygame.mixer.Channel(1).set_volume(volume)
 
     def is_playing(self):
-        # Playing if it's not paused AND channel is active
-        return pygame.mixer.Channel(0).get_busy() or self.paused
+        # Playing if channel is active AND not paused
+        try:
+            busy = pygame.mixer.Channel(0).get_busy()
+        except Exception:
+            busy = False
+        return busy and not self.paused
 
     def get_position(self):
         """Return current playback time of instrumental in seconds."""

@@ -13,6 +13,7 @@ from downloader.yt_downloader import YouTubeDownloader
 from processor.vocal_remover import VocalRemover
 from processor.lyrics_manager import LyricsManager
 from processor.karaoke_player import KaraokePlayer
+from utils.debug_log import write_debug
 from processor.worker import ProcessWorker
 from cache.cache_manager import CacheManager
 
@@ -724,6 +725,11 @@ class KaraokeAppQt(QWidget):
             result["segments"] = segments
 
         self.prepared_next = result
+        # Debug: show prepared result video info
+        try:
+            write_debug(f"Prepared next: url={result.get('url')} video={result.get('video')}")
+        except Exception:
+            pass
         self.update_next_song_label()
         self.status_label.setText(f"Next song ready: {result.get('url', '')}")
         self.refresh_cache_list()
@@ -743,16 +749,30 @@ class KaraokeAppQt(QWidget):
             return  # just wait, next song will auto-play when current finishes
 
         next_song = self.queue[0]
+        try:
+            write_debug(f"_play_next_from_queue: next_song url={next_song.get('url')} title={next_song.get('title')}")
+        except Exception:
+            pass
         self.current_song = next_song
         # self.mark_song_finished(next_song)
 
         # If preprocessed song is ready
         if self.prepared_next and self.prepared_next["url"] == next_song.get("url"):
             result = self.prepared_next
+            try:
+                write_debug(f"Using prepared_next for url={result.get('url')} video={result.get('video')}")
+            except Exception:
+                pass
             self.queue.pop(0)
             self.queue_list.takeItem(0)
             self.queue_changed.emit(self.queue)
-            self.player_window.load_song(result["instrumental"], result["segments"], result["vocals"], result["url"])
+            # Prefer already-downloaded video file when available to avoid reuse issues
+            video_path = result.get("video")
+            try:
+                write_debug(f"Passing video_path to player: {video_path}")
+            except Exception:
+                pass
+            self.player_window.load_song(result["instrumental"], result["segments"], result.get("vocals"), result.get("url"), video_path=video_path)
             self.prepared_next = None
             self._prepare_next_song()
         else:

@@ -48,6 +48,14 @@ class ProcessWorker(QThread):
             cached = self.cache.check_existing(title, artist)
             if cached:
                 cached["url"] = url
+                # If a downloaded video is present in the song folder, include it
+                song_dir = self.cache.get_song_dir(title, artist)
+                video_path = song_dir / "video.mp4"
+                if video_path.exists():
+                    cached["video"] = str(video_path)
+                else:
+                    cached["video"] = None
+
                 self.status.emit("Loaded from cache")
                 self.finished.emit(cached)
                 return
