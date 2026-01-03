@@ -14,3 +14,720 @@
 [2025-12-08T11:29:31.102373] Using prepared_next for url=https://youtu.be/Kg-mW8SyNVg?si=WbpkoOj3PvyX2FAD video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
 [2025-12-08T11:29:31.104724] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
 [2025-12-08T11:29:31.331060] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-08T23:35:42.063561] _play_next_from_queue: next_song url=https://youtu.be/L6ZVIqonafQ?si=LhezL85LMFq7Lm8o title=誰令你心痴  張國榮陳潔靈 Leslie CheungElisa Chan  Official Music Video  曲：小林明子  詞：鄭國江
+[2025-12-08T23:37:58.464197] Prepared next: url=https://youtu.be/L6ZVIqonafQ?si=LhezL85LMFq7Lm8o video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\華星唱片 Capital Artists Official Channel_誰令你心痴  張國榮陳潔靈 Leslie CheungElisa Chan  Official Mu…\video.mp4
+[2025-12-08T23:37:58.550034] _play_next_from_queue: next_song url=https://youtu.be/L6ZVIqonafQ?si=LhezL85LMFq7Lm8o title=誰令你心痴  張國榮陳潔靈 Leslie CheungElisa Chan  Official Music Video  曲：小林明子  詞：鄭國江
+[2025-12-08T23:37:58.550688] Using prepared_next for url=https://youtu.be/L6ZVIqonafQ?si=LhezL85LMFq7Lm8o video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\華星唱片 Capital Artists Official Channel_誰令你心痴  張國榮陳潔靈 Leslie CheungElisa Chan  Official Mu…\video.mp4
+[2025-12-08T23:37:58.553069] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\華星唱片 Capital Artists Official Channel_誰令你心痴  張國榮陳潔靈 Leslie CheungElisa Chan  Official Mu…\video.mp4
+[2025-12-08T23:37:58.812354] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\華星唱片 Capital Artists Official Channel_誰令你心痴  張國榮陳潔靈 Leslie CheungElisa Chan  Official Mu…\video.mp4
+[2025-12-08T23:40:47.542991] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_还是觉得你最好 张学友 (歌词版)\video.mp4
+[2025-12-08T23:42:35.159807] _play_next_from_queue: next_song url= title=还是觉得你最好 张学友 (歌词版)
+[2025-12-08T23:42:35.160545] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_还是觉得你最好 张学友 (歌词版)\video.mp4
+[2025-12-08T23:42:35.162387] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_还是觉得你最好 张学友 (歌词版)\video.mp4
+[2025-12-08T23:42:35.500887] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_还是觉得你最好 张学友 (歌词版)\video.mp4
+[2025-12-08T23:43:19.201284] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJ Lin林俊傑_林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…\video.mp4
+[2025-12-08T23:47:56.353734] _play_next_from_queue: next_song url= title=林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…
+[2025-12-08T23:47:56.354404] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJ Lin林俊傑_林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…\video.mp4
+[2025-12-08T23:47:56.355991] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJ Lin林俊傑_林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…\video.mp4
+[2025-12-08T23:47:56.741818] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJ Lin林俊傑_林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…\video.mp4
+[2025-12-08T23:49:45.994640] Prepared next: url=https://youtu.be/LPl420bwG8c?si=UIhpuZjQogCm6uUp video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\金曲年代GOLDEN ERA_張信哲 愛如潮水 (Official Video Karaoke)\video.mp4
+[2025-12-08T23:53:29.029402] _play_next_from_queue: next_song url=https://youtu.be/LPl420bwG8c?si=UIhpuZjQogCm6uUp title=張信哲 愛如潮水 (Official Video Karaoke)
+[2025-12-08T23:53:29.030135] Using prepared_next for url=https://youtu.be/LPl420bwG8c?si=UIhpuZjQogCm6uUp video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\金曲年代GOLDEN ERA_張信哲 愛如潮水 (Official Video Karaoke)\video.mp4
+[2025-12-08T23:53:29.032231] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\金曲年代GOLDEN ERA_張信哲 愛如潮水 (Official Video Karaoke)\video.mp4
+[2025-12-08T23:53:29.295768] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\金曲年代GOLDEN ERA_張信哲 愛如潮水 (Official Video Karaoke)\video.mp4
+[2025-12-08T23:54:39.249314] Prepared next: url=https://youtu.be/oMDj9L44LZM?si=D7LmdDQ00d9NmLY_ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\滾石唱片 ROCK RECORDS_黃品源 Huang Pin Yuan【你怎麼捨得我難過 How can you allow me t…\video.mp4
+[2025-12-08T23:58:01.560440] _play_next_from_queue: next_song url=https://youtu.be/oMDj9L44LZM?si=D7LmdDQ00d9NmLY_ title=黃品源 Huang Pin Yuan【你怎麼捨得我難過 How can you allow me to be in sorrow】Official Music Video
+[2025-12-08T23:58:01.561110] Using prepared_next for url=https://youtu.be/oMDj9L44LZM?si=D7LmdDQ00d9NmLY_ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\滾石唱片 ROCK RECORDS_黃品源 Huang Pin Yuan【你怎麼捨得我難過 How can you allow me t…\video.mp4
+[2025-12-08T23:58:01.563129] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\滾石唱片 ROCK RECORDS_黃品源 Huang Pin Yuan【你怎麼捨得我難過 How can you allow me t…\video.mp4
+[2025-12-08T23:58:01.795998] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\滾石唱片 ROCK RECORDS_黃品源 Huang Pin Yuan【你怎麼捨得我難過 How can you allow me t…\video.mp4
+[2025-12-08T23:58:02.252635] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-09T00:02:21.345286] _play_next_from_queue: next_song url= title=富士山下
+[2025-12-09T00:02:21.346102] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-09T00:02:21.348291] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-09T00:02:21.629468] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-09T00:03:52.288250] Prepared next: url=https://youtu.be/ZBXkflLv8bU?si=72RoI_jtNeLiFeBP video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\NKstudio73_Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…\video.mp4
+[2025-12-09T00:06:41.802151] _play_next_from_queue: next_song url=https://youtu.be/ZBXkflLv8bU?si=72RoI_jtNeLiFeBP title=Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Lyrics I 1987年《命運符號》專輯。
+[2025-12-09T00:06:41.802837] Using prepared_next for url=https://youtu.be/ZBXkflLv8bU?si=72RoI_jtNeLiFeBP video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\NKstudio73_Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…\video.mp4
+[2025-12-09T00:06:41.805370] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\NKstudio73_Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…\video.mp4
+[2025-12-09T00:06:42.067612] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\NKstudio73_Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…\video.mp4
+[2025-12-09T00:06:42.511976] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 反對無效 Overruled (Official Music Video)\video.mp4
+[2025-12-09T00:11:38.679657] _play_next_from_queue: next_song url= title=MC 張天賦 - 反對無效 Overruled (Official Music Video)
+[2025-12-09T00:11:38.680497] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 反對無效 Overruled (Official Music Video)\video.mp4
+[2025-12-09T00:11:38.682479] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 反對無效 Overruled (Official Music Video)\video.mp4
+[2025-12-09T00:11:38.943078] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 反對無效 Overruled (Official Music Video)\video.mp4
+[2025-12-09T00:13:03.967407] Prepared next: url=https://youtu.be/dy70lVVxhh4?si=npOun41g9N-WPcMP video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\福茂唱片_林隆璇 Kevin Lin - 你那麼愛她 (官方版MV) - 電視劇《前男友不是人》插曲\video.mp4
+[2025-12-09T00:13:48.619925] _play_next_from_queue: next_song url=https://youtu.be/dy70lVVxhh4?si=npOun41g9N-WPcMP title=林隆璇 Kevin Lin - 你那麼愛她 (官方版MV) - 電視劇《前男友不是人》插曲
+[2025-12-09T00:13:48.620604] Using prepared_next for url=https://youtu.be/dy70lVVxhh4?si=npOun41g9N-WPcMP video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\福茂唱片_林隆璇 Kevin Lin - 你那麼愛她 (官方版MV) - 電視劇《前男友不是人》插曲\video.mp4
+[2025-12-09T00:13:48.622895] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\福茂唱片_林隆璇 Kevin Lin - 你那麼愛她 (官方版MV) - 電視劇《前男友不是人》插曲\video.mp4
+[2025-12-09T00:13:48.853197] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\福茂唱片_林隆璇 Kevin Lin - 你那麼愛她 (官方版MV) - 電視劇《前男友不是人》插曲\video.mp4
+[2025-12-09T00:14:00.341320] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\universalmusichk_陳奕迅【苦瓜】MV\video.mp4
+[2025-12-09T00:18:02.888425] _play_next_from_queue: next_song url= title=陳奕迅【苦瓜】MV
+[2025-12-09T00:18:02.889150] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\universalmusichk_陳奕迅【苦瓜】MV\video.mp4
+[2025-12-09T00:18:02.891395] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\universalmusichk_陳奕迅【苦瓜】MV\video.mp4
+[2025-12-09T00:18:03.196026] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\universalmusichk_陳奕迅【苦瓜】MV\video.mp4
+[2025-12-09T00:21:13.505503] Prepared next: url=https://youtu.be/J5RuqSWW8MU?si=ODjY4mcWkHqBLVa3 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\PopSong Lyrics_[粵][MP3] Joey 容祖兒 - 16號愛人 [歌詞同步]\video.mp4
+[2025-12-09T00:22:41.733898] _play_next_from_queue: next_song url=https://youtu.be/J5RuqSWW8MU?si=ODjY4mcWkHqBLVa3 title=[粵][MP3] Joey 容祖兒 - 16號愛人 [歌詞同步]
+[2025-12-09T00:22:41.734575] Using prepared_next for url=https://youtu.be/J5RuqSWW8MU?si=ODjY4mcWkHqBLVa3 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\PopSong Lyrics_[粵][MP3] Joey 容祖兒 - 16號愛人 [歌詞同步]\video.mp4
+[2025-12-09T00:22:41.736518] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\PopSong Lyrics_[粵][MP3] Joey 容祖兒 - 16號愛人 [歌詞同步]\video.mp4
+[2025-12-09T00:22:41.969558] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\PopSong Lyrics_[粵][MP3] Joey 容祖兒 - 16號愛人 [歌詞同步]\video.mp4
+[2025-12-09T00:23:53.340553] Prepared next: url=https://youtu.be/yR-o2ZFIQS8?si=QFlDkbsXHuj5S1yI video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\KAZZMIK - Astrology & Music_Christina Aguilera - Reflection (Lyrics) HD\video.mp4
+[2025-12-09T00:25:30.409588] _play_next_from_queue: next_song url=https://youtu.be/yR-o2ZFIQS8?si=QFlDkbsXHuj5S1yI title=Christina Aguilera - Reflection (Lyrics) HD
+[2025-12-09T00:25:30.410492] Using prepared_next for url=https://youtu.be/yR-o2ZFIQS8?si=QFlDkbsXHuj5S1yI video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\KAZZMIK - Astrology & Music_Christina Aguilera - Reflection (Lyrics) HD\video.mp4
+[2025-12-09T00:25:30.413036] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\KAZZMIK - Astrology & Music_Christina Aguilera - Reflection (Lyrics) HD\video.mp4
+[2025-12-09T00:25:30.616620] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\KAZZMIK - Astrology & Music_Christina Aguilera - Reflection (Lyrics) HD\video.mp4
+[2025-12-09T00:25:33.892715] _play_next_from_queue: next_song url=https://youtu.be/TyeKQkOvjPc?si=U0uOGKoR2CMuCGmD title=Lea Salonga - Reflection (Lyrics)
+[2025-12-09T00:26:38.383049] Prepared next: url=https://youtu.be/TyeKQkOvjPc?si=U0uOGKoR2CMuCGmD video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Danielle Buizon_Lea Salonga - Reflection (Lyrics)\video.mp4
+[2025-12-09T00:26:38.453493] _play_next_from_queue: next_song url=https://youtu.be/TyeKQkOvjPc?si=U0uOGKoR2CMuCGmD title=Lea Salonga - Reflection (Lyrics)
+[2025-12-09T00:26:38.454328] Using prepared_next for url=https://youtu.be/TyeKQkOvjPc?si=U0uOGKoR2CMuCGmD video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Danielle Buizon_Lea Salonga - Reflection (Lyrics)\video.mp4
+[2025-12-09T00:26:38.456681] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Danielle Buizon_Lea Salonga - Reflection (Lyrics)\video.mp4
+[2025-12-09T00:26:38.675918] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Danielle Buizon_Lea Salonga - Reflection (Lyrics)\video.mp4
+[2025-12-09T00:34:10.546834] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-09T00:34:10.628295] _play_next_from_queue: next_song url= title=林家謙 Terence Lam 《一人之境》 Solitude (Official MV)
+[2025-12-09T00:34:10.628740] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-09T00:34:10.630317] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-09T00:34:10.845142] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-09T00:37:43.397577] _play_next_from_queue: next_song url=https://youtu.be/pQlAWZLOpgo?si=0nHKVcS6IOjPYlZK title=林憶蓮 Sandy Lam - 至少還有你 At Least I've Got You (官方完整版MV)
+[2025-12-09T00:39:06.456084] Prepared next: url=https://youtu.be/pQlAWZLOpgo?si=0nHKVcS6IOjPYlZK video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music_林憶蓮 Sandy Lam - 至少還有你 At Least I've Got You (官方完整版…\video.mp4
+[2025-12-09T00:39:06.580158] _play_next_from_queue: next_song url=https://youtu.be/pQlAWZLOpgo?si=0nHKVcS6IOjPYlZK title=林憶蓮 Sandy Lam - 至少還有你 At Least I've Got You (官方完整版MV)
+[2025-12-09T00:39:06.580628] Using prepared_next for url=https://youtu.be/pQlAWZLOpgo?si=0nHKVcS6IOjPYlZK video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music_林憶蓮 Sandy Lam - 至少還有你 At Least I've Got You (官方完整版…\video.mp4
+[2025-12-09T00:39:06.582471] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music_林憶蓮 Sandy Lam - 至少還有你 At Least I've Got You (官方完整版…\video.mp4
+[2025-12-09T00:39:06.833416] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music_林憶蓮 Sandy Lam - 至少還有你 At Least I've Got You (官方完整版…\video.mp4
+[2025-12-09T00:40:27.216965] Prepared next: url=https://youtu.be/wvlG4yGl7_M?si=8OYbTTb5KbmHOqle video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Charmaine Fong_方皓玟 - 分手總約在雨天 [Official Music Video]\video.mp4
+[2025-12-09T00:42:23.885178] _play_next_from_queue: next_song url=https://youtu.be/wvlG4yGl7_M?si=8OYbTTb5KbmHOqle title=方皓玟 - 分手總約在雨天 [Official Music Video]
+[2025-12-09T00:42:23.886081] Using prepared_next for url=https://youtu.be/wvlG4yGl7_M?si=8OYbTTb5KbmHOqle video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Charmaine Fong_方皓玟 - 分手總約在雨天 [Official Music Video]\video.mp4
+[2025-12-09T00:42:23.888619] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Charmaine Fong_方皓玟 - 分手總約在雨天 [Official Music Video]\video.mp4
+[2025-12-09T00:42:24.116264] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Charmaine Fong_方皓玟 - 分手總約在雨天 [Official Music Video]\video.mp4
+[2025-12-09T00:44:47.880346] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《普渡眾生》電影《破．地獄》主題曲 MV\video.mp4
+[2025-12-09T00:45:15.029967] _play_next_from_queue: next_song url= title=林家謙 Terence Lam 《普渡眾生》電影《破．地獄》主題曲 MV
+[2025-12-09T00:45:15.031018] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《普渡眾生》電影《破．地獄》主題曲 MV\video.mp4
+[2025-12-09T00:45:15.032878] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《普渡眾生》電影《破．地獄》主題曲 MV\video.mp4
+[2025-12-09T00:45:15.240562] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《普渡眾生》電影《破．地獄》主題曲 MV\video.mp4
+[2025-12-10T12:26:37.571777] Prepared next: url=https://www.youtube.com/watch?v=7bM6KEX9HFE video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\張敬軒_追風箏的孩子\video.mp4
+[2025-12-10T12:27:36.132061] _play_next_from_queue: next_song url=https://www.youtube.com/watch?v=7bM6KEX9HFE title=追風箏的孩子
+[2025-12-10T12:27:36.132877] Using prepared_next for url=https://www.youtube.com/watch?v=7bM6KEX9HFE video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\張敬軒_追風箏的孩子\video.mp4
+[2025-12-10T12:27:36.137730] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\張敬軒_追風箏的孩子\video.mp4
+[2025-12-10T12:27:36.342817] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\張敬軒_追風箏的孩子\video.mp4
+[2025-12-10T12:28:57.688267] Prepared next: url=https://www.youtube.com/watch?v=cNkfFU0qCxk video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_張敬軒 Hins Cheung《追風箏的孩子 - HINS LIVE IN PASSION 2014…\video.mp4
+[2025-12-10T12:30:53.614536] _play_next_from_queue: next_song url=https://www.youtube.com/watch?v=cNkfFU0qCxk title=張敬軒 Hins Cheung《追風箏的孩子 - HINS LIVE IN PASSION 2014》[Lyrics MV]
+[2025-12-10T12:30:53.614940] Using prepared_next for url=https://www.youtube.com/watch?v=cNkfFU0qCxk video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_張敬軒 Hins Cheung《追風箏的孩子 - HINS LIVE IN PASSION 2014…\video.mp4
+[2025-12-10T12:30:53.616104] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_張敬軒 Hins Cheung《追風箏的孩子 - HINS LIVE IN PASSION 2014…\video.mp4
+[2025-12-10T12:30:53.843135] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_張敬軒 Hins Cheung《追風箏的孩子 - HINS LIVE IN PASSION 2014…\video.mp4
+[2025-12-10T12:31:35.777239] Prepared next: url=https://www.youtube.com/watch?v=cQ_86CAgb6s video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:34:18.861575] _play_next_from_queue: next_song url=https://www.youtube.com/watch?v=cQ_86CAgb6s title=苦瓜 陈奕迅 (歌词版)
+[2025-12-10T12:34:18.862309] Using prepared_next for url=https://www.youtube.com/watch?v=cQ_86CAgb6s video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:34:18.864134] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:34:19.129788] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:34:36.919440] Prepared next: url=https://www.youtube.com/watch?v=UBmLSS8P2ME video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_红日 李克勤 (歌词版)\video.mp4
+[2025-12-10T12:34:36.953236] _play_next_from_queue: next_song url=https://www.youtube.com/watch?v=UBmLSS8P2ME title=红日 李克勤 (歌词版)
+[2025-12-10T12:34:36.953594] Using prepared_next for url=https://www.youtube.com/watch?v=UBmLSS8P2ME video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_红日 李克勤 (歌词版)\video.mp4
+[2025-12-10T12:34:36.954662] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_红日 李克勤 (歌词版)\video.mp4
+[2025-12-10T12:34:37.213304] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_红日 李克勤 (歌词版)\video.mp4
+[2025-12-10T12:34:39.916835] Prepared next: url=https://www.youtube.com/watch?v=cQ_86CAgb6s video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:34:57.144615] _play_next_from_queue: next_song url=https://www.youtube.com/watch?v=cQ_86CAgb6s title=苦瓜 陈奕迅 (歌词版)
+[2025-12-10T12:34:57.145386] Using prepared_next for url=https://www.youtube.com/watch?v=cQ_86CAgb6s video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:34:57.148380] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:34:57.361443] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:35:56.278003] Prepared next: url=https://www.youtube.com/watch?v=UBmLSS8P2ME video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_红日 李克勤 (歌词版)\video.mp4
+[2025-12-10T12:35:56.305331] _play_next_from_queue: next_song url=https://www.youtube.com/watch?v=UBmLSS8P2ME title=红日 李克勤 (歌词版)
+[2025-12-10T12:35:56.305862] Using prepared_next for url=https://www.youtube.com/watch?v=UBmLSS8P2ME video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_红日 李克勤 (歌词版)\video.mp4
+[2025-12-10T12:35:56.307493] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_红日 李克勤 (歌词版)\video.mp4
+[2025-12-10T12:35:56.555335] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_红日 李克勤 (歌词版)\video.mp4
+[2025-12-10T12:35:57.530573] Prepared next: url=https://www.youtube.com/watch?v=cQ_86CAgb6s video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:36:14.636220] _play_next_from_queue: next_song url=https://www.youtube.com/watch?v=cQ_86CAgb6s title=苦瓜 陈奕迅 (歌词版)
+[2025-12-10T12:36:14.637058] Using prepared_next for url=https://www.youtube.com/watch?v=cQ_86CAgb6s video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:36:14.640276] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:36:14.846724] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T12:36:15.103026] Prepared next: url=https://youtu.be/87edJRNZ40g?si=nO7sT22MLFOWyYkJ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsCheungVEVO_張敬軒 - 《春秋》(Live)\video.mp4
+[2025-12-10T12:39:01.748776] _play_next_from_queue: next_song url=https://youtu.be/87edJRNZ40g?si=nO7sT22MLFOWyYkJ title=張敬軒 - 《春秋》(Live)
+[2025-12-10T12:39:01.764391] Prepared next: url=https://youtu.be/87edJRNZ40g?si=nO7sT22MLFOWyYkJ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsCheungVEVO_張敬軒 - 《春秋》(Live)\video.mp4
+[2025-12-10T12:39:01.797329] _play_next_from_queue: next_song url=https://youtu.be/87edJRNZ40g?si=nO7sT22MLFOWyYkJ title=張敬軒 - 《春秋》(Live)
+[2025-12-10T12:39:01.797762] Using prepared_next for url=https://youtu.be/87edJRNZ40g?si=nO7sT22MLFOWyYkJ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsCheungVEVO_張敬軒 - 《春秋》(Live)\video.mp4
+[2025-12-10T12:39:01.801509] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsCheungVEVO_張敬軒 - 《春秋》(Live)\video.mp4
+[2025-12-10T12:39:02.058916] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsCheungVEVO_張敬軒 - 《春秋》(Live)\video.mp4
+[2025-12-10T12:39:02.730594] Prepared next: url=https://youtu.be/XcRtRFO5ZJA?si=NTzKOHR5cG0r5-xk video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)\video.mp4
+[2025-12-10T12:39:22.076680] _play_next_from_queue: next_song url=https://youtu.be/XcRtRFO5ZJA?si=NTzKOHR5cG0r5-xk title=張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)
+[2025-12-10T12:39:22.077377] Using prepared_next for url=https://youtu.be/XcRtRFO5ZJA?si=NTzKOHR5cG0r5-xk video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)\video.mp4
+[2025-12-10T12:39:22.079506] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)\video.mp4
+[2025-12-10T12:39:22.363874] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)\video.mp4
+[2025-12-10T13:18:21.418417] Prepared next: url=https://youtu.be/Kg-mW8SyNVg?si=WbpkoOj3PvyX2FAD video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-10T13:18:50.140069] _play_next_from_queue: next_song url=https://youtu.be/Kg-mW8SyNVg?si=WbpkoOj3PvyX2FAD title=Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄
+[2025-12-10T13:18:50.140954] Using prepared_next for url=https://youtu.be/Kg-mW8SyNVg?si=WbpkoOj3PvyX2FAD video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-10T13:18:50.142905] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-10T13:18:50.431878] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-10T13:18:50.737907] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-10T13:18:53.379441] _play_next_from_queue: next_song url= title=林家謙 Terence Lam 《一人之境》 Solitude (Official MV)
+[2025-12-10T13:18:53.379901] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-10T13:18:53.381090] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-10T13:18:53.607212] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-10T13:23:08.083610] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T13:23:10.096174] _play_next_from_queue: next_song url= title=苦瓜 陈奕迅 (歌词版)
+[2025-12-10T13:23:10.097104] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T13:23:10.100055] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-10T13:23:10.380087] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-14T00:51:46.957515] Prepared next: url=https://youtu.be/Kg-mW8SyNVg?si=WbpkoOj3PvyX2FAD video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-14T00:51:46.981817] _play_next_from_queue: next_song url=https://youtu.be/Kg-mW8SyNVg?si=WbpkoOj3PvyX2FAD title=Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄
+[2025-12-14T00:51:46.982092] Using prepared_next for url=https://youtu.be/Kg-mW8SyNVg?si=WbpkoOj3PvyX2FAD video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-14T00:51:46.983930] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-14T00:51:47.244465] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\20th Century Studios Singapore_Our Times《我的少女时代》电影主題曲 -《小幸运》MV by 田馥甄\video.mp4
+[2025-12-14T00:54:14.216798] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2025-12-14T00:56:38.758426] _play_next_from_queue: next_song url= title=洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…
+[2025-12-14T00:56:38.759366] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2025-12-14T00:56:38.761237] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2025-12-14T00:56:38.975481] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2025-12-14T23:27:34.032561] Prepared next: url=https://youtu.be/TFDqU3fpANo?si=9LQoW8mo9XOBe4SC video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-14T23:27:37.746417] _play_next_from_queue: next_song url=https://youtu.be/TFDqU3fpANo?si=9LQoW8mo9XOBe4SC title=張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…
+[2025-12-14T23:27:37.747400] Using prepared_next for url=https://youtu.be/TFDqU3fpANo?si=9LQoW8mo9XOBe4SC video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-14T23:27:37.749347] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-14T23:27:38.042795] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-14T23:44:18.030312] _play_next_from_queue: next_song url=https://youtu.be/Z2MlP7UBleY?si=afEpqfb4nz9VmKtQ title=小肥 Siu Fay -《寵物》Official MV
+[2025-12-14T23:45:35.632103] Prepared next: url=https://youtu.be/Z2MlP7UBleY?si=afEpqfb4nz9VmKtQ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_小肥 Siu Fay -《寵物》Official MV\video.mp4
+[2025-12-14T23:45:35.672387] _play_next_from_queue: next_song url=https://youtu.be/Z2MlP7UBleY?si=afEpqfb4nz9VmKtQ title=小肥 Siu Fay -《寵物》Official MV
+[2025-12-14T23:45:35.672713] Using prepared_next for url=https://youtu.be/Z2MlP7UBleY?si=afEpqfb4nz9VmKtQ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_小肥 Siu Fay -《寵物》Official MV\video.mp4
+[2025-12-14T23:45:35.674327] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_小肥 Siu Fay -《寵物》Official MV\video.mp4
+[2025-12-14T23:45:35.856742] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_小肥 Siu Fay -《寵物》Official MV\video.mp4
+[2025-12-14T23:54:19.811011] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\另壺沖_張遠 - 嘉賓 （繁體KTV字幕）\video.mp4
+[2025-12-14T23:54:27.040093] _play_next_from_queue: next_song url= title=張遠 - 嘉賓 （繁體KTV字幕）
+[2025-12-14T23:54:27.040779] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\另壺沖_張遠 - 嘉賓 （繁體KTV字幕）\video.mp4
+[2025-12-14T23:54:27.043284] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\另壺沖_張遠 - 嘉賓 （繁體KTV字幕）\video.mp4
+[2025-12-14T23:54:27.302707] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\另壺沖_張遠 - 嘉賓 （繁體KTV字幕）\video.mp4
+[2025-12-14T23:55:02.295861] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-14T23:56:28.307883] _play_next_from_queue: next_song url= title=張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…
+[2025-12-14T23:56:28.308308] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-14T23:56:28.309452] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-14T23:56:28.550158] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-14T23:59:01.107861] Prepared next: url=https://youtu.be/wCQfkEkePx8 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-15T00:00:33.043067] _play_next_from_queue: next_song url=https://youtu.be/wCQfkEkePx8 title=Fools Garden - Lemon Tree (Official HD Video)
+[2025-12-15T00:00:33.043520] Using prepared_next for url=https://youtu.be/wCQfkEkePx8 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-15T00:00:33.044899] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-15T00:00:33.177091] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-15T00:05:15.597372] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…\video.mp4
+[2025-12-15T00:05:15.622989] _play_next_from_queue: next_song url= title=陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…
+[2025-12-15T00:05:15.623260] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…\video.mp4
+[2025-12-15T00:05:15.624408] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…\video.mp4
+[2025-12-15T00:05:15.879198] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…\video.mp4
+[2025-12-15T00:06:43.284308] Prepared next: url=https://youtu.be/wCQfkEkePx8 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-15T00:08:22.479050] _play_next_from_queue: next_song url=https://youtu.be/wCQfkEkePx8 title=Fools Garden - Lemon Tree (Official HD Video)
+[2025-12-15T00:08:22.479660] Using prepared_next for url=https://youtu.be/wCQfkEkePx8 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-15T00:08:22.482169] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-15T00:08:22.642241] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-15T00:09:10.893040] Prepared next: url=https://youtu.be/MZUG_NdwcRg video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Lyrix World_Rhythm Of The Rain  The Cascades (Lyrics)\video.mp4
+[2025-12-15T00:11:35.195655] _play_next_from_queue: next_song url=https://youtu.be/MZUG_NdwcRg title=Rhythm Of The Rain  The Cascades (Lyrics)
+[2025-12-15T00:11:35.195996] Using prepared_next for url=https://youtu.be/MZUG_NdwcRg video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Lyrix World_Rhythm Of The Rain  The Cascades (Lyrics)\video.mp4
+[2025-12-15T00:11:35.197087] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Lyrix World_Rhythm Of The Rain  The Cascades (Lyrics)\video.mp4
+[2025-12-15T00:11:35.322738] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Lyrix World_Rhythm Of The Rain  The Cascades (Lyrics)\video.mp4
+[2025-12-15T00:12:38.269260] Prepared next: url=https://youtu.be/ZfVTPxq-8BA?si=jDcZp2Y5F6UhtveL video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Sing Along 跟住唱_陳健安 On Chan — 在錯誤的宇宙尋找愛 (Karaoke Version)  卡拉OK  K…\video.mp4
+[2025-12-15T00:14:09.977267] _play_next_from_queue: next_song url=https://youtu.be/ZfVTPxq-8BA?si=jDcZp2Y5F6UhtveL title=陳健安 On Chan — 在錯誤的宇宙尋找愛 (Karaoke Version)  卡拉OK  KTV  Sing Along 跟住唱
+[2025-12-15T00:14:09.977753] Using prepared_next for url=https://youtu.be/ZfVTPxq-8BA?si=jDcZp2Y5F6UhtveL video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Sing Along 跟住唱_陳健安 On Chan — 在錯誤的宇宙尋找愛 (Karaoke Version)  卡拉OK  K…\video.mp4
+[2025-12-15T00:14:09.979027] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Sing Along 跟住唱_陳健安 On Chan — 在錯誤的宇宙尋找愛 (Karaoke Version)  卡拉OK  K…\video.mp4
+[2025-12-15T00:14:10.155776] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Sing Along 跟住唱_陳健安 On Chan — 在錯誤的宇宙尋找愛 (Karaoke Version)  卡拉OK  K…\video.mp4
+[2025-12-15T00:15:25.787216] Prepared next: url=https://youtu.be/y0mCd9oCFxU?si=91rOrrBjXweb_d5o video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\avaero_刻在我心底的名字 KTV\video.mp4
+[2025-12-15T00:18:49.930833] _play_next_from_queue: next_song url=https://youtu.be/y0mCd9oCFxU?si=91rOrrBjXweb_d5o title=刻在我心底的名字 KTV
+[2025-12-15T00:18:49.931511] Using prepared_next for url=https://youtu.be/y0mCd9oCFxU?si=91rOrrBjXweb_d5o video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\avaero_刻在我心底的名字 KTV\video.mp4
+[2025-12-15T00:18:49.933709] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\avaero_刻在我心底的名字 KTV\video.mp4
+[2025-12-15T00:18:50.166261] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\avaero_刻在我心底的名字 KTV\video.mp4
+[2025-12-15T00:22:11.752234] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-15T00:24:35.494190] _play_next_from_queue: next_song url= title=富士山下
+[2025-12-15T00:24:35.494642] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-15T00:24:35.495807] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-15T00:24:35.707813] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-15T00:25:26.345343] Prepared next: url=https://youtu.be/yK5FoTxJuF0 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Michael Learns To Rock - Topic_That's Why You Go Away\video.mp4
+[2025-12-15T00:27:33.980508] _play_next_from_queue: next_song url=https://youtu.be/yK5FoTxJuF0 title=That's Why You Go Away
+[2025-12-15T00:27:33.980934] Using prepared_next for url=https://youtu.be/yK5FoTxJuF0 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Michael Learns To Rock - Topic_That's Why You Go Away\video.mp4
+[2025-12-15T00:27:33.982214] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Michael Learns To Rock - Topic_That's Why You Go Away\video.mp4
+[2025-12-15T00:27:34.159522] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Michael Learns To Rock - Topic_That's Why You Go Away\video.mp4
+[2025-12-15T00:27:55.704156] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_陳奕迅 Eason Chan《K歌之王》[Official MV]\video.mp4
+[2025-12-15T00:31:48.118763] _play_next_from_queue: next_song url= title=陳奕迅 Eason Chan《K歌之王》[Official MV]
+[2025-12-15T00:31:48.119180] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_陳奕迅 Eason Chan《K歌之王》[Official MV]\video.mp4
+[2025-12-15T00:31:48.120361] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_陳奕迅 Eason Chan《K歌之王》[Official MV]\video.mp4
+[2025-12-15T00:31:48.299191] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_陳奕迅 Eason Chan《K歌之王》[Official MV]\video.mp4
+[2025-12-15T00:37:17.928491] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-15T00:37:17.959265] _play_next_from_queue: next_song url= title=苦瓜 陈奕迅 (歌词版)
+[2025-12-15T00:37:17.959563] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-15T00:37:17.960683] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-15T00:37:18.179341] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-15T00:49:34.283307] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJ Lin林俊傑_林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…\video.mp4
+[2025-12-15T00:49:36.712886] _play_next_from_queue: next_song url= title=林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…
+[2025-12-15T00:49:36.713346] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJ Lin林俊傑_林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…\video.mp4
+[2025-12-15T00:49:36.714520] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJ Lin林俊傑_林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…\video.mp4
+[2025-12-15T00:49:36.994264] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJ Lin林俊傑_林俊傑 JJ Lin - 修煉愛情 Practice Love (華納official 高畫質HD官…\video.mp4
+[2025-12-25T15:41:27.178133] Prepared next: url=https://youtu.be/Q2GBzPZXR7Q?si=osEG4oZi_upy6n9I video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\AMusic Official Channel_衛蘭Janice - 男人信什麼 Official MV [Love Diaries] - 官方完整…\video.mp4
+[2025-12-25T15:41:27.211753] _play_next_from_queue: next_song url=https://youtu.be/Q2GBzPZXR7Q?si=osEG4oZi_upy6n9I title=衛蘭Janice - 男人信什麼 Official MV [Love Diaries] - 官方完整…
+[2025-12-25T15:41:27.212055] Using prepared_next for url=https://youtu.be/Q2GBzPZXR7Q?si=osEG4oZi_upy6n9I video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\AMusic Official Channel_衛蘭Janice - 男人信什麼 Official MV [Love Diaries] - 官方完整…\video.mp4
+[2025-12-25T15:41:27.214125] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\AMusic Official Channel_衛蘭Janice - 男人信什麼 Official MV [Love Diaries] - 官方完整…\video.mp4
+[2025-12-25T15:41:27.397886] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\AMusic Official Channel_衛蘭Janice - 男人信什麼 Official MV [Love Diaries] - 官方完整…\video.mp4
+[2025-12-25T15:50:11.893549] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-25T15:50:11.924505] _play_next_from_queue: next_song url= title=張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…
+[2025-12-25T15:50:11.924798] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-25T15:50:11.925890] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-25T15:50:12.208045] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_張遠 - 嘉賓（粵語版）【Lyrics Video】「如何忘掉往昔事 祝福你十指相遇 這誓言如此相似…\video.mp4
+[2025-12-25T15:54:18.411488] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\另壺沖_張遠 - 嘉賓 （繁體KTV字幕）\video.mp4
+[2025-12-25T15:54:21.932817] _play_next_from_queue: next_song url= title=張遠 - 嘉賓 （繁體KTV字幕）
+[2025-12-25T15:54:21.933623] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\另壺沖_張遠 - 嘉賓 （繁體KTV字幕）\video.mp4
+[2025-12-25T15:54:21.936377] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\另壺沖_張遠 - 嘉賓 （繁體KTV字幕）\video.mp4
+[2025-12-25T15:54:22.241558] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\另壺沖_張遠 - 嘉賓 （繁體KTV字幕）\video.mp4
+[2025-12-25T15:59:46.639936] Prepared next: url=https://youtu.be/jrDSEemFaMM?si=V9lrws5-QD1De47E video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MelodyBridge_姚曉棠張遠 - 看著我的眼睛說  Yao Xiaotang, Zhang Yuan - Look I…\video.mp4
+[2025-12-25T15:59:56.749486] _play_next_from_queue: next_song url=https://youtu.be/jrDSEemFaMM?si=V9lrws5-QD1De47E title=姚曉棠張遠 - 看著我的眼睛說  Yao Xiaotang, Zhang Yuan - Look Into My Eyes and Say【動態歌詞English SubsPinyin】
+[2025-12-25T15:59:56.750269] Using prepared_next for url=https://youtu.be/jrDSEemFaMM?si=V9lrws5-QD1De47E video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MelodyBridge_姚曉棠張遠 - 看著我的眼睛說  Yao Xiaotang, Zhang Yuan - Look I…\video.mp4
+[2025-12-25T15:59:56.752981] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MelodyBridge_姚曉棠張遠 - 看著我的眼睛說  Yao Xiaotang, Zhang Yuan - Look I…\video.mp4
+[2025-12-25T15:59:56.953962] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MelodyBridge_姚曉棠張遠 - 看著我的眼睛說  Yao Xiaotang, Zhang Yuan - Look I…\video.mp4
+[2025-12-25T16:04:26.560759] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2025-12-25T16:04:38.229233] _play_next_from_queue: next_song url= title=洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…
+[2025-12-25T16:04:38.229915] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2025-12-25T16:04:38.232738] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2025-12-25T16:04:38.439924] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2025-12-25T16:08:43.235966] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_古巨基 Leo Ku -《勁歌金曲》Official MV\video.mp4
+[2025-12-25T16:09:03.324917] _play_next_from_queue: next_song url= title=古巨基 Leo Ku -《勁歌金曲》Official MV
+[2025-12-25T16:09:03.325635] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_古巨基 Leo Ku -《勁歌金曲》Official MV\video.mp4
+[2025-12-25T16:09:03.328207] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_古巨基 Leo Ku -《勁歌金曲》Official MV\video.mp4
+[2025-12-25T16:09:03.835475] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_古巨基 Leo Ku -《勁歌金曲》Official MV\video.mp4
+[2025-12-25T16:09:04.135535] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_古巨基 Leo Ku -《勁歌金曲》Official MV\video.mp4
+[2025-12-25T16:09:18.919860] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Gareth.T_gareth.t - 用背脊唱情歌 (official video)\video.mp4
+[2025-12-25T16:20:12.701904] _play_next_from_queue: next_song url= title=gareth.t - 用背脊唱情歌 (official video)
+[2025-12-25T16:20:12.702593] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Gareth.T_gareth.t - 用背脊唱情歌 (official video)\video.mp4
+[2025-12-25T16:20:12.705245] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Gareth.T_gareth.t - 用背脊唱情歌 (official video)\video.mp4
+[2025-12-25T16:20:12.918441] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Gareth.T_gareth.t - 用背脊唱情歌 (official video)\video.mp4
+[2025-12-25T16:21:11.121030] Prepared next: url=https://youtu.be/Rhm0qGfogU4?si=MeLu4p5Yg0YiI6MT video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_方力申 Alex Fong 鄧麗欣 Stephy Tang -《好心好報》Official MV\video.mp4
+[2025-12-25T16:23:48.513700] _play_next_from_queue: next_song url=https://youtu.be/Rhm0qGfogU4?si=MeLu4p5Yg0YiI6MT title=方力申 Alex Fong 鄧麗欣 Stephy Tang -《好心好報》Official MV
+[2025-12-25T16:23:48.514477] Using prepared_next for url=https://youtu.be/Rhm0qGfogU4?si=MeLu4p5Yg0YiI6MT video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_方力申 Alex Fong 鄧麗欣 Stephy Tang -《好心好報》Official MV\video.mp4
+[2025-12-25T16:23:48.517377] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_方力申 Alex Fong 鄧麗欣 Stephy Tang -《好心好報》Official MV\video.mp4
+[2025-12-25T16:23:48.691615] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timeless Music Hong Kong天碟_方力申 Alex Fong 鄧麗欣 Stephy Tang -《好心好報》Official MV\video.mp4
+[2025-12-25T16:23:49.024003] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Dear Jane_Dear Jane - 到底發生過什麼事 What Happened (Official Music…\video.mp4
+[2025-12-25T16:27:37.982219] _play_next_from_queue: next_song url= title=Dear Jane - 到底發生過什麼事 What Happened (Official Music…
+[2025-12-25T16:27:37.983107] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Dear Jane_Dear Jane - 到底發生過什麼事 What Happened (Official Music…\video.mp4
+[2025-12-25T16:27:37.985913] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Dear Jane_Dear Jane - 到底發生過什麼事 What Happened (Official Music…\video.mp4
+[2025-12-25T16:27:38.210411] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Dear Jane_Dear Jane - 到底發生過什麼事 What Happened (Official Music…\video.mp4
+[2025-12-25T16:27:38.505441] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\avaero_刻在我心底的名字 KTV\video.mp4
+[2025-12-25T16:32:13.479575] _play_next_from_queue: next_song url= title=刻在我心底的名字 KTV
+[2025-12-25T16:32:13.480410] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\avaero_刻在我心底的名字 KTV\video.mp4
+[2025-12-25T16:32:13.483849] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\avaero_刻在我心底的名字 KTV\video.mp4
+[2025-12-25T16:32:13.756396] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\avaero_刻在我心底的名字 KTV\video.mp4
+[2025-12-25T16:33:17.016788] Prepared next: url=https://youtu.be/V9tlzSoiLYw?si=0yvhVXnVSdXAF3IF video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\VocoMaster Karaoke_張敬軒 - 留低鎖匙 @ Hinsideout演唱會2018 【1080P Live】\video.mp4
+[2025-12-25T16:38:03.779606] _play_next_from_queue: next_song url=https://youtu.be/V9tlzSoiLYw?si=0yvhVXnVSdXAF3IF title=張敬軒 - 留低鎖匙 @ Hinsideout演唱會2018 【1080P Live】
+[2025-12-25T16:38:03.780443] Using prepared_next for url=https://youtu.be/V9tlzSoiLYw?si=0yvhVXnVSdXAF3IF video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\VocoMaster Karaoke_張敬軒 - 留低鎖匙 @ Hinsideout演唱會2018 【1080P Live】\video.mp4
+[2025-12-25T16:38:03.783854] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\VocoMaster Karaoke_張敬軒 - 留低鎖匙 @ Hinsideout演唱會2018 【1080P Live】\video.mp4
+[2025-12-25T16:38:03.960949] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\VocoMaster Karaoke_張敬軒 - 留低鎖匙 @ Hinsideout演唱會2018 【1080P Live】\video.mp4
+[2025-12-25T16:38:04.151967] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Faye Wong Official Channel_王菲 - 《如風》MV\video.mp4
+[2025-12-25T16:42:14.356552] _play_next_from_queue: next_song url= title=王菲 - 《如風》MV
+[2025-12-25T16:42:14.357287] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Faye Wong Official Channel_王菲 - 《如風》MV\video.mp4
+[2025-12-25T16:42:14.359805] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Faye Wong Official Channel_王菲 - 《如風》MV\video.mp4
+[2025-12-25T16:42:14.570422] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Faye Wong Official Channel_王菲 - 《如風》MV\video.mp4
+[2025-12-25T16:42:36.513644] _play_next_from_queue: next_song url=https://youtu.be/arg-TuFxmq0?si=siryG5ZfmmJKG5uf title=Richard Sanderson - Reality (original, with lyrics)
+[2025-12-25T16:43:06.862254] Prepared next: url=https://youtu.be/arg-TuFxmq0?si=siryG5ZfmmJKG5uf video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CrayonShinChanNohara_Richard Sanderson - Reality (original, with lyrics…\video.mp4
+[2025-12-25T16:43:06.904519] _play_next_from_queue: next_song url=https://youtu.be/arg-TuFxmq0?si=siryG5ZfmmJKG5uf title=Richard Sanderson - Reality (original, with lyrics)
+[2025-12-25T16:43:06.904810] Using prepared_next for url=https://youtu.be/arg-TuFxmq0?si=siryG5ZfmmJKG5uf video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CrayonShinChanNohara_Richard Sanderson - Reality (original, with lyrics…\video.mp4
+[2025-12-25T16:43:06.906215] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CrayonShinChanNohara_Richard Sanderson - Reality (original, with lyrics…\video.mp4
+[2025-12-25T16:43:07.091749] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CrayonShinChanNohara_Richard Sanderson - Reality (original, with lyrics…\video.mp4
+[2025-12-25T16:44:09.502774] Prepared next: url=https://youtu.be/0yCiG7XpZG0?si=0VhEts30uUVguFn_ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\The Music Heaven_小阿七 - 五十年以后 (原唱 海来阿木)『我希望五十年以后，你还能在我左右。』【動態歌詞】\video.mp4
+[2025-12-25T16:47:54.388216] _play_next_from_queue: next_song url=https://youtu.be/0yCiG7XpZG0?si=0VhEts30uUVguFn_ title=小阿七 - 五十年以后 (原唱 海来阿木)『我希望五十年以后，你还能在我左右。』【動態歌詞】
+[2025-12-25T16:47:54.388817] Using prepared_next for url=https://youtu.be/0yCiG7XpZG0?si=0VhEts30uUVguFn_ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\The Music Heaven_小阿七 - 五十年以后 (原唱 海来阿木)『我希望五十年以后，你还能在我左右。』【動態歌詞】\video.mp4
+[2025-12-25T16:47:54.391824] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\The Music Heaven_小阿七 - 五十年以后 (原唱 海来阿木)『我希望五十年以后，你还能在我左右。』【動態歌詞】\video.mp4
+[2025-12-25T16:47:54.586701] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\The Music Heaven_小阿七 - 五十年以后 (原唱 海来阿木)『我希望五十年以后，你还能在我左右。』【動態歌詞】\video.mp4
+[2025-12-25T16:47:54.911772] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJY Music_汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕\video.mp4
+[2025-12-25T16:52:38.698052] _play_next_from_queue: next_song url= title=汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕
+[2025-12-25T16:52:38.698810] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJY Music_汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕\video.mp4
+[2025-12-25T16:52:38.701680] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJY Music_汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕\video.mp4
+[2025-12-25T16:52:38.929201] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJY Music_汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕\video.mp4
+[2025-12-25T16:52:39.994329] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-25T16:52:42.745752] _play_next_from_queue: next_song url= title=林家謙 Terence Lam 《一人之境》 Solitude (Official MV)
+[2025-12-25T16:52:42.746652] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-25T16:52:42.749728] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-25T16:52:42.923332] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《一人之境》 Solitude (Official MV)\video.mp4
+[2025-12-25T16:56:36.764029] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\f a_林峯-愛不疚 MV 鍾嘉欣與林峯版(80,90後電視回憶)\video.mp4
+[2025-12-25T16:56:36.794117] _play_next_from_queue: next_song url= title=林峯-愛不疚 MV 鍾嘉欣與林峯版(80,90後電視回憶)
+[2025-12-25T16:56:36.794578] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\f a_林峯-愛不疚 MV 鍾嘉欣與林峯版(80,90後電視回憶)\video.mp4
+[2025-12-25T16:56:36.795847] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\f a_林峯-愛不疚 MV 鍾嘉欣與林峯版(80,90後電視回憶)\video.mp4
+[2025-12-25T16:56:36.977880] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\f a_林峯-愛不疚 MV 鍾嘉欣與林峯版(80,90後電視回憶)\video.mp4
+[2025-12-25T17:01:50.935154] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timon Chu 朱主席_從不喜歡孤單一個 - 彭家麗、朱主席\video.mp4
+[2025-12-25T17:01:50.962801] _play_next_from_queue: next_song url= title=從不喜歡孤單一個 - 彭家麗、朱主席
+[2025-12-25T17:01:50.963089] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timon Chu 朱主席_從不喜歡孤單一個 - 彭家麗、朱主席\video.mp4
+[2025-12-25T17:01:50.966284] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timon Chu 朱主席_從不喜歡孤單一個 - 彭家麗、朱主席\video.mp4
+[2025-12-25T17:01:51.187019] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Timon Chu 朱主席_從不喜歡孤單一個 - 彭家麗、朱主席\video.mp4
+[2025-12-25T17:04:09.794991] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-25T17:06:27.570191] _play_next_from_queue: next_song url= title=富士山下
+[2025-12-25T17:06:27.570880] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-25T17:06:27.573358] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-25T17:06:27.792687] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳奕迅_富士山下\video.mp4
+[2025-12-25T17:07:38.045818] Prepared next: url=https://youtu.be/kTp7zS2nsC4 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\K歌王迷你KTV_張敬軒 斷點 KTV 高清修復版\video.mp4
+[2025-12-25T17:10:47.921687] _play_next_from_queue: next_song url=https://youtu.be/kTp7zS2nsC4 title=張敬軒 斷點 KTV 高清修復版
+[2025-12-25T17:10:47.922601] Using prepared_next for url=https://youtu.be/kTp7zS2nsC4 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\K歌王迷你KTV_張敬軒 斷點 KTV 高清修復版\video.mp4
+[2025-12-25T17:10:47.926501] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\K歌王迷你KTV_張敬軒 斷點 KTV 高清修復版\video.mp4
+[2025-12-25T17:10:48.110038] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\K歌王迷你KTV_張敬軒 斷點 KTV 高清修復版\video.mp4
+[2025-12-25T17:11:45.245184] Prepared next: url=https://youtu.be/htk6MRjmcnQ?si=xbSzSooe1Xsk0dCn video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\7clouds_Huntrix - Golden (Lyrics) KPop Demon Hunters\video.mp4
+[2025-12-25T17:14:55.293942] _play_next_from_queue: next_song url=https://youtu.be/htk6MRjmcnQ?si=xbSzSooe1Xsk0dCn title=Huntrix - Golden (Lyrics) KPop Demon Hunters
+[2025-12-25T17:14:55.294631] Using prepared_next for url=https://youtu.be/htk6MRjmcnQ?si=xbSzSooe1Xsk0dCn video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\7clouds_Huntrix - Golden (Lyrics) KPop Demon Hunters\video.mp4
+[2025-12-25T17:14:55.297586] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\7clouds_Huntrix - Golden (Lyrics) KPop Demon Hunters\video.mp4
+[2025-12-25T17:14:55.450608] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\7clouds_Huntrix - Golden (Lyrics) KPop Demon Hunters\video.mp4
+[2025-12-25T17:15:49.888742] Prepared next: url=https://youtu.be/3f0yjEsN-4M video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\華語高清KTV音樂_【經典老歌】林俊傑 - 江南（KTV歌詞版）\video.mp4
+[2025-12-25T17:18:04.436682] _play_next_from_queue: next_song url=https://youtu.be/3f0yjEsN-4M title=【經典老歌】林俊傑 - 江南（KTV歌詞版）
+[2025-12-25T17:18:04.437337] Using prepared_next for url=https://youtu.be/3f0yjEsN-4M video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\華語高清KTV音樂_【經典老歌】林俊傑 - 江南（KTV歌詞版）\video.mp4
+[2025-12-25T17:18:04.439844] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\華語高清KTV音樂_【經典老歌】林俊傑 - 江南（KTV歌詞版）\video.mp4
+[2025-12-25T17:18:04.620302] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\華語高清KTV音樂_【經典老歌】林俊傑 - 江南（KTV歌詞版）\video.mp4
+[2025-12-25T17:18:49.437155] Prepared next: url=https://youtu.be/jft61nrPaoM?si=iUPaXzwaXrN-67mA video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Media Asia Film 寰亞電影_《無間道》20 週年 MV—《被遺忘的時光》\video.mp4
+[2025-12-25T17:22:30.733578] _play_next_from_queue: next_song url=https://youtu.be/jft61nrPaoM?si=iUPaXzwaXrN-67mA title=《無間道》20 週年 MV—《被遺忘的時光》
+[2025-12-25T17:22:30.734329] Using prepared_next for url=https://youtu.be/jft61nrPaoM?si=iUPaXzwaXrN-67mA video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Media Asia Film 寰亞電影_《無間道》20 週年 MV—《被遺忘的時光》\video.mp4
+[2025-12-25T17:22:30.737756] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Media Asia Film 寰亞電影_《無間道》20 週年 MV—《被遺忘的時光》\video.mp4
+[2025-12-25T17:22:30.868640] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Media Asia Film 寰亞電影_《無間道》20 週年 MV—《被遺忘的時光》\video.mp4
+[2025-12-25T17:23:17.902826] Prepared next: url=https://youtu.be/_Yc69dd9xnY video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jwee Karaoke Music - 卡拉OK背景音乐_邓紫棋 泡沫 Pinyin Karaoke 拼音卡拉OK伴奏 KTV with Pinyin Lyr…\video.mp4
+[2025-12-25T17:24:23.573736] _play_next_from_queue: next_song url=https://youtu.be/_Yc69dd9xnY title=邓紫棋 泡沫 Pinyin Karaoke 拼音卡拉OK伴奏 KTV with Pinyin Lyrics
+[2025-12-25T17:24:23.574664] Using prepared_next for url=https://youtu.be/_Yc69dd9xnY video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jwee Karaoke Music - 卡拉OK背景音乐_邓紫棋 泡沫 Pinyin Karaoke 拼音卡拉OK伴奏 KTV with Pinyin Lyr…\video.mp4
+[2025-12-25T17:24:23.577599] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jwee Karaoke Music - 卡拉OK背景音乐_邓紫棋 泡沫 Pinyin Karaoke 拼音卡拉OK伴奏 KTV with Pinyin Lyr…\video.mp4
+[2025-12-25T17:24:23.767343] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jwee Karaoke Music - 卡拉OK背景音乐_邓紫棋 泡沫 Pinyin Karaoke 拼音卡拉OK伴奏 KTV with Pinyin Lyr…\video.mp4
+[2025-12-25T17:25:21.541188] Prepared next: url=https://music.youtube.com/watch?v=Bv115M-BvQg&si=R4Doll26HnmvRbsZ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Ren Ran - Topic_无人之岛\video.mp4
+[2025-12-25T17:28:45.257149] _play_next_from_queue: next_song url=https://music.youtube.com/watch?v=Bv115M-BvQg&si=R4Doll26HnmvRbsZ title=无人之岛
+[2025-12-25T17:28:45.257814] Using prepared_next for url=https://music.youtube.com/watch?v=Bv115M-BvQg&si=R4Doll26HnmvRbsZ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Ren Ran - Topic_无人之岛\video.mp4
+[2025-12-25T17:28:45.261267] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Ren Ran - Topic_无人之岛\video.mp4
+[2025-12-25T17:28:45.449205] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Ren Ran - Topic_无人之岛\video.mp4
+[2025-12-25T17:29:44.244274] Prepared next: url=https://youtu.be/z6PWyTYtjVI video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\湖南国际频道 Hunan TV International Official Channel_#邓紫棋 一首《泡沫》惊艳全场！\video.mp4
+[2025-12-25T17:33:31.635944] _play_next_from_queue: next_song url=https://youtu.be/z6PWyTYtjVI title=#邓紫棋 一首《泡沫》惊艳全场！
+[2025-12-25T17:33:31.636616] Using prepared_next for url=https://youtu.be/z6PWyTYtjVI video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\湖南国际频道 Hunan TV International Official Channel_#邓紫棋 一首《泡沫》惊艳全场！\video.mp4
+[2025-12-25T17:33:31.639503] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\湖南国际频道 Hunan TV International Official Channel_#邓紫棋 一首《泡沫》惊艳全场！\video.mp4
+[2025-12-25T17:33:31.835756] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\湖南国际频道 Hunan TV International Official Channel_#邓紫棋 一首《泡沫》惊艳全场！\video.mp4
+[2025-12-25T17:33:49.372252] _play_next_from_queue: next_song url=https://youtu.be/yFzQRMXEuqU?si=WEeK00E4_cyyuqZK title=大籽 - 白月光與硃砂痣【動態歌詞】「白月光在照耀 你才想起她的好」♪
+[2025-12-25T17:34:27.206009] Prepared next: url=https://youtu.be/yFzQRMXEuqU?si=WEeK00E4_cyyuqZK video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_大籽 - 白月光與硃砂痣【動態歌詞】「白月光在照耀 你才想起她的好」♪\video.mp4
+[2025-12-25T17:34:27.255545] _play_next_from_queue: next_song url=https://youtu.be/yFzQRMXEuqU?si=WEeK00E4_cyyuqZK title=大籽 - 白月光與硃砂痣【動態歌詞】「白月光在照耀 你才想起她的好」♪
+[2025-12-25T17:34:27.255844] Using prepared_next for url=https://youtu.be/yFzQRMXEuqU?si=WEeK00E4_cyyuqZK video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_大籽 - 白月光與硃砂痣【動態歌詞】「白月光在照耀 你才想起她的好」♪\video.mp4
+[2025-12-25T17:34:27.259119] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_大籽 - 白月光與硃砂痣【動態歌詞】「白月光在照耀 你才想起她的好」♪\video.mp4
+[2025-12-25T17:34:27.411624] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Angelic Music World_大籽 - 白月光與硃砂痣【動態歌詞】「白月光在照耀 你才想起她的好」♪\video.mp4
+[2025-12-25T17:34:27.683739] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-25T17:37:28.419711] _play_next_from_queue: next_song url= title=苦瓜 陈奕迅 (歌词版)
+[2025-12-25T17:37:28.420352] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-25T17:37:28.423977] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-25T17:37:28.646871] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GM Lyric_苦瓜 陈奕迅 (歌词版)\video.mp4
+[2025-12-25T17:38:27.663039] Prepared next: url=https://youtu.be/3q2IXr6fjh0 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\OllyMursVEVO_Olly Murs - That Girl (Lyric Video)\video.mp4
+[2025-12-25T17:42:07.818655] _play_next_from_queue: next_song url=https://youtu.be/3q2IXr6fjh0 title=Olly Murs - That Girl (Lyric Video)
+[2025-12-25T17:42:07.819083] Using prepared_next for url=https://youtu.be/3q2IXr6fjh0 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\OllyMursVEVO_Olly Murs - That Girl (Lyric Video)\video.mp4
+[2025-12-25T17:42:07.821178] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\OllyMursVEVO_Olly Murs - That Girl (Lyric Video)\video.mp4
+[2025-12-25T17:42:07.955870] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\OllyMursVEVO_Olly Murs - That Girl (Lyric Video)\video.mp4
+[2025-12-25T17:43:01.861952] Prepared next: url=https://music.youtube.com/watch?v=Gx-SOE302Ys&si=arc0-VI4i8iCI6oY video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jay Chou - Topic_愛你沒差\video.mp4
+[2025-12-25T17:45:08.550186] _play_next_from_queue: next_song url=https://music.youtube.com/watch?v=Gx-SOE302Ys&si=arc0-VI4i8iCI6oY title=愛你沒差
+[2025-12-25T17:45:08.550736] Using prepared_next for url=https://music.youtube.com/watch?v=Gx-SOE302Ys&si=arc0-VI4i8iCI6oY video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jay Chou - Topic_愛你沒差\video.mp4
+[2025-12-25T17:45:08.552705] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jay Chou - Topic_愛你沒差\video.mp4
+[2025-12-25T17:45:08.729591] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jay Chou - Topic_愛你沒差\video.mp4
+[2025-12-25T17:45:09.035051] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)\video.mp4
+[2025-12-25T17:49:32.220546] _play_next_from_queue: next_song url= title=張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)
+[2025-12-25T17:49:32.221363] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)\video.mp4
+[2025-12-25T17:49:32.224432] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)\video.mp4
+[2025-12-25T17:49:32.479698] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 餘震 (Hins Live in Passion 2014)\video.mp4
+[2025-12-25T17:50:42.554275] Prepared next: url=https://youtu.be/m1LcaTLwStU video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Boba Beats_馬健濤 - 人間疾苦『我受夠了憋屈的生活 我嘗盡了人間的折磨』【Lyrics Video】\video.mp4
+[2025-12-25T17:53:24.578861] _play_next_from_queue: next_song url=https://youtu.be/m1LcaTLwStU title=馬健濤 - 人間疾苦『我受夠了憋屈的生活 我嘗盡了人間的折磨』【Lyrics Video】
+[2025-12-25T17:53:24.579199] Using prepared_next for url=https://youtu.be/m1LcaTLwStU video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Boba Beats_馬健濤 - 人間疾苦『我受夠了憋屈的生活 我嘗盡了人間的折磨』【Lyrics Video】\video.mp4
+[2025-12-25T17:53:24.580726] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Boba Beats_馬健濤 - 人間疾苦『我受夠了憋屈的生活 我嘗盡了人間的折磨』【Lyrics Video】\video.mp4
+[2025-12-25T17:53:24.742400] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Boba Beats_馬健濤 - 人間疾苦『我受夠了憋屈的生活 我嘗盡了人間的折磨』【Lyrics Video】\video.mp4
+[2025-12-25T17:54:14.475885] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\晴天林 SunnyLam_《阿伯》晴天林｜屯門娜娜結婚了(原曲：阿牛 - 陳奕迅)\video.mp4
+[2025-12-25T17:54:19.223184] Prepared next: url=https://music.youtube.com/watch?v=uz3apfp4DPc&si=_QYeBhA453ezz15z video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Eason Chan - Topic_阿牛\video.mp4
+[2025-12-25T17:57:16.061958] _play_next_from_queue: next_song url= title=《阿伯》晴天林｜屯門娜娜結婚了(原曲：阿牛 - 陳奕迅)
+[2025-12-25T17:57:16.069521] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\晴天林 SunnyLam_《阿伯》晴天林｜屯門娜娜結婚了(原曲：阿牛 - 陳奕迅)\video.mp4
+[2025-12-25T17:57:16.107173] _play_next_from_queue: next_song url= title=《阿伯》晴天林｜屯門娜娜結婚了(原曲：阿牛 - 陳奕迅)
+[2025-12-25T17:57:16.107451] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\晴天林 SunnyLam_《阿伯》晴天林｜屯門娜娜結婚了(原曲：阿牛 - 陳奕迅)\video.mp4
+[2025-12-25T17:57:16.109333] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\晴天林 SunnyLam_《阿伯》晴天林｜屯門娜娜結婚了(原曲：阿牛 - 陳奕迅)\video.mp4
+[2025-12-25T17:57:16.274899] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\晴天林 SunnyLam_《阿伯》晴天林｜屯門娜娜結婚了(原曲：阿牛 - 陳奕迅)\video.mp4
+[2025-12-25T17:57:16.635653] Prepared next: url=https://music.youtube.com/watch?v=uz3apfp4DPc&si=_QYeBhA453ezz15z video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Eason Chan - Topic_阿牛\video.mp4
+[2025-12-25T18:00:36.118567] _play_next_from_queue: next_song url=https://music.youtube.com/watch?v=uz3apfp4DPc&si=_QYeBhA453ezz15z title=阿牛
+[2025-12-25T18:00:36.119285] Using prepared_next for url=https://music.youtube.com/watch?v=uz3apfp4DPc&si=_QYeBhA453ezz15z video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Eason Chan - Topic_阿牛\video.mp4
+[2025-12-25T18:00:36.121000] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Eason Chan - Topic_阿牛\video.mp4
+[2025-12-25T18:00:36.261976] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Eason Chan - Topic_阿牛\video.mp4
+[2025-12-25T18:00:39.322717] _play_next_from_queue: next_song url=https://youtu.be/FDjQPpL5X_U title=韩小欠 《 无人懂我的伤悲 》 wu ren dong wo de shang bei
+[2025-12-25T18:01:35.405130] Prepared next: url=https://youtu.be/FDjQPpL5X_U video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\karaoke LR_韩小欠 《 无人懂我的伤悲 》 wu ren dong wo de shang bei\video.mp4
+[2025-12-25T18:01:35.450581] _play_next_from_queue: next_song url=https://youtu.be/FDjQPpL5X_U title=韩小欠 《 无人懂我的伤悲 》 wu ren dong wo de shang bei
+[2025-12-25T18:01:35.450882] Using prepared_next for url=https://youtu.be/FDjQPpL5X_U video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\karaoke LR_韩小欠 《 无人懂我的伤悲 》 wu ren dong wo de shang bei\video.mp4
+[2025-12-25T18:01:35.453067] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\karaoke LR_韩小欠 《 无人懂我的伤悲 》 wu ren dong wo de shang bei\video.mp4
+[2025-12-25T18:01:35.645815] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\karaoke LR_韩小欠 《 无人懂我的伤悲 》 wu ren dong wo de shang bei\video.mp4
+[2025-12-25T18:01:35.718024] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…\video.mp4
+[2025-12-25T18:06:36.695852] _play_next_from_queue: next_song url= title=陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…
+[2025-12-25T18:06:36.696562] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…\video.mp4
+[2025-12-25T18:06:36.699651] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…\video.mp4
+[2025-12-25T18:06:36.974162] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 好好掛住 Miss You Properly (Official Mus…\video.mp4
+[2025-12-25T18:07:43.935124] Prepared next: url=https://music.youtube.com/watch?v=OFH0cSgpLGA&si=2XL1ZF4HgaDDoZVU video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Peculiar音樂_【高音質】陳奕迅-心的距離\video.mp4
+[2025-12-25T18:09:41.798424] _play_next_from_queue: next_song url=https://music.youtube.com/watch?v=OFH0cSgpLGA&si=2XL1ZF4HgaDDoZVU title=【高音質】陳奕迅-心的距離
+[2025-12-25T18:09:41.799021] Using prepared_next for url=https://music.youtube.com/watch?v=OFH0cSgpLGA&si=2XL1ZF4HgaDDoZVU video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Peculiar音樂_【高音質】陳奕迅-心的距離\video.mp4
+[2025-12-25T18:09:41.801683] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Peculiar音樂_【高音質】陳奕迅-心的距離\video.mp4
+[2025-12-25T18:09:42.022361] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Peculiar音樂_【高音質】陳奕迅-心的距離\video.mp4
+[2025-12-25T18:10:40.731923] Prepared next: url=https://youtu.be/n7OVvBilvcs video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HMacU2_The Script - Hall Of Fame Lyrics\video.mp4
+[2025-12-25T18:11:40.488247] _play_next_from_queue: next_song url=https://youtu.be/n7OVvBilvcs title=The Script - Hall Of Fame Lyrics
+[2025-12-25T18:11:40.489052] Using prepared_next for url=https://youtu.be/n7OVvBilvcs video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HMacU2_The Script - Hall Of Fame Lyrics\video.mp4
+[2025-12-25T18:11:40.491962] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HMacU2_The Script - Hall Of Fame Lyrics\video.mp4
+[2025-12-25T18:11:40.651067] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HMacU2_The Script - Hall Of Fame Lyrics\video.mp4
+[2025-12-25T18:12:31.607851] Prepared next: url=https://youtu.be/9PmLQXLSBoY?si=AblX3jzrqmv6K1ik video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CL9528_[呀!!!] 鄭嘉穎 - 雪下思 (《鐵馬尋橋》主題曲)\video.mp4
+[2025-12-25T18:15:01.248921] _play_next_from_queue: next_song url=https://youtu.be/9PmLQXLSBoY?si=AblX3jzrqmv6K1ik title=[呀!!!] 鄭嘉穎 - 雪下思 (《鐵馬尋橋》主題曲)
+[2025-12-25T18:15:01.249305] Using prepared_next for url=https://youtu.be/9PmLQXLSBoY?si=AblX3jzrqmv6K1ik video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CL9528_[呀!!!] 鄭嘉穎 - 雪下思 (《鐵馬尋橋》主題曲)\video.mp4
+[2025-12-25T18:15:01.251668] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CL9528_[呀!!!] 鄭嘉穎 - 雪下思 (《鐵馬尋橋》主題曲)\video.mp4
+[2025-12-25T18:15:01.388854] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CL9528_[呀!!!] 鄭嘉穎 - 雪下思 (《鐵馬尋橋》主題曲)\video.mp4
+[2025-12-25T18:15:53.542392] Prepared next: url=https://youtu.be/JerQdxMrJHI?si=PsEuqozvcnZ4CW6X video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\One Cool Film_古天樂 林峯【天命最高】(電影《尋秦記》主題曲)\video.mp4
+[2025-12-25T18:18:11.300738] _play_next_from_queue: next_song url=https://youtu.be/JerQdxMrJHI?si=PsEuqozvcnZ4CW6X title=古天樂 林峯【天命最高】(電影《尋秦記》主題曲)
+[2025-12-25T18:18:11.301822] Using prepared_next for url=https://youtu.be/JerQdxMrJHI?si=PsEuqozvcnZ4CW6X video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\One Cool Film_古天樂 林峯【天命最高】(電影《尋秦記》主題曲)\video.mp4
+[2025-12-25T18:18:11.305615] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\One Cool Film_古天樂 林峯【天命最高】(電影《尋秦記》主題曲)\video.mp4
+[2025-12-25T18:18:11.453732] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\One Cool Film_古天樂 林峯【天命最高】(電影《尋秦記》主題曲)\video.mp4
+[2025-12-25T18:18:11.688017] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\WilfredLauVEVO_Wilfred Lau - 劉浩龍 -《思覺失調》MV\video.mp4
+[2025-12-25T18:21:42.978546] _play_next_from_queue: next_song url= title=Wilfred Lau - 劉浩龍 -《思覺失調》MV
+[2025-12-25T18:21:42.979234] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\WilfredLauVEVO_Wilfred Lau - 劉浩龍 -《思覺失調》MV\video.mp4
+[2025-12-25T18:21:42.982656] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\WilfredLauVEVO_Wilfred Lau - 劉浩龍 -《思覺失調》MV\video.mp4
+[2025-12-25T18:21:43.171678] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\WilfredLauVEVO_Wilfred Lau - 劉浩龍 -《思覺失調》MV\video.mp4
+[2025-12-25T18:24:47.484896] _play_next_from_queue: next_song url=https://youtu.be/AGPinGZ-eTg title=League of Legends - Phoenix (Lyrics) ft. Cailin Russo, Chrissy Costanza
+[2025-12-25T18:26:06.832233] _play_next_from_queue: next_song url=https://youtu.be/AGPinGZ-eTg title=League of Legends - Phoenix (Lyrics) ft. Cailin Russo, Chrissy Costanza
+[2025-12-25T18:26:06.871004] Prepared next: url=https://youtu.be/AGPinGZ-eTg video=None
+[2025-12-25T18:26:06.901256] _play_next_from_queue: next_song url=https://youtu.be/AGPinGZ-eTg title=League of Legends - Phoenix (Lyrics) ft. Cailin Russo, Chrissy Costanza
+[2025-12-25T18:26:06.901537] Using prepared_next for url=https://youtu.be/AGPinGZ-eTg video=None
+[2025-12-25T18:26:06.905440] Passing video_path to player: None
+[2025-12-25T18:26:07.169647] Downloading video for url=https://youtu.be/AGPinGZ-eTg to C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Rare Vibes_League of Legends - Phoenix (Lyrics) ft. Cailin Ru…\video.mp4
+[2025-12-25T18:26:17.630440] Video downloaded: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Rare Vibes_League of Legends - Phoenix (Lyrics) ft. Cailin Ru…\video.mp4
+[2025-12-25T18:26:17.630937] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Rare Vibes_League of Legends - Phoenix (Lyrics) ft. Cailin Ru…\video.mp4
+[2025-12-25T18:27:33.897311] Prepared next: url=https://youtu.be/HQmPic_7DFI?si=iNJxhC1FZpTVaXXz video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 仍然是那個少年 still you still me (Official…\video.mp4
+[2025-12-25T18:29:35.070999] _play_next_from_queue: next_song url=https://youtu.be/HQmPic_7DFI?si=iNJxhC1FZpTVaXXz title=陳健安 On Chan - 仍然是那個少年 still you still me (Official Music Video)
+[2025-12-25T18:29:35.071732] Using prepared_next for url=https://youtu.be/HQmPic_7DFI?si=iNJxhC1FZpTVaXXz video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 仍然是那個少年 still you still me (Official…\video.mp4
+[2025-12-25T18:29:35.075334] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 仍然是那個少年 still you still me (Official…\video.mp4
+[2025-12-25T18:29:35.293993] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\On Chan 陳健安_陳健安 On Chan - 仍然是那個少年 still you still me (Official…\video.mp4
+[2025-12-25T18:30:42.206117] Prepared next: url=https://youtu.be/q25YWawBKhM video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\lucky_相逢何必曾相識 蔣志光 韋綺姍 MV 1080P\video.mp4
+[2025-12-25T18:33:34.877755] _play_next_from_queue: next_song url=https://youtu.be/q25YWawBKhM title=相逢何必曾相識 蔣志光 韋綺姍 MV 1080P
+[2025-12-25T18:33:34.878437] Using prepared_next for url=https://youtu.be/q25YWawBKhM video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\lucky_相逢何必曾相識 蔣志光 韋綺姍 MV 1080P\video.mp4
+[2025-12-25T18:33:34.881802] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\lucky_相逢何必曾相識 蔣志光 韋綺姍 MV 1080P\video.mp4
+[2025-12-25T18:33:35.101432] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\lucky_相逢何必曾相識 蔣志光 韋綺姍 MV 1080P\video.mp4
+[2025-12-25T18:34:44.592533] Prepared next: url=https://youtu.be/Lhel0tzHE08 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GEMblog_G.E.M.【再見 GOODBYE】Official MV [HD] 鄧紫棋\video.mp4
+[2025-12-25T18:37:41.631100] _play_next_from_queue: next_song url=https://youtu.be/Lhel0tzHE08 title=G.E.M.【再見 GOODBYE】Official MV [HD] 鄧紫棋
+[2025-12-25T18:37:41.631579] Using prepared_next for url=https://youtu.be/Lhel0tzHE08 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GEMblog_G.E.M.【再見 GOODBYE】Official MV [HD] 鄧紫棋\video.mp4
+[2025-12-25T18:37:41.634529] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GEMblog_G.E.M.【再見 GOODBYE】Official MV [HD] 鄧紫棋\video.mp4
+[2025-12-25T18:37:41.802157] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\GEMblog_G.E.M.【再見 GOODBYE】Official MV [HD] 鄧紫棋\video.mp4
+[2025-12-25T18:40:00.540339] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 反對無效 Overruled (Official Music Video)\video.mp4
+[2025-12-25T18:41:18.357124] _play_next_from_queue: next_song url= title=MC 張天賦 - 反對無效 Overruled (Official Music Video)
+[2025-12-25T18:41:18.357856] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 反對無效 Overruled (Official Music Video)\video.mp4
+[2025-12-25T18:41:18.361580] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 反對無效 Overruled (Official Music Video)\video.mp4
+[2025-12-25T18:41:18.561170] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 反對無效 Overruled (Official Music Video)\video.mp4
+[2025-12-25T18:41:18.870315] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Dear Jane_Dear Jane - 到底發生過什麼事 What Happened (Official Music…\video.mp4
+[2025-12-25T18:42:27.387427] _play_next_from_queue: next_song url= title=Dear Jane - 到底發生過什麼事 What Happened (Official Music…
+[2025-12-25T18:42:27.387891] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Dear Jane_Dear Jane - 到底發生過什麼事 What Happened (Official Music…\video.mp4
+[2025-12-25T18:42:27.389567] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Dear Jane_Dear Jane - 到底發生過什麼事 What Happened (Official Music…\video.mp4
+[2025-12-25T18:42:27.578411] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Dear Jane_Dear Jane - 到底發生過什麼事 What Happened (Official Music…\video.mp4
+[2025-12-25T18:43:22.317283] Prepared next: url=https://youtu.be/9x0bYZ0AyHg video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jessie's Lounge_Taylor Swift - Last Christmas (Lyrics)\video.mp4
+[2025-12-25T18:43:50.297528] _play_next_from_queue: next_song url=https://youtu.be/9x0bYZ0AyHg title=Taylor Swift - Last Christmas (Lyrics)
+[2025-12-25T18:43:50.298221] Using prepared_next for url=https://youtu.be/9x0bYZ0AyHg video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jessie's Lounge_Taylor Swift - Last Christmas (Lyrics)\video.mp4
+[2025-12-25T18:43:50.301249] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jessie's Lounge_Taylor Swift - Last Christmas (Lyrics)\video.mp4
+[2025-12-25T18:43:50.442969] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jessie's Lounge_Taylor Swift - Last Christmas (Lyrics)\video.mp4
+[2025-12-25T18:44:57.719627] Prepared next: url=https://youtu.be/IvrLJDlzTus?si=DsZVjsQyrLLaCmuc video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 拜託 Please (Official Music Video)\video.mp4
+[2025-12-25T18:47:19.284630] _play_next_from_queue: next_song url=https://youtu.be/IvrLJDlzTus?si=DsZVjsQyrLLaCmuc title=洪嘉豪 Hung Kaho - 拜託 Please (Official Music Video)
+[2025-12-25T18:47:19.285305] Using prepared_next for url=https://youtu.be/IvrLJDlzTus?si=DsZVjsQyrLLaCmuc video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 拜託 Please (Official Music Video)\video.mp4
+[2025-12-25T18:47:19.289164] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 拜託 Please (Official Music Video)\video.mp4
+[2025-12-25T18:47:19.484862] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 拜託 Please (Official Music Video)\video.mp4
+[2025-12-25T18:48:18.796090] Prepared next: url=https://youtu.be/NiHF-cwto_A video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\浙江卫视音乐频道 ZJSTV Music Channel - 欢迎订阅 -_林俊杰《输了你赢了世界又如何》 轻轻松松飙高音 绝对不可错过的神级live现场！《梦想的声音2》EP…\video.mp4
+[2025-12-25T18:51:44.915059] _play_next_from_queue: next_song url=https://youtu.be/NiHF-cwto_A title=林俊杰《输了你赢了世界又如何》 轻轻松松飙高音 绝对不可错过的神级live现场！《梦想的声音2》EP4  纯享 ZJSTV
+[2025-12-25T18:51:44.915758] Using prepared_next for url=https://youtu.be/NiHF-cwto_A video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\浙江卫视音乐频道 ZJSTV Music Channel - 欢迎订阅 -_林俊杰《输了你赢了世界又如何》 轻轻松松飙高音 绝对不可错过的神级live现场！《梦想的声音2》EP…\video.mp4
+[2025-12-25T18:51:44.918966] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\浙江卫视音乐频道 ZJSTV Music Channel - 欢迎订阅 -_林俊杰《输了你赢了世界又如何》 轻轻松松飙高音 绝对不可错过的神级live现场！《梦想的声音2》EP…\video.mp4
+[2025-12-25T18:51:45.124019] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\浙江卫视音乐频道 ZJSTV Music Channel - 欢迎订阅 -_林俊杰《输了你赢了世界又如何》 轻轻松松飙高音 绝对不可错过的神级live现场！《梦想的声音2》EP…\video.mp4
+[2025-12-25T18:52:47.188738] Prepared next: url=https://youtu.be/w2TKf1U5ZEo?si=n8UtLy-iliK3IuJ4 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ToNick_ToNick - 聖誕歌 Last Christmas MV\video.mp4
+[2025-12-25T18:56:27.592186] _play_next_from_queue: next_song url=https://youtu.be/w2TKf1U5ZEo?si=n8UtLy-iliK3IuJ4 title=ToNick - 聖誕歌 Last Christmas MV
+[2025-12-25T18:56:27.592822] Using prepared_next for url=https://youtu.be/w2TKf1U5ZEo?si=n8UtLy-iliK3IuJ4 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ToNick_ToNick - 聖誕歌 Last Christmas MV\video.mp4
+[2025-12-25T18:56:27.596138] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ToNick_ToNick - 聖誕歌 Last Christmas MV\video.mp4
+[2025-12-25T18:56:27.770644] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ToNick_ToNick - 聖誕歌 Last Christmas MV\video.mp4
+[2025-12-25T18:57:16.567746] Prepared next: url=https://youtu.be/Ash3MpGRI9E?si=3gzpF_muqPzb9iJu video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Sandaru Sathsara_Jingle Bells  Sandaru Sathsara\video.mp4
+[2025-12-25T19:00:22.124435] _play_next_from_queue: next_song url=https://youtu.be/Ash3MpGRI9E?si=3gzpF_muqPzb9iJu title=Jingle Bells  Sandaru Sathsara
+[2025-12-25T19:00:22.125332] Using prepared_next for url=https://youtu.be/Ash3MpGRI9E?si=3gzpF_muqPzb9iJu video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Sandaru Sathsara_Jingle Bells  Sandaru Sathsara\video.mp4
+[2025-12-25T19:00:22.130438] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Sandaru Sathsara_Jingle Bells  Sandaru Sathsara\video.mp4
+[2025-12-25T19:00:22.272974] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Sandaru Sathsara_Jingle Bells  Sandaru Sathsara\video.mp4
+[2025-12-25T19:00:22.564740] Prepared next: url=https://youtu.be/07rwyBuh2Mg?si=1FTtWAUSuB4mQ2pT video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 說謊者 Liar (Official Music Video)\video.mp4
+[2025-12-25T19:03:07.409888] _play_next_from_queue: next_song url=https://youtu.be/07rwyBuh2Mg?si=1FTtWAUSuB4mQ2pT title=MC 張天賦 - 說謊者 Liar (Official Music Video)
+[2025-12-25T19:03:07.410606] Using prepared_next for url=https://youtu.be/07rwyBuh2Mg?si=1FTtWAUSuB4mQ2pT video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 說謊者 Liar (Official Music Video)\video.mp4
+[2025-12-25T19:03:07.414280] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 說謊者 Liar (Official Music Video)\video.mp4
+[2025-12-25T19:03:07.623815] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MC 張天賦_MC 張天賦 - 說謊者 Liar (Official Music Video)\video.mp4
+[2025-12-25T19:04:02.475016] Prepared next: url=https://youtu.be/RAhwmX-RN00 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2025-12-25T19:04:39.327100] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJY Music_汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕\video.mp4
+[2025-12-25T19:04:48.818615] _play_next_from_queue: next_song url= title=汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕
+[2025-12-25T19:04:48.819263] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJY Music_汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕\video.mp4
+[2025-12-25T19:04:48.821931] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJY Music_汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕\video.mp4
+[2025-12-25T19:04:49.012345] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\JJY Music_汪峰 -《汪峰經典歌曲新編精選集》- 存在｜CC歌詞字幕\video.mp4
+[2025-12-25T19:04:49.230131] Prepared next: url=https://youtu.be/RAhwmX-RN00 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2025-12-25T19:09:25.773175] _play_next_from_queue: next_song url=https://youtu.be/RAhwmX-RN00 title=李佳薇-煎熬 歌词
+[2025-12-25T19:09:25.774052] Using prepared_next for url=https://youtu.be/RAhwmX-RN00 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2025-12-25T19:09:25.778283] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2025-12-25T19:09:25.974644] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2025-12-25T19:10:26.450119] Prepared next: url=https://youtu.be/8V52nLBevgo?si=2983Kf3fM8zlL_zn video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\𝑪𝒀𝑲𝑲_張敬軒 - 緋茘榭．少年 @ The Next 20 Hins Live In Hong Kong …\video.mp4
+[2025-12-25T19:13:46.934093] _play_next_from_queue: next_song url=https://youtu.be/8V52nLBevgo?si=2983Kf3fM8zlL_zn title=張敬軒 - 緋茘榭．少年 @ The Next 20 Hins Live In Hong Kong 演唱會 20211225
+[2025-12-25T19:13:46.934814] Using prepared_next for url=https://youtu.be/8V52nLBevgo?si=2983Kf3fM8zlL_zn video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\𝑪𝒀𝑲𝑲_張敬軒 - 緋茘榭．少年 @ The Next 20 Hins Live In Hong Kong …\video.mp4
+[2025-12-25T19:13:46.938817] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\𝑪𝒀𝑲𝑲_張敬軒 - 緋茘榭．少年 @ The Next 20 Hins Live In Hong Kong …\video.mp4
+[2025-12-25T19:13:47.115469] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\𝑪𝒀𝑲𝑲_張敬軒 - 緋茘榭．少年 @ The Next 20 Hins Live In Hong Kong …\video.mp4
+[2025-12-25T19:14:52.149567] Prepared next: url=https://youtu.be/WhtUba3oNjo?si=bGH8BTYR-vJDiLlw video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\TheGoodVibe_chipi chipi chapa chapa dubi dubi daba daba\video.mp4
+[2025-12-25T19:17:21.560169] _play_next_from_queue: next_song url=https://youtu.be/WhtUba3oNjo?si=bGH8BTYR-vJDiLlw title=chipi chipi chapa chapa dubi dubi daba daba
+[2025-12-25T19:17:21.560918] Using prepared_next for url=https://youtu.be/WhtUba3oNjo?si=bGH8BTYR-vJDiLlw video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\TheGoodVibe_chipi chipi chapa chapa dubi dubi daba daba\video.mp4
+[2025-12-25T19:17:21.564744] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\TheGoodVibe_chipi chipi chapa chapa dubi dubi daba daba\video.mp4
+[2025-12-25T19:17:21.749450] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\TheGoodVibe_chipi chipi chapa chapa dubi dubi daba daba\video.mp4
+[2025-12-25T19:18:23.391325] Prepared next: url=https://youtu.be/Ox3p0GHQ5kQ?si=CDPjdlG2EIwL9gJu video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ViuTV_《CHILL CLUB》吳浩康《擇日失戀》發行十六年後唱得更Deep!\video.mp4
+[2025-12-25T19:21:08.518127] _play_next_from_queue: next_song url=https://youtu.be/Ox3p0GHQ5kQ?si=CDPjdlG2EIwL9gJu title=《CHILL CLUB》吳浩康《擇日失戀》發行十六年後唱得更Deep!
+[2025-12-25T19:21:08.518903] Using prepared_next for url=https://youtu.be/Ox3p0GHQ5kQ?si=CDPjdlG2EIwL9gJu video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ViuTV_《CHILL CLUB》吳浩康《擇日失戀》發行十六年後唱得更Deep!\video.mp4
+[2025-12-25T19:21:08.521705] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ViuTV_《CHILL CLUB》吳浩康《擇日失戀》發行十六年後唱得更Deep!\video.mp4
+[2025-12-25T19:21:08.689218] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ViuTV_《CHILL CLUB》吳浩康《擇日失戀》發行十六年後唱得更Deep!\video.mp4
+[2025-12-25T19:22:09.535648] Prepared next: url=https://youtu.be/dvW1rPD0-nQ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MusicDelta_陳勢安 天后 無損音樂FLAC 歌詞LYRICS 純享\video.mp4
+[2025-12-25T19:25:19.020845] _play_next_from_queue: next_song url=https://youtu.be/dvW1rPD0-nQ title=陳勢安 天后 無損音樂FLAC 歌詞LYRICS 純享
+[2025-12-25T19:25:19.021191] Using prepared_next for url=https://youtu.be/dvW1rPD0-nQ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MusicDelta_陳勢安 天后 無損音樂FLAC 歌詞LYRICS 純享\video.mp4
+[2025-12-25T19:25:19.022631] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MusicDelta_陳勢安 天后 無損音樂FLAC 歌詞LYRICS 純享\video.mp4
+[2025-12-25T19:25:19.209557] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\MusicDelta_陳勢安 天后 無損音樂FLAC 歌詞LYRICS 純享\video.mp4
+[2025-12-25T19:30:09.302448] _play_next_from_queue: next_song url=https://youtu.be/TBsUK7Q3voo?si=3d0UaV1r-vk9AOl1 title=張敬軒 Hins Cheung - 追風箏的孩子 (Hins Live in Passion 2014)
+[2025-12-26T00:08:00.594923] _play_next_from_queue: next_song url=https://youtu.be/TBsUK7Q3voo?si=3d0UaV1r-vk9AOl1 title=張敬軒 Hins Cheung - 追風箏的孩子 (Hins Live in Passion 2014)
+[2025-12-26T00:08:00.646168] Prepared next: url=https://youtu.be/TBsUK7Q3voo?si=3d0UaV1r-vk9AOl1 video=None
+[2025-12-26T00:08:00.716170] _play_next_from_queue: next_song url=https://youtu.be/TBsUK7Q3voo?si=3d0UaV1r-vk9AOl1 title=張敬軒 Hins Cheung - 追風箏的孩子 (Hins Live in Passion 2014)
+[2025-12-26T00:08:00.716794] Using prepared_next for url=https://youtu.be/TBsUK7Q3voo?si=3d0UaV1r-vk9AOl1 video=None
+[2025-12-26T00:08:00.720687] Passing video_path to player: None
+[2025-12-26T00:08:01.392221] Downloading video for url=https://youtu.be/TBsUK7Q3voo?si=3d0UaV1r-vk9AOl1 to C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 追風箏的孩子 (Hins Live in Passion 201…\video.mp4
+[2025-12-26T00:08:14.459837] Video downloaded: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 追風箏的孩子 (Hins Live in Passion 201…\video.mp4
+[2025-12-26T00:08:14.460941] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\HinsLiveinPassion_張敬軒 Hins Cheung - 追風箏的孩子 (Hins Live in Passion 201…\video.mp4
+[2025-12-26T00:09:24.438962] _play_next_from_queue: next_song url=https://youtu.be/6x6v6Tszaic?si=4ReccNqKaEEKksLB title=核突支那Style
+[2025-12-26T00:10:20.548328] _play_next_from_queue: next_song url= title=Fools Garden - Lemon Tree (Official HD Video)
+[2025-12-26T00:10:20.611449] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-26T00:10:20.684051] _play_next_from_queue: next_song url= title=Fools Garden - Lemon Tree (Official HD Video)
+[2025-12-26T00:10:20.684632] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-26T00:10:20.687495] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-26T00:10:20.911213] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Fools Garden_Fools Garden - Lemon Tree (Official HD Video)\video.mp4
+[2025-12-26T00:14:19.087878] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\寰亞音樂 Media Asia Music Official Channel_C AllStar - 再不再見 (Official MV)\video.mp4
+[2025-12-26T00:14:19.124591] _play_next_from_queue: next_song url= title=C AllStar - 再不再見 (Official MV)
+[2025-12-26T00:14:19.124922] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\寰亞音樂 Media Asia Music Official Channel_C AllStar - 再不再見 (Official MV)\video.mp4
+[2025-12-26T00:14:19.126278] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\寰亞音樂 Media Asia Music Official Channel_C AllStar - 再不再見 (Official MV)\video.mp4
+[2025-12-26T00:14:19.449056] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\寰亞音樂 Media Asia Music Official Channel_C AllStar - 再不再見 (Official MV)\video.mp4
+[2025-12-26T00:17:59.859383] Prepared next: url=https://youtu.be/ygf2uiEUg64?si=2b0aVvfS2kIj74Ni video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\FayeWongVEVO_王菲 - 《約定》MV\video.mp4
+[2025-12-26T00:18:36.595356] _play_next_from_queue: next_song url=https://youtu.be/ygf2uiEUg64?si=2b0aVvfS2kIj74Ni title=王菲 - 《約定》MV
+[2025-12-26T00:18:36.595806] Using prepared_next for url=https://youtu.be/ygf2uiEUg64?si=2b0aVvfS2kIj74Ni video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\FayeWongVEVO_王菲 - 《約定》MV\video.mp4
+[2025-12-26T00:18:36.597700] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\FayeWongVEVO_王菲 - 《約定》MV\video.mp4
+[2025-12-26T00:18:36.791883] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\FayeWongVEVO_王菲 - 《約定》MV\video.mp4
+[2025-12-26T00:23:30.120852] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\NKstudio73_Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…\video.mp4
+[2025-12-26T00:23:30.156982] _play_next_from_queue: next_song url= title=Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…
+[2025-12-26T00:23:30.157383] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\NKstudio73_Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…\video.mp4
+[2025-12-26T00:23:30.159242] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\NKstudio73_Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…\video.mp4
+[2025-12-26T00:23:30.388558] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\NKstudio73_Hacken Lee 李克勤 - 月半小夜曲 【字幕歌詞】Cantonese Jyutping Ly…\video.mp4
+[2025-12-26T00:23:38.611623] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ShaneFilanVEVO_Shane Filan - Beautiful In White (Official Video)\video.mp4
+[2025-12-26T00:28:26.846376] _play_next_from_queue: next_song url= title=Shane Filan - Beautiful In White (Official Video)
+[2025-12-26T00:28:26.847004] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ShaneFilanVEVO_Shane Filan - Beautiful In White (Official Video)\video.mp4
+[2025-12-26T00:28:26.849680] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ShaneFilanVEVO_Shane Filan - Beautiful In White (Official Video)\video.mp4
+[2025-12-26T00:28:27.062244] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ShaneFilanVEVO_Shane Filan - Beautiful In White (Official Video)\video.mp4
+[2025-12-26T00:29:26.519724] Prepared next: url=https://youtu.be/u0YfOlI_5wA?si=mIs6N7qtaDHLzfvv video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jerry Lee_二十世紀少年 - Ping Pung\video.mp4
+[2025-12-26T00:32:23.531297] _play_next_from_queue: next_song url=https://youtu.be/u0YfOlI_5wA?si=mIs6N7qtaDHLzfvv title=二十世紀少年 - Ping Pung
+[2025-12-26T00:32:23.531709] Using prepared_next for url=https://youtu.be/u0YfOlI_5wA?si=mIs6N7qtaDHLzfvv video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jerry Lee_二十世紀少年 - Ping Pung\video.mp4
+[2025-12-26T00:32:23.533325] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jerry Lee_二十世紀少年 - Ping Pung\video.mp4
+[2025-12-26T00:32:23.707929] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Jerry Lee_二十世紀少年 - Ping Pung\video.mp4
+[2026-01-01T01:36:55.086735] Prepared next: url=https://youtu.be/F5RtuxRRrJs?si=EfkviCFHDJLdmEKX video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ChillGOOD TV_The Single《緊急聯絡人》Janice衛蘭\video.mp4
+[2026-01-01T01:36:55.125816] _play_next_from_queue: next_song url=https://youtu.be/F5RtuxRRrJs?si=EfkviCFHDJLdmEKX title=The Single《緊急聯絡人》Janice衛蘭
+[2026-01-01T01:36:55.126130] Using prepared_next for url=https://youtu.be/F5RtuxRRrJs?si=EfkviCFHDJLdmEKX video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ChillGOOD TV_The Single《緊急聯絡人》Janice衛蘭\video.mp4
+[2026-01-01T01:36:55.128482] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ChillGOOD TV_The Single《緊急聯絡人》Janice衛蘭\video.mp4
+[2026-01-01T01:36:55.325493] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ChillGOOD TV_The Single《緊急聯絡人》Janice衛蘭\video.mp4
+[2026-01-01T01:37:08.663035] Prepared next: url=https://youtu.be/9eD8Axiu2JY?si=W08vJb5vYpAYnbZ0 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ChillGOOD TV_The Single 《好心好報》周殷廷Yan Ting 雲浩影Cloud\video.mp4
+[2026-01-01T01:37:12.472317] _play_next_from_queue: next_song url=https://youtu.be/9eD8Axiu2JY?si=W08vJb5vYpAYnbZ0 title=The Single 《好心好報》周殷廷Yan Ting 雲浩影Cloud
+[2026-01-01T01:37:12.472990] Using prepared_next for url=https://youtu.be/9eD8Axiu2JY?si=W08vJb5vYpAYnbZ0 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ChillGOOD TV_The Single 《好心好報》周殷廷Yan Ting 雲浩影Cloud\video.mp4
+[2026-01-01T01:37:12.475369] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ChillGOOD TV_The Single 《好心好報》周殷廷Yan Ting 雲浩影Cloud\video.mp4
+[2026-01-01T01:37:12.685580] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\ChillGOOD TV_The Single 《好心好報》周殷廷Yan Ting 雲浩影Cloud\video.mp4
+[2026-01-01T01:38:36.244341] Prepared next: url=https://youtu.be/RYwyZaJNylY?si=FykU_84F_o5l_ZRx video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\VL_As Long As You Love Me - Backstreet Boys [KARAOKE …\video.mp4
+[2026-01-01T01:41:03.603171] _play_next_from_queue: next_song url=https://youtu.be/RYwyZaJNylY?si=FykU_84F_o5l_ZRx title=As Long As You Love Me - Backstreet Boys [KARAOKE …
+[2026-01-01T01:41:03.604435] Using prepared_next for url=https://youtu.be/RYwyZaJNylY?si=FykU_84F_o5l_ZRx video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\VL_As Long As You Love Me - Backstreet Boys [KARAOKE …\video.mp4
+[2026-01-01T01:41:03.607302] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\VL_As Long As You Love Me - Backstreet Boys [KARAOKE …\video.mp4
+[2026-01-01T01:41:03.825483] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\VL_As Long As You Love Me - Backstreet Boys [KARAOKE …\video.mp4
+[2026-01-01T01:44:50.306407] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\7clouds_Huntrix - Golden (Lyrics) KPop Demon Hunters\video.mp4
+[2026-01-01T01:44:50.345710] _play_next_from_queue: next_song url= title=Huntrix - Golden (Lyrics) KPop Demon Hunters
+[2026-01-01T01:44:50.345992] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\7clouds_Huntrix - Golden (Lyrics) KPop Demon Hunters\video.mp4
+[2026-01-01T01:44:50.347372] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\7clouds_Huntrix - Golden (Lyrics) KPop Demon Hunters\video.mp4
+[2026-01-01T01:44:50.516227] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\7clouds_Huntrix - Golden (Lyrics) KPop Demon Hunters\video.mp4
+[2026-01-01T01:48:00.448775] Prepared next: url=https://youtu.be/RAhwmX-RN00 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2026-01-01T01:48:03.464439] _play_next_from_queue: next_song url=https://youtu.be/RAhwmX-RN00 title=李佳薇-煎熬 歌词
+[2026-01-01T01:48:03.465351] Using prepared_next for url=https://youtu.be/RAhwmX-RN00 video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2026-01-01T01:48:03.468731] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2026-01-01T01:48:03.709079] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\XinNee_95_李佳薇-煎熬 歌词\video.mp4
+[2026-01-01T01:48:05.856680] Prepared next: url=https://youtu.be/3KRoczsPIFU?si=gZEwZdYj2GpiCaxX video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\YANTING official_Yan Ting 周殷廷 - 三生有幸 Three Lives of Luck (Official …\video.mp4
+[2026-01-01T01:48:08.865996] _play_next_from_queue: next_song url=https://youtu.be/3KRoczsPIFU?si=gZEwZdYj2GpiCaxX title=Yan Ting 周殷廷 - 三生有幸 Three Lives of Luck (Official …
+[2026-01-01T01:48:08.866825] Using prepared_next for url=https://youtu.be/3KRoczsPIFU?si=gZEwZdYj2GpiCaxX video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\YANTING official_Yan Ting 周殷廷 - 三生有幸 Three Lives of Luck (Official …\video.mp4
+[2026-01-01T01:48:08.870717] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\YANTING official_Yan Ting 周殷廷 - 三生有幸 Three Lives of Luck (Official …\video.mp4
+[2026-01-01T01:48:09.081693] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\YANTING official_Yan Ting 周殷廷 - 三生有幸 Three Lives of Luck (Official …\video.mp4
+[2026-01-01T01:48:41.666467] Prepared next: url=https://www.youtube.com/watch?v=GUCoNfRmchM video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\林家謙 Terence Lam_林家謙 Terence Lam 《普渡眾生》電影《破．地獄》主題曲 MV\video.mp4
+[2026-01-01T01:51:53.679402] _play_next_from_queue: next_song url=https://youtu.be/ocxIKEbKOFs?si=3xnzsybBDkL71ZRf title=洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…
+[2026-01-01T01:51:53.703824] Prepared next: url=https://youtu.be/ocxIKEbKOFs?si=3xnzsybBDkL71ZRf video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2026-01-01T01:51:53.746059] _play_next_from_queue: next_song url=https://youtu.be/ocxIKEbKOFs?si=3xnzsybBDkL71ZRf title=洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…
+[2026-01-01T01:51:53.746365] Using prepared_next for url=https://youtu.be/ocxIKEbKOFs?si=3xnzsybBDkL71ZRf video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2026-01-01T01:51:53.747716] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2026-01-01T01:51:53.980939] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\洪嘉豪 Hung Kaho_洪嘉豪 Hung Kaho - 及時行樂 Missing You (Official Music V…\video.mp4
+[2026-01-01T01:54:55.113117] Prepared next: url=https://youtu.be/ZicHnaYVR-I?si=8PnaVVNz0K2DtCoK video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\demonglai_Twins+Boyz - 死性不改(原裝KTV)\video.mp4
+[2026-01-01T01:56:18.903867] _play_next_from_queue: next_song url=https://youtu.be/ZicHnaYVR-I?si=8PnaVVNz0K2DtCoK title=Twins+Boyz - 死性不改(原裝KTV)
+[2026-01-01T01:56:18.904269] Using prepared_next for url=https://youtu.be/ZicHnaYVR-I?si=8PnaVVNz0K2DtCoK video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\demonglai_Twins+Boyz - 死性不改(原裝KTV)\video.mp4
+[2026-01-01T01:56:18.905939] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\demonglai_Twins+Boyz - 死性不改(原裝KTV)\video.mp4
+[2026-01-01T01:56:19.073688] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\demonglai_Twins+Boyz - 死性不改(原裝KTV)\video.mp4
+[2026-01-01T01:57:18.758062] Prepared next: url=https://youtu.be/3EYlLcJ0Q6w?si=wqjtti2BQ387fZVs video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\hks141_許美靜 - 傾城 KTV (清晰版)\video.mp4
+[2026-01-01T02:00:07.757368] _play_next_from_queue: next_song url=https://youtu.be/3EYlLcJ0Q6w?si=wqjtti2BQ387fZVs title=許美靜 - 傾城 KTV (清晰版)
+[2026-01-01T02:00:07.757975] Using prepared_next for url=https://youtu.be/3EYlLcJ0Q6w?si=wqjtti2BQ387fZVs video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\hks141_許美靜 - 傾城 KTV (清晰版)\video.mp4
+[2026-01-01T02:00:07.760109] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\hks141_許美靜 - 傾城 KTV (清晰版)\video.mp4
+[2026-01-01T02:00:07.940508] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\hks141_許美靜 - 傾城 KTV (清晰版)\video.mp4
+[2026-01-01T02:04:15.097796] Prepared next: url=https://youtu.be/4IHsiPgDEYw?si=AjUDk2QEpCtywOGn video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\湖南国际频道 Hunan TV International Official Channel_《我是歌手》GEM邓紫棋演唱汪峰的《存在》，成为经典中的经典！\video.mp4
+[2026-01-01T02:04:23.637737] _play_next_from_queue: next_song url=https://youtu.be/4IHsiPgDEYw?si=AjUDk2QEpCtywOGn title=《我是歌手》GEM邓紫棋演唱汪峰的《存在》，成为经典中的经典！
+[2026-01-01T02:04:23.638980] Using prepared_next for url=https://youtu.be/4IHsiPgDEYw?si=AjUDk2QEpCtywOGn video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\湖南国际频道 Hunan TV International Official Channel_《我是歌手》GEM邓紫棋演唱汪峰的《存在》，成为经典中的经典！\video.mp4
+[2026-01-01T02:04:23.643549] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\湖南国际频道 Hunan TV International Official Channel_《我是歌手》GEM邓紫棋演唱汪峰的《存在》，成为经典中的经典！\video.mp4
+[2026-01-01T02:04:23.848247] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\湖南国际频道 Hunan TV International Official Channel_《我是歌手》GEM邓紫棋演唱汪峰的《存在》，成为经典中的经典！\video.mp4
+[2026-01-01T02:04:24.223115] Prepared next: url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_陳奕迅 Eason Chan《明年今日》[Official MV]\video.mp4
+[2026-01-01T02:08:31.657483] _play_next_from_queue: next_song url= title=陳奕迅 Eason Chan《明年今日》[Official MV]
+[2026-01-01T02:08:31.658431] Using prepared_next for url= video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_陳奕迅 Eason Chan《明年今日》[Official MV]\video.mp4
+[2026-01-01T02:08:31.662312] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_陳奕迅 Eason Chan《明年今日》[Official MV]\video.mp4
+[2026-01-01T02:08:31.868417] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\英皇娛樂 eeg music_陳奕迅 Eason Chan《明年今日》[Official MV]\video.mp4
+[2026-01-01T02:11:57.815055] _play_next_from_queue: next_song url=https://youtu.be/vvXT2q_2HO4?si=OCCbvFM8VRS3Nhac title=王菲 (愛與痛的邊緣)
+[2026-01-01T02:12:45.407222] Prepared next: url=https://youtu.be/vvXT2q_2HO4?si=OCCbvFM8VRS3Nhac video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\한똘똘_王菲 (愛與痛的邊緣)\video.mp4
+[2026-01-01T02:12:45.464082] _play_next_from_queue: next_song url=https://youtu.be/vvXT2q_2HO4?si=OCCbvFM8VRS3Nhac title=王菲 (愛與痛的邊緣)
+[2026-01-01T02:12:45.464410] Using prepared_next for url=https://youtu.be/vvXT2q_2HO4?si=OCCbvFM8VRS3Nhac video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\한똘똘_王菲 (愛與痛的邊緣)\video.mp4
+[2026-01-01T02:12:45.465965] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\한똘똘_王菲 (愛與痛的邊緣)\video.mp4
+[2026-01-01T02:12:45.672837] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\한똘똘_王菲 (愛與痛的邊緣)\video.mp4
+[2026-01-01T02:17:23.083230] _play_next_from_queue: next_song url=https://youtu.be/X97-ZlFsCks?si=Nf-gNLBd7e_D9FBZ title=蔡佩軒 Ariel Tsai【錯過】(Transient Love) 官方MV
+[2026-01-01T02:20:55.722498] _play_next_from_queue: next_song url=https://youtu.be/X97-ZlFsCks?si=Nf-gNLBd7e_D9FBZ title=蔡佩軒 Ariel Tsai【錯過】(Transient Love) 官方MV
+[2026-01-01T02:22:03.758788] Prepared next: url=https://youtu.be/X97-ZlFsCks?si=Nf-gNLBd7e_D9FBZ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\蔡佩軒 Ariel Tsai_蔡佩軒 Ariel Tsai【錯過】(Transient Love) 官方MV\video.mp4
+[2026-01-01T02:22:03.816837] _play_next_from_queue: next_song url=https://youtu.be/X97-ZlFsCks?si=Nf-gNLBd7e_D9FBZ title=蔡佩軒 Ariel Tsai【錯過】(Transient Love) 官方MV
+[2026-01-01T02:22:03.817223] Using prepared_next for url=https://youtu.be/X97-ZlFsCks?si=Nf-gNLBd7e_D9FBZ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\蔡佩軒 Ariel Tsai_蔡佩軒 Ariel Tsai【錯過】(Transient Love) 官方MV\video.mp4
+[2026-01-01T02:22:03.819608] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\蔡佩軒 Ariel Tsai_蔡佩軒 Ariel Tsai【錯過】(Transient Love) 官方MV\video.mp4
+[2026-01-01T02:22:04.060096] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\蔡佩軒 Ariel Tsai_蔡佩軒 Ariel Tsai【錯過】(Transient Love) 官方MV\video.mp4
+[2026-01-01T02:23:09.530330] Prepared next: url=https://youtu.be/rVnHggxRSKU video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Music In My Heart_Wangfeng  汪峰：《怒放的生命》 - 怒放的生命 - 歌詞字幕\video.mp4
+[2026-01-01T02:27:18.192839] _play_next_from_queue: next_song url=https://youtu.be/rVnHggxRSKU title=Wangfeng  汪峰：《怒放的生命》 - 怒放的生命 - 歌詞字幕
+[2026-01-01T02:27:18.193534] Using prepared_next for url=https://youtu.be/rVnHggxRSKU video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Music In My Heart_Wangfeng  汪峰：《怒放的生命》 - 怒放的生命 - 歌詞字幕\video.mp4
+[2026-01-01T02:27:18.197834] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Music In My Heart_Wangfeng  汪峰：《怒放的生命》 - 怒放的生命 - 歌詞字幕\video.mp4
+[2026-01-01T02:27:18.414905] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Music In My Heart_Wangfeng  汪峰：《怒放的生命》 - 怒放的生命 - 歌詞字幕\video.mp4
+[2026-01-01T02:28:17.706247] Prepared next: url=https://youtu.be/O-n5jby8htA?si=nKp7Q0bdSib-AyJl video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\蔡佩軒 Ariel Tsai_【藍色太陽】MV (微電影 《裂縫陽光》 主題曲) - 蔡佩軒 Ariel Tsai\video.mp4
+[2026-01-01T02:31:50.169914] _play_next_from_queue: next_song url=https://youtu.be/O-n5jby8htA?si=nKp7Q0bdSib-AyJl title=【藍色太陽】MV (微電影 《裂縫陽光》 主題曲) - 蔡佩軒 Ariel Tsai
+[2026-01-01T02:31:50.170578] Using prepared_next for url=https://youtu.be/O-n5jby8htA?si=nKp7Q0bdSib-AyJl video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\蔡佩軒 Ariel Tsai_【藍色太陽】MV (微電影 《裂縫陽光》 主題曲) - 蔡佩軒 Ariel Tsai\video.mp4
+[2026-01-01T02:31:50.175333] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\蔡佩軒 Ariel Tsai_【藍色太陽】MV (微電影 《裂縫陽光》 主題曲) - 蔡佩軒 Ariel Tsai\video.mp4
+[2026-01-01T02:31:50.348586] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\蔡佩軒 Ariel Tsai_【藍色太陽】MV (微電影 《裂縫陽光》 主題曲) - 蔡佩軒 Ariel Tsai\video.mp4
+[2026-01-01T02:35:46.259482] _play_next_from_queue: next_song url=https://youtu.be/DykVJl6wr_4?si=OdkE82sewWFQtLKs title=High School Musical Cast - We're All In This Together (From High School Musical)
+[2026-01-01T02:37:27.656460] _play_next_from_queue: next_song url=https://youtu.be/DykVJl6wr_4?si=OdkE82sewWFQtLKs title=High School Musical Cast - We're All In This Together (From High School Musical)
+[2026-01-01T02:37:27.696826] Prepared next: url=https://youtu.be/DykVJl6wr_4?si=OdkE82sewWFQtLKs video=None
+[2026-01-01T02:37:27.734044] _play_next_from_queue: next_song url=https://youtu.be/DykVJl6wr_4?si=OdkE82sewWFQtLKs title=High School Musical Cast - We're All In This Together (From High School Musical)
+[2026-01-01T02:37:27.734420] Using prepared_next for url=https://youtu.be/DykVJl6wr_4?si=OdkE82sewWFQtLKs video=None
+[2026-01-01T02:37:27.737610] Passing video_path to player: None
+[2026-01-01T02:37:28.025914] Downloading video for url=https://youtu.be/DykVJl6wr_4?si=OdkE82sewWFQtLKs to C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_High School Musical Cast - We're All In This Toget…\video.mp4
+[2026-01-01T02:37:39.105112] Video downloaded: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_High School Musical Cast - We're All In This Toget…\video.mp4
+[2026-01-01T02:37:39.105752] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_High School Musical Cast - We're All In This Toget…\video.mp4
+[2026-01-01T02:38:27.109372] Prepared next: url=https://youtu.be/4REUiuYtFJs?si=I-ga9mXh8IPPl9Re video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CurtainUp MTK_Think of Me (25th Anniversary Karaoke) – The Phant…\video.mp4
+[2026-01-01T02:41:38.480324] _play_next_from_queue: next_song url=https://youtu.be/4REUiuYtFJs?si=I-ga9mXh8IPPl9Re title=Think of Me (25th Anniversary Karaoke) – The Phantom of the Opera  Lyrics on Screen
+[2026-01-01T02:41:38.481121] Using prepared_next for url=https://youtu.be/4REUiuYtFJs?si=I-ga9mXh8IPPl9Re video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CurtainUp MTK_Think of Me (25th Anniversary Karaoke) – The Phant…\video.mp4
+[2026-01-01T02:41:38.484929] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CurtainUp MTK_Think of Me (25th Anniversary Karaoke) – The Phant…\video.mp4
+[2026-01-01T02:41:38.665095] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\CurtainUp MTK_Think of Me (25th Anniversary Karaoke) – The Phant…\video.mp4
+[2026-01-01T02:42:25.987252] Prepared next: url=https://youtu.be/OrQp9t6hFpY?si=DkCLyQw7Mkj9sSno video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Edgy Hedgy_The Phantom of the Opera - Lyrics\video.mp4
+[2026-01-01T02:45:52.527320] _play_next_from_queue: next_song url=https://youtu.be/OrQp9t6hFpY?si=DkCLyQw7Mkj9sSno title=The Phantom of the Opera - Lyrics
+[2026-01-01T02:45:52.528499] Using prepared_next for url=https://youtu.be/OrQp9t6hFpY?si=DkCLyQw7Mkj9sSno video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Edgy Hedgy_The Phantom of the Opera - Lyrics\video.mp4
+[2026-01-01T02:45:52.532680] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Edgy Hedgy_The Phantom of the Opera - Lyrics\video.mp4
+[2026-01-01T02:45:52.696253] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Edgy Hedgy_The Phantom of the Opera - Lyrics\video.mp4
+[2026-01-01T02:51:02.730944] _play_next_from_queue: next_song url=https://youtu.be/GTZUvuduWPk?si=E3H6LACMAM7Uj_-U title=Vanessa Hudgens - When There Was Me and You (From High School Musical)
+[2026-01-01T02:51:51.895122] Prepared next: url=https://youtu.be/GTZUvuduWPk?si=E3H6LACMAM7Uj_-U video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_Vanessa Hudgens - When There Was Me and You (From …\video.mp4
+[2026-01-01T02:51:51.965086] _play_next_from_queue: next_song url=https://youtu.be/GTZUvuduWPk?si=E3H6LACMAM7Uj_-U title=Vanessa Hudgens - When There Was Me and You (From High School Musical)
+[2026-01-01T02:51:51.965364] Using prepared_next for url=https://youtu.be/GTZUvuduWPk?si=E3H6LACMAM7Uj_-U video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_Vanessa Hudgens - When There Was Me and You (From …\video.mp4
+[2026-01-01T02:51:51.966993] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_Vanessa Hudgens - When There Was Me and You (From …\video.mp4
+[2026-01-01T02:51:52.105446] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_Vanessa Hudgens - When There Was Me and You (From …\video.mp4
+[2026-01-01T02:52:52.990193] Prepared next: url=https://youtu.be/w7gO_ErRn0U?si=P1AKA1Abysh8Ls8a video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_Troy, Gabriella - Everyday (From High School Music…\video.mp4
+[2026-01-01T02:54:52.976909] _play_next_from_queue: next_song url=https://youtu.be/w7gO_ErRn0U?si=P1AKA1Abysh8Ls8a title=Troy, Gabriella - Everyday (From High School Musical 2Sing-Along)
+[2026-01-01T02:54:52.977384] Using prepared_next for url=https://youtu.be/w7gO_ErRn0U?si=P1AKA1Abysh8Ls8a video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_Troy, Gabriella - Everyday (From High School Music…\video.mp4
+[2026-01-01T02:54:52.978921] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_Troy, Gabriella - Everyday (From High School Music…\video.mp4
+[2026-01-01T02:54:53.179501] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\DisneyMusicVEVO_Troy, Gabriella - Everyday (From High School Music…\video.mp4
+[2026-01-01T02:55:45.358564] Prepared next: url=https://youtu.be/3nbtKYXvA3s?si=gdB_KOazwS7QJ4cx video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\EmmaMermaidgirl_High School Musical 2-Gotta go my own way lyrics\video.mp4
+[2026-01-01T02:59:38.209671] _play_next_from_queue: next_song url=https://youtu.be/3nbtKYXvA3s?si=gdB_KOazwS7QJ4cx title=High School Musical 2-Gotta go my own way lyrics
+[2026-01-01T02:59:38.210333] Using prepared_next for url=https://youtu.be/3nbtKYXvA3s?si=gdB_KOazwS7QJ4cx video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\EmmaMermaidgirl_High School Musical 2-Gotta go my own way lyrics\video.mp4
+[2026-01-01T02:59:38.213678] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\EmmaMermaidgirl_High School Musical 2-Gotta go my own way lyrics\video.mp4
+[2026-01-01T02:59:38.384703] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\EmmaMermaidgirl_High School Musical 2-Gotta go my own way lyrics\video.mp4
+[2026-01-01T03:03:22.144651] _play_next_from_queue: next_song url=https://youtu.be/0Tw49T797jo?si=jjuKVpbC7etCQWUJ title=Rewrite The Stars Zac Efron & Zendaya The Greatest Showman (subtitled to Spanish -lyrics in English)
+[2026-01-01T03:04:26.737375] Prepared next: url=https://youtu.be/0Tw49T797jo?si=jjuKVpbC7etCQWUJ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Bryan Alvear_Rewrite The Stars Zac Efron & Zendaya The Greatest…\video.mp4
+[2026-01-01T03:04:26.800314] _play_next_from_queue: next_song url=https://youtu.be/0Tw49T797jo?si=jjuKVpbC7etCQWUJ title=Rewrite The Stars Zac Efron & Zendaya The Greatest Showman (subtitled to Spanish -lyrics in English)
+[2026-01-01T03:04:26.800635] Using prepared_next for url=https://youtu.be/0Tw49T797jo?si=jjuKVpbC7etCQWUJ video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Bryan Alvear_Rewrite The Stars Zac Efron & Zendaya The Greatest…\video.mp4
+[2026-01-01T03:04:26.802391] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Bryan Alvear_Rewrite The Stars Zac Efron & Zendaya The Greatest…\video.mp4
+[2026-01-01T03:04:27.008336] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\Bryan Alvear_Rewrite The Stars Zac Efron & Zendaya The Greatest…\video.mp4
+[2026-01-01T04:14:15.217234] _play_next_from_queue: next_song url=https://youtu.be/Ri89KOr1Z2I title=汪峰 WangFeng 「存在 Existence」官方MV
+[2026-01-01T04:15:16.564150] Prepared next: url=https://youtu.be/Ri89KOr1Z2I video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\风华秋实 RF ENTERTAINMENT_汪峰 WangFeng 「存在 Existence」官方MV\video.mp4
+[2026-01-01T04:15:16.677599] _play_next_from_queue: next_song url=https://youtu.be/Ri89KOr1Z2I title=汪峰 WangFeng 「存在 Existence」官方MV
+[2026-01-01T04:15:16.677928] Using prepared_next for url=https://youtu.be/Ri89KOr1Z2I video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\风华秋实 RF ENTERTAINMENT_汪峰 WangFeng 「存在 Existence」官方MV\video.mp4
+[2026-01-01T04:15:16.680274] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\风华秋实 RF ENTERTAINMENT_汪峰 WangFeng 「存在 Existence」官方MV\video.mp4
+[2026-01-01T04:15:16.903669] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\风华秋实 RF ENTERTAINMENT_汪峰 WangFeng 「存在 Existence」官方MV\video.mp4
+[2026-01-01T04:33:45.755222] _play_next_from_queue: next_song url=https://youtu.be/CQEXldyfGGM title=鄧紫棋 泡沫 歌詞
+[2026-01-01T04:34:42.957443] Prepared next: url=https://youtu.be/CQEXldyfGGM video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳歆_鄧紫棋 泡沫 歌詞\video.mp4
+[2026-01-01T04:34:43.024212] _play_next_from_queue: next_song url=https://youtu.be/CQEXldyfGGM title=鄧紫棋 泡沫 歌詞
+[2026-01-01T04:34:43.024563] Using prepared_next for url=https://youtu.be/CQEXldyfGGM video=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳歆_鄧紫棋 泡沫 歌詞\video.mp4
+[2026-01-01T04:34:43.026152] Passing video_path to player: C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳歆_鄧紫棋 泡沫 歌詞\video.mp4
+[2026-01-01T04:34:43.228653] _play_media using video_path=C:\Users\jacky\OneDrive\Documents\Documents\Programming\KaraokeApp\karaoke_data\陳歆_鄧紫棋 泡沫 歌詞\video.mp4

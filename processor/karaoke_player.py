@@ -75,11 +75,15 @@ class KaraokePlayer(QWidget):
             self.setWindowFlags(Qt.Window)  # normal window with title bar
             self.showNormal()
             self.border_toggle_btn.setText('Fullscreen')
+            # ensure QR is resized after layout changes
+            QTimer.singleShot(50, self._update_qr_overlay_size)
         else:
             # Switch to borderless full-screen
             self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
             self.showFullScreen()
             self.border_toggle_btn.setText('Window Size')
+            # ensure QR is resized after layout changes
+            QTimer.singleShot(50, self._update_qr_overlay_size)
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
@@ -199,12 +203,14 @@ class KaraokePlayer(QWidget):
         main_layout.addWidget(self.progress_bar)
         self.progress_bar.clicked.connect(self._on_progress_clicked)
 
-        # Floating QR code overlay
+        # Floating QR code overlay (scale by ratio relative to video height)
         self.qr_overlay = QLabel(self.video_container)
-        pixmap = generate_qr_pixmap(port=5005)
-        self.qr_overlay.setPixmap(pixmap.scaled(120, 120))
+        # Keep original pixmap so we can rescale smoothly on resize
+        self._qr_pixmap = generate_qr_pixmap(port=5005)
+
+        # Compute an initial size and set it via helper
         self.qr_overlay.setStyleSheet("background: transparent;")
-        self.qr_overlay.setFixedSize(120, 120)
+        self._update_qr_overlay_size()
         self.qr_overlay.raise_()
         self.qr_overlay.move(self.video_container.width() - self.qr_overlay.width() - 10, 10)
 
@@ -248,10 +254,39 @@ class KaraokePlayer(QWidget):
             super(self.__class__, self).resizeEvent(event)
             # Resize video frame to container
             self.video_frame.setGeometry(0, 0, self.video_container.width(), self.video_container.height())
+
+            # Update QR size/position
+            try:
+                self._update_qr_overlay_size()
+            except Exception:
+                pass
+
             # Keep QR top-right
             self.qr_overlay.move(self.video_container.width() - self.qr_overlay.width() - 10, 10)
 
         self.resizeEvent = resizeEvent
+
+    def _update_qr_overlay_size(self):
+        """Recompute and apply QR overlay size based on video frame height.
+
+        Uses a ratio of the video frame height to determine size. Runs in a best-effort
+        manner and preserves aspect ratio.
+        """
+        # Guard - must have pixmap and frame
+        if not hasattr(self, "_qr_pixmap") or not hasattr(self, "video_frame"):
+            return
+
+        height = max(1, self.video_frame.height())
+        # Desired QR size: 18% of video height, but at least 160 and at most 30% of height
+        desired = int(height * 0.2)
+        min_size = 160
+        max_size = int(height * 0.40) if height > 0 else min_size
+        size = max(min_size, desired)
+        size = min(size, max_size) if max_size > 0 else size
+
+        scaled_pix = self._qr_pixmap.scaled(size, size, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.qr_overlay.setPixmap(scaled_pix)
+        self.qr_overlay.setFixedSize(scaled_pix.size())
 
     # ------------------------------------------------------------
     # Audio & Video
@@ -536,10 +571,30 @@ class KaraokePlayer(QWidget):
             self.next_index += 1
 
         # -------------------------
-        # Stop playback if finished
+        # Stop playback if finished (but do NOT treat paused as finished)
         # -------------------------
-        audio_done = not self.audio_mixer.is_playing() if hasattr(self.audio_mixer, "is_playing") else True
-        video_done = not self.player.is_playing() if self.video_path else True
+        # Audio: consider done only when it's not playing AND not paused
+        audio_paused = getattr(self.audio_mixer, "paused", False)
+        audio_is_playing = self.audio_mixer.is_playing() if hasattr(self.audio_mixer, "is_playing") else False
+        audio_done = (not audio_is_playing) and (not audio_paused)
+
+        # Video: consider done only when it's not playing AND not paused
+        if self.video_path:
+            try:
+                # VLC reports state; check for Paused state
+                state = self.player.get_state()
+                video_paused = (state == vlc.State.Paused)
+            except Exception:
+                video_paused = False
+
+            try:
+                video_is_playing = bool(self.player.is_playing())
+            except Exception:
+                video_is_playing = False
+
+            video_done = (not video_is_playing) and (not video_paused)
+        else:
+            video_done = True
 
         if audio_done and video_done:
             self.timer.stop()
