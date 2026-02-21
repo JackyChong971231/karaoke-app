@@ -11,6 +11,7 @@ import qrcode
 from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFrame, QComboBox
 )
+from PySide6.QtWidgets import QSizePolicy
 from PySide6.QtCore import QTimer, Qt, Signal, QPoint
 from PySide6.QtWidgets import QStackedLayout
 from PySide6.QtGui import QPixmap
@@ -226,12 +227,18 @@ class KaraokePlayer(QWidget):
         self.lyrics_top_left.setAlignment(Qt.AlignLeft | Qt.AlignTop)
         self.lyrics_top_left.setStyleSheet("color: white; font-size: 36px;")
         self.lyrics_top_left.setContentsMargins(30, 0, 30, 0)
+        # Allow wrapping and expand horizontally within available width
+        self.lyrics_top_left.setWordWrap(True)
+        self.lyrics_top_left.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         lyrics_layout.addWidget(self.lyrics_top_left)
 
         self.lyrics_bottom_right = QLabel("", lyrics_container)
         self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignBottom)
         self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 36px;")
         self.lyrics_bottom_right.setContentsMargins(30, 0, 30, 0)
+        # Allow wrapping and expand horizontally within available width
+        self.lyrics_bottom_right.setWordWrap(True)
+        self.lyrics_bottom_right.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         lyrics_layout.addWidget(self.lyrics_bottom_right)
 
         main_layout.addWidget(lyrics_container)
@@ -264,6 +271,13 @@ class KaraokePlayer(QWidget):
             # Keep QR top-right
             self.qr_overlay.move(self.video_container.width() - self.qr_overlay.width() - 10, 10)
 
+            # Ensure lyric labels do not grow past the fullscreen width
+            try:
+                max_width = max(100, self.width() - 60)  # account for contents margins
+                self.lyrics_top_left.setMaximumWidth(max_width)
+                self.lyrics_bottom_right.setMaximumWidth(max_width)
+            except Exception:
+                pass
         self.resizeEvent = resizeEvent
 
     def _update_qr_overlay_size(self):
