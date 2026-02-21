@@ -292,7 +292,7 @@ class KaraokePlayer(QWidget):
 
         height = max(1, self.video_frame.height())
         # Desired QR size: 18% of video height, but at least 160 and at most 30% of height
-        desired = int(height * 0.2)
+        desired = int(height * 0.25)
         min_size = 160
         max_size = int(height * 0.40) if height > 0 else min_size
         size = max(min_size, desired)
