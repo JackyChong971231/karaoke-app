@@ -217,11 +217,11 @@ class KaraokePlayer(QWidget):
 
         # --- Lyrics container (bottom, fixed height) ---
         lyrics_container = QFrame(self)
-        lyrics_container.setFixedHeight(140)
+        lyrics_container.setFixedHeight(210)
         lyrics_container.setStyleSheet("background-color: rgba(0,0,0,100);")
-        lyrics_layout = QVBoxLayout(lyrics_container)
-        lyrics_layout.setContentsMargins(5, 5, 5, 5)
-        lyrics_layout.setSpacing(20)
+        self.lyrics_layout = QVBoxLayout(lyrics_container)
+        self.lyrics_layout.setContentsMargins(5, 5, 5, 5)
+        self.lyrics_layout.setSpacing(20)
 
         self.lyrics_top_left = QLabel("", lyrics_container)
         self.lyrics_top_left.setAlignment(Qt.AlignLeft | Qt.AlignTop)
@@ -230,16 +230,16 @@ class KaraokePlayer(QWidget):
         # Allow wrapping and expand horizontally within available width
         self.lyrics_top_left.setWordWrap(True)
         self.lyrics_top_left.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        lyrics_layout.addWidget(self.lyrics_top_left)
+        self.lyrics_layout.addWidget(self.lyrics_top_left)
 
         self.lyrics_bottom_right = QLabel("", lyrics_container)
-        self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignBottom)
+        self.lyrics_bottom_right.setAlignment(Qt.AlignRight | Qt.AlignTop)
         self.lyrics_bottom_right.setStyleSheet("color: white; font-size: 36px;")
         self.lyrics_bottom_right.setContentsMargins(30, 0, 30, 0)
         # Allow wrapping and expand horizontally within available width
         self.lyrics_bottom_right.setWordWrap(True)
         self.lyrics_bottom_right.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        lyrics_layout.addWidget(self.lyrics_bottom_right)
+        self.lyrics_layout.addWidget(self.lyrics_bottom_right)
 
         main_layout.addWidget(lyrics_container)
         main_layout.setContentsMargins(0, 0, 0, 30)
@@ -532,8 +532,8 @@ class KaraokePlayer(QWidget):
 
 
     def _update_lyrics_sync(self):
-        self.active_style = "color: #00ffcc; font-weight: bold; font-size: 42px;"
-        self.inactive_style = "color: #ffffff; font-size: 42px;"
+        self.active_style = "color: #00ffcc; font-weight: bold; font-size: 40px;"
+        self.inactive_style = "color: #ffffff; font-size: 30px;"
 
         if not self.playing:
             self.timer.stop()
@@ -570,6 +570,7 @@ class KaraokePlayer(QWidget):
             # Set text for current line
             current_lbl.setText(seg["text"])
             current_lbl.setStyleSheet(self.active_style)
+            current_lbl.setMaximumHeight(16777215)
 
             # Prefill the next line if exists
             next_next_index = self.next_index + 1
@@ -580,6 +581,8 @@ class KaraokePlayer(QWidget):
             
             # Make upcoming line inactive
             next_lbl.setStyleSheet(self.inactive_style)
+            next_lbl.setMaximumHeight(50)
+            next_lbl.setMinimumHeight(50)
 
             self.current_index = self.next_index
             self.next_index += 1
